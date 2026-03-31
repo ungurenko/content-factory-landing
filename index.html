@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контент-завод под ключ. ИИ-система для экспертов</title>
+  <meta name="description" content="Персональная ИИ-система производства контента. 16 скиллов, автопубликация, самообучение. Настрою за 3 дня, пользуешься всегда.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════
+       CSS Custom Properties
+       ═══════════════════════════════════════ */
+    :root {
+      --bg: #F5F0E8;
+      --bg-alt: #EDE8DF;
+      --bg-dark: #2D2520;
+      --accent: #E8822A;
+      --accent-hover: #D4741F;
+      --accent-light: rgba(232, 130, 42, 0.10);
+      --accent-rgb: 232, 130, 42;
+      --text: #2D2520;
+      --text-muted: #6B5E52;
+      --white: #FEFEFE;
+      --border: rgba(45, 37, 32, 0.08);
+      --card-bg: rgba(255, 255, 255, 0.5);
+      --card-shadow: 0 2px 20px rgba(45, 37, 32, 0.06);
+      --red: #C0392B;
+      --green: #27AE60;
+    }
+
+    /* ═══════════════════════════════════════
+       Reset & Base
+       ═══════════════════════════════════════ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    /* ═══════════════════════════════════════
+       Utility
+       ═══════════════════════════════════════ */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 40px);
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section--alt {
+      background: var(--bg-alt);
+    }
+
+    .section--dark {
+      background: var(--bg-dark);
+      color: var(--white);
+    }
+
+    .section__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .section--dark .section__badge {
+      background: rgba(232, 130, 42, 0.2);
+    }
+
+    .section__title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .section__subtitle {
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    .section--dark .section__subtitle {
+      color: rgba(254, 254, 254, 0.65);
+    }
+
+    .section__header {
+      margin-bottom: 56px;
+    }
+
+    .section__header--center {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════
+       Global CTA Button
+       ═══════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 16px 32px;
+      border: none;
+      border-radius: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.25);
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(var(--accent-rgb), 0.3);
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    .btn--large {
+      font-size: 1.05rem;
+      padding: 20px 40px;
+      border-radius: 16px;
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      box-shadow: none;
+    }
+
+    .btn--outline:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .arrow-icon {
+      display: inline-block;
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 1: Hero — Split Layout
+       ═══════════════════════════════════════ */
+    .hero {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .hero__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px clamp(32px, 5vw, 80px);
+      padding-right: clamp(24px, 3vw, 48px);
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 8px 16px;
+      border-radius: 100px;
+      width: fit-content;
+      margin-bottom: 24px;
+      animation: fadeSlideUp 0.7s ease 0.2s both;
+    }
+
+    .hero__title {
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+      animation: fadeSlideUp 0.8s ease 0.35s both;
+    }
+
+    .hero__title em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero__subtitle {
+      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 24px;
+      animation: fadeSlideUp 0.8s ease 0.5s both;
+    }
+
+    .hero__price-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(39, 174, 96, 0.08);
+      color: #1e8449;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 10px;
+      margin-bottom: 28px;
+      animation: fadeSlideUp 0.8s ease 0.55s both;
+    }
+
+    .hero__price-note s {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .hero__cta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 48px;
+      animation: fadeSlideUp 0.8s ease 0.65s both;
+    }
+
+    .hero__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.25);
+    }
+
+    .hero__button:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(var(--accent-rgb), 0.3);
+    }
+
+    .hero__button:active { transform: translateY(0); }
+
+    .hero__stats {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      animation: fadeSlideUp 0.8s ease 0.8s both;
+    }
+
+    .hero__stat-number {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .hero__stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .hero__right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
+      opacity: 0;
+      scale: 1.04;
+      animation: imageReveal 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s both;
+    }
+
+    .hero__right::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 160px;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero__right::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 100px;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero__marquee { display: none; }
+
+    /* ═══════════════════════════════════════
+       BLOCK 2: Problem
+       ═══════════════════════════════════════ */
+    .pain-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .pain-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .pain-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: rgba(192, 57, 43, 0.08);
+      color: var(--red);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .pain-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .amplifier {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      padding-left: 52px;
+      border-left: 3px solid var(--accent);
+      margin-left: 0;
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 3: Agitate — Comparison Cards
+       ═══════════════════════════════════════ */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .compare-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .compare-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--red);
+      opacity: 0.6;
+    }
+
+    .compare-card__icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(192, 57, 43, 0.08);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .compare-card__title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .compare-card__text {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .bridge-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 4: Solution — Features
+       ═══════════════════════════════════════ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--accent);
+    }
+
+    .feature-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .feature-card__title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .feature-card__how {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .feature-card__result {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1.5;
+    }
+
+    .cta-center {
+      text-align: center;
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 5: How It Works — Steps
+       ═══════════════════════════════════════ */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 36px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), rgba(var(--accent-rgb), 0.2));
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step__num {
+      width: 56px;
+      height: 56px;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 20px rgba(var(--accent-rgb), 0.3);
+    }
+
+    .step__title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step__text {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .step-note {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 24px;
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 6: What You Get — Accordion
+       ═══════════════════════════════════════ */
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .accordion__item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .accordion__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .accordion__header:hover {
+      background: rgba(232, 130, 42, 0.04);
+    }
+
+    .accordion__header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .accordion__icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .accordion__title {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .accordion__count {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .accordion__chevron {
+      width: 24px;
+      height: 24px;
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .accordion__item.open .accordion__chevron {
+      transform: rotate(180deg);
+    }
+
+    .accordion__body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .accordion__item.open .accordion__body {
+      max-height: 600px;
+    }
+
+    .accordion__content {
+      padding: 0 24px 20px;
+      padding-left: 78px;
+    }
+
+    .accordion__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .accordion__list li {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .accordion__list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .total-line {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      padding: 20px;
+      background: var(--accent-light);
+      border-radius: 14px;
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 7: Speed Demo — Table
+       ═══════════════════════════════════════ */
+    .speed-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--card-bg);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .speed-table th {
+      background: var(--bg-dark);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 16px 20px;
+      text-align: left;
+    }
+
+    .speed-table td {
+      padding: 16px 20px;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .speed-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .speed-table .old-time {
+      color: var(--red);
+      font-weight: 500;
+    }
+
+    .speed-table .new-time {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .speed-total {
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .speed-total strong {
+      color: var(--text);
+    }
+
+    /* Speed cards (mobile) */
+    .speed-cards { display: none; }
+
+    /* ═══════════════════════════════════════
+       BLOCK 8: Comparison Table
+       ═══════════════════════════════════════ */
+    .comp-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--card-bg);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .comp-table th {
+      background: var(--bg-dark);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 16px 14px;
+      text-align: center;
+    }
+
+    .comp-table th:first-child {
+      text-align: left;
+    }
+
+    .comp-table th.highlight {
+      background: var(--accent);
+    }
+
+    .comp-table td {
+      padding: 14px;
+      font-size: 0.82rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+
+    .comp-table td:first-child {
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .comp-table td.highlight {
+      background: rgba(232, 130, 42, 0.04);
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .comp-table tr:last-child td { border-bottom: none; }
+
+    .comp-accent {
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .comp-accent strong { color: var(--text); }
+
+    /* Comparison cards (mobile) */
+    .comp-cards { display: none; }
+
+    /* ═══════════════════════════════════════
+       BLOCK 9: For Whom — Segment Cards
+       ═══════════════════════════════════════ */
+    .segments-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .segment-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px 28px;
+    }
+
+    .segment-card__icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .segment-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .segment-card__situation {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .segment-card__result {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1.5;
+    }
+
+    .segments-note {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 10: About Expert
+       ═══════════════════════════════════════ */
+    .expert {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .expert__photo-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--bg-alt);
+    }
+
+    .expert__photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--bg-alt), var(--bg));
+      font-size: 4rem;
+    }
+
+    .expert__bio { font-size: 0.95rem; line-height: 1.7; margin-bottom: 28px; color: var(--text-muted); }
+
+    .expert__stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .expert__stat-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .expert__stat-item::before {
+      content: '✓';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: rgba(39, 174, 96, 0.1);
+      color: var(--green);
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .expert__quote {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      padding: 20px 24px;
+      background: var(--accent-light);
+      border-radius: 14px;
+      border-left: 4px solid var(--accent);
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 11: Pricing
+       ═══════════════════════════════════════ */
+    .pricing-card {
+      max-width: 560px;
+      margin: 0 auto 36px;
+      background: var(--card-bg);
+      border: 2px solid var(--accent);
+      border-radius: 24px;
+      padding: 48px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: var(--accent);
+    }
+
+    .pricing-label {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 8px 20px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .pricing-price {
+      margin-bottom: 8px;
+    }
+
+    .pricing-price__old {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-right: 12px;
+    }
+
+    .pricing-price__new {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+
+    .pricing-price__currency {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .pricing-reason {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-includes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+
+    .pricing-includes li {
+      font-size: 0.88rem;
+      padding-left: 28px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .pricing-includes li.pricing-note-item::before {
+      content: none;
+    }
+
+    .pricing-includes li.pricing-note-item {
+      padding-left: 0;
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      margin-top: 4px;
+    }
+
+    .pricing-includes li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .pricing-slots {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--red);
+      margin-top: 16px;
+    }
+
+    .pricing-anchors {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 560px;
+      margin: 0 auto 28px;
+    }
+
+    .pricing-anchor {
+      text-align: center;
+      padding: 20px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .pricing-anchor__label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .pricing-anchor__value {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .pricing-note {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 12: Workflow Demo
+       ═══════════════════════════════════════ */
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .workflow-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 32px 24px;
+    }
+
+    .workflow-card__cmd {
+      display: inline-block;
+      background: rgba(232, 130, 42, 0.15);
+      color: var(--accent);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .workflow-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+
+    .workflow-card__process {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: rgba(254, 254, 254, 0.6);
+      margin-bottom: 16px;
+    }
+
+    .workflow-card__result {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1.5;
+    }
+
+    .workflow-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(254, 254, 254, 0.5);
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 13: Quality Proof
+       ═══════════════════════════════════════ */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .proof-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px 28px;
+    }
+
+    .proof-card__num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .proof-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .proof-card__text {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 14: FAQ
+       ═══════════════════════════════════════ */
+    .faq-list {
+      max-width: 740px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .faq-question:hover {
+      background: rgba(232, 130, 42, 0.04);
+    }
+
+    .faq-chevron {
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+
+    .faq-answer__inner {
+      padding: 0 24px 20px;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 15: Final CTA
+       ═══════════════════════════════════════ */
+    .final-cta {
+      text-align: center;
+      padding: 80px 0;
+      background: var(--bg-dark);
+      color: var(--white);
+    }
+
+    .final-cta__title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .final-cta__text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(254, 254, 254, 0.65);
+      max-width: 560px;
+      margin: 0 auto 12px;
+    }
+
+    .final-cta__price {
+      font-size: 1.2rem;
+      margin-bottom: 28px;
+    }
+
+    .final-cta__price s {
+      color: rgba(254, 254, 254, 0.4);
+      font-weight: 400;
+    }
+
+    .final-cta__price strong {
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .final-cta__slots {
+      font-size: 0.88rem;
+      color: rgba(254, 254, 254, 0.5);
+      margin-top: 16px;
+    }
+
+    .final-cta__slots strong {
+      color: var(--accent);
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 16: Footer
+       ═══════════════════════════════════════ */
+    .footer {
+      padding: 40px 0;
+      background: #1a1714;
+      color: rgba(254, 254, 254, 0.4);
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer a:hover { text-decoration: underline; }
+
+    .footer__links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    /* ═══════════════════════════════════════
+       Fixed Mobile CTA
+       ═══════════════════════════════════════ */
+    .mobile-cta {
+      display: none;
+    }
+
+    /* ═══════════════════════════════════════
+       Animations
+       ═══════════════════════════════════════ */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes imageReveal {
+      to { opacity: 1; scale: 1; }
+    }
+
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════════
+       Responsive — Mobile (≤768px)
+       ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+
+      /* Hero */
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50vh auto auto;
+        min-height: auto;
+      }
+
+      .hero__right   { order: 1; }
+      .hero__marquee { order: 2; }
+      .hero__left    { order: 3; }
+
+      .hero__left {
+        text-align: center;
+        align-items: center;
+        padding: 28px 24px 60px;
+      }
+
+      .hero__subtitle { max-width: 100%; }
+
+      .hero__cta {
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+      }
+
+      .hero__button {
+        width: 100%;
+        justify-content: center;
+        padding: 18px 32px;
+      }
+
+      .hero__stats {
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .hero__stat-number { font-size: 1.2rem; }
+      .hero__stat-label { font-size: 0.68rem; }
+
+      .hero__right::before { display: none; }
+      .hero__right::after { height: 120px; }
+
+      .hero__marquee {
+        display: block;
+        order: 2;
+        width: 100%;
+        height: 38px;
+        background: var(--accent);
+        overflow: hidden;
+        position: relative;
+        z-index: 4;
+        margin-top: -19px;
+      }
+
+      .hero__marquee-track {
+        display: flex;
+        white-space: nowrap;
+        animation: marqueeScroll 18s linear infinite;
+        height: 100%;
+        align-items: center;
+      }
+
+      .hero__marquee-track span {
+        font-family: inherit;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--white);
+        padding: 0 4px;
+      }
+
+      /* Grids → single column */
+      .compare-grid,
+      .features-grid,
+      .workflow-grid,
+      .proof-grid,
+      .segments-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .steps::before { display: none; }
+
+      .step {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 16px;
+        text-align: left;
+      }
+
+      .step__num { margin: 0; }
+
+      /* Expert */
+      .expert {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .expert__photo-wrap {
+        max-width: 280px;
+        margin: 0 auto;
+        aspect-ratio: 1;
+      }
+
+      /* Pricing */
+      .pricing-card { padding: 32px 24px; }
+      .pricing-anchors { grid-template-columns: 1fr; }
+
+      /* Tables → cards */
+      .speed-table { display: none; }
+      .speed-cards { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+
+      .speed-card-item {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px;
+      }
+
+      .speed-card-item__task {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .speed-card-item__row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.82rem;
+        margin-bottom: 4px;
+      }
+
+      .comp-table { display: none; }
+      .comp-cards { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+
+      .comp-card-item {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px;
+      }
+
+      .comp-card-item__title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--accent);
+      }
+
+      .comp-card-item__row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.82rem;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .comp-card-item__row:last-child { border-bottom: none; }
+
+      /* Accordion content */
+      .accordion__content { padding-left: 24px; }
+
+      /* Amplifier */
+      .amplifier { padding-left: 24px; }
+
+      /* Mobile CTA */
+      .mobile-cta {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 12px 16px;
+        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        background: rgba(245, 240, 232, 0.95);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border);
+      }
+
+      .mobile-cta .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      /* Extra padding for fixed CTA */
+      .footer { padding-bottom: 80px; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .hero__left { padding: 60px 32px; }
+      .hero__title { font-size: 2rem; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .workflow-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .steps::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 1: Hero
+       ═══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__left">
+      <div class="hero__badge">
+        <span>⚡</span> ИИ-система для экспертов
+      </div>
+      <h1 class="hero__title">
+        Контент-завод<br><em>под ключ</em>
+      </h1>
+      <p class="hero__subtitle">
+        Настрою персональную систему производства контента для твоего блога за&nbsp;3&nbsp;дня. 16&nbsp;скиллов, 10&nbsp;фреймворков, автопубликация. Платишь один раз за&nbsp;настройку + подписка Claude&nbsp;Pro&nbsp;~$20/мес для работы системы.
+      </p>
+      <div class="hero__price-note">
+        <span>🔥</span> Первым 3 клиентам: <s>50 000 ₽</s>&nbsp;&nbsp;<strong>9 990 ₽</strong>
+      </div>
+      <div class="hero__cta">
+        <a href="#pricing" class="hero__button">
+          Написать в Telegram
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <div class="hero__stat-number">16</div>
+          <div class="hero__stat-label">скиллов</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">120+</div>
+          <div class="hero__stat-label">эталонных постов</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">5 мин</div>
+          <div class="hero__stat-label">на один пост</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">20 мин</div>
+          <div class="hero__stat-label">неделя контента</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__marquee">
+      <div class="hero__marquee-track">
+        <span>16 СКИЛЛОВ ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ TELEGRAM ✦ THREADS ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ SEO ✦ 16 СКИЛЛОВ ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ TELEGRAM ✦ THREADS ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ SEO ✦ </span>
+        <span>16 СКИЛЛОВ ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ TELEGRAM ✦ THREADS ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ SEO ✦ 16 СКИЛЛОВ ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ TELEGRAM ✦ THREADS ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ SEO ✦ </span>
+      </div>
+    </div>
+
+    <div class="hero__right">
+      <img class="hero__image"
+        src="https://my-data.s3.twcstorage.ru/ChatGPT-Image-27-2026-.-195831-994435.jpg"
+        alt="Контент-завод, ИИ-система, которая пишет твоим голосом"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 2: Problem
+       ═══════════════════════════════════════ -->
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="section__header reveal">
+        <div class="section__badge">😓 Знакомо?</div>
+        <h2 class="section__title">Знакомая ситуация</h2>
+      </div>
+      <div class="pain-list reveal">
+        <div class="pain-item">
+          <div class="pain-icon">⏰</div>
+          <p class="pain-text">Контент отнимает по 2-3 часа в день, хотя ты эксперт, а не копирайтер</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">😶</div>
+          <p class="pain-text">Садишься писать пост, и 40 минут смотришь на пустой экран, потому что не знаешь, о чём сегодня</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">🤖</div>
+          <p class="pain-text">Пробовал ChatGPT, получил гладкий, но мёртвый текст, который подписчики пролистывают</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">💸</div>
+          <p class="pain-text">Нанимал копирайтера, тратил больше времени на правки, чем если бы писал сам</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">📉</div>
+          <p class="pain-text">Блог ведётся рывками: неделю пишешь активно, потом две недели тишина, охваты падают, аудитория забывает</p>
+        </div>
+      </div>
+      <blockquote class="amplifier reveal">
+        Каждый день без контента это день, когда потенциальные клиенты уходят к тому, кто пишет регулярно. Контент в 2026 году это не опция, а основной канал продаж для экспертов.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 3: Agitate
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="agitate">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">🚫 Тупик</div>
+        <h2 class="section__title">Почему привычные решения не работают</h2>
+      </div>
+      <div class="compare-grid reveal">
+        <div class="compare-card">
+          <div class="compare-card__icon">🤖</div>
+          <h3 class="compare-card__title">ChatGPT / обычные нейросети</h3>
+          <p class="compare-card__text">Получаешь шаблонный текст без своего голоса, стоп-слов, понимания аудитории. Каждый раз начинаешь с нуля: нет памяти, нет контекста, нет системы. Подписчики чувствуют «это писала нейросеть» и перестают читать.</p>
+        </div>
+        <div class="compare-card">
+          <div class="compare-card__icon">✍️</div>
+          <h3 class="compare-card__title">Копирайтер / SMM-менеджер</h3>
+          <p class="compare-card__text">От 30 000 ₽ в месяц, нужны бесконечные правки, созвоны, брифы. Человек не знает твою тему так, как ты. Уволился, и всё начинается заново. Тратишь деньги и время, а тексты всё равно не звучат как ты.</p>
+        </div>
+        <div class="compare-card">
+          <div class="compare-card__icon">🏢</div>
+          <h3 class="compare-card__title">Агентство / аутсорс</h3>
+          <p class="compare-card__text">От 80 000 ₽ в месяц, контент делают за тебя, теряешь голос и связь с аудиторией. Перестал платить, контент прекратился. Зависимость от подрядчика без выхода на собственную систему.</p>
+        </div>
+      </div>
+      <p class="bridge-text reveal">Все эти решения объединяет одно: ты тратишь десятки тысяч рублей или часы каждый месяц, а&nbsp;системы, которая работает на тебя за стоимость одной чашки кофе в день, так и не появляется.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 4: Solution
+       ═══════════════════════════════════════ -->
+  <section class="section" id="solution">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">🏭 Решение</div>
+        <h2 class="section__title">Контент-завод: система, которая работает на&nbsp;тебя каждый день</h2>
+        <p class="section__subtitle">Готовый конвейер производства контента на базе Claude Code, настроенный лично под тебя: под твой голос, твою аудиторию, твои темы. Не набор промптов, а 16 скиллов-модулей, база знаний из 120+ эталонных примеров и мультиагентные конвейеры, которые пишут, форматируют и публикуют контент. Для работы нужна подписка Claude Pro (~$20/мес), всё остальное настраивается один раз.</p>
+      </div>
+      <div class="features-grid reveal">
+        <div class="feature-card">
+          <div class="feature-num">1</div>
+          <h3 class="feature-card__title">Глубина контекста → тексты звучат как ты</h3>
+          <p class="feature-card__how">При каждой генерации система читает 7+ файлов базы знаний: голос и тон автора, портрет аудитории, формулы заголовков, стоп-слова, эталонные посты.</p>
+          <p class="feature-card__result">Подписчики не отличат текст от написанного тобой лично.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">2</div>
+          <h3 class="feature-card__title">Автопубликация → контент выходит без твоего участия</h3>
+          <p class="feature-card__how">Система сама открывает браузер и публикует посты, например, 14 постов в Threads на неделю вперёд. Ни одна другая ИИ-система для экспертов этого не делает.</p>
+          <p class="feature-card__result">Запускаешь один алгоритм, и неделя контента выходит автоматически.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">3</div>
+          <h3 class="feature-card__title">Самообучение → система становится лучше каждый день</h3>
+          <p class="feature-card__how">Встроенная саморефлексия: система анализирует, где ты её поправляешь, и меняет свои правила. Обычные ИИ-инструменты каждый раз начинают с нуля.</p>
+          <p class="feature-card__result">Через месяц точнее. Через три, почти без правок.</p>
+        </div>
+      </div>
+      <div class="cta-center reveal">
+        <a href="#pricing" class="btn">
+          Написать в Telegram
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 5: How It Works
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="how">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">📋 Процесс</div>
+        <h2 class="section__title">Как ты получишь свой контент-завод за 3 дня</h2>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step__num">1</div>
+          <div>
+            <h3 class="step__title">Созвон-знакомство</h3>
+            <p class="step__text">30 минут. Обсуждаем твою нишу, аудиторию, стиль, цели блога. Я понимаю, что настраивать и как адаптировать систему.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <div>
+            <h3 class="step__title">Настройка системы</h3>
+            <p class="step__text">1-2 дня. Настраиваю все 16 скиллов: загружаю примеры твоих текстов, прописываю голос и тон, формулы, стоп-слова, столпы контента.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <div>
+            <h3 class="step__title">Установка и обучение</h3>
+            <p class="step__text">Zoom-сессия. Устанавливаем Claude Code, разворачиваем систему, проходим анбординг. Показываю, как запускать каждый рабочий поток.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__num">4</div>
+          <div>
+            <h3 class="step__title">Запускаешь и получаешь контент</h3>
+            <p class="step__text">Пишешь одну команду, получаешь готовые посты. Система твоя навсегда.</p>
+          </div>
+        </div>
+      </div>
+      <div class="step-note reveal">
+        💡 Единственное, что нужно с твоей стороны: активная подписка Claude Pro или Team (~$20/мес). Если её нет, помогу подключить на созвоне.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 6: What You Get
+       ═══════════════════════════════════════ -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">📦 Комплект</div>
+        <h2 class="section__title">Что внутри контент-завода</h2>
+      </div>
+      <div class="accordion reveal">
+
+        <div class="accordion__item">
+          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="accordion__header-left">
+              <div class="accordion__icon">💬</div>
+              <div>
+                <div class="accordion__title">Telegram-контент</div>
+                <div class="accordion__count">5 скиллов</div>
+              </div>
+            </div>
+            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="accordion__body">
+            <div class="accordion__content">
+              <ul class="accordion__list">
+                <li><strong>Генератор тем</strong>: 30 конкретных тем за одну команду, с привязкой к столпам контента и калибровкой по топ-постам</li>
+                <li><strong>Мастер пользы</strong>: полезные посты по формуле КРЮК-КОНТЕКСТ-МЯСО-ВЫХОД, с тремя типами мяса (алгоритм, фреймворк, разбор кейса)</li>
+                <li><strong>Универсальный копирайтер</strong>: 6 типов постов: сторителлинг, инсайт, экспертный, разбор, продающий, прогревающий</li>
+                <li><strong>Форматирование</strong>: структурирует текст для Telegram: эмодзи, абзацы, акценты</li>
+                <li><strong>Неделя контента</strong>: полный конвейер: от генерации 30 тем до N готовых постов за 20 минут</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="accordion__header-left">
+              <div class="accordion__icon">🧵</div>
+              <div>
+                <div class="accordion__title">Threads-контент</div>
+                <div class="accordion__count">2 скилла</div>
+              </div>
+            </div>
+            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="accordion__body">
+            <div class="accordion__content">
+              <ul class="accordion__list">
+                <li><strong>Неделя контента для Threads</strong>: 6-агентный конвейер, 21 формула хуков, A/B заголовки, автопубликация через браузер</li>
+                <li><strong>Горячие новости</strong>: мониторинг ИИ-новостей, фильтр по вирусности, автоматическая генерация и публикация</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="accordion__header-left">
+              <div class="accordion__icon">🎬</div>
+              <div>
+                <div class="accordion__title">Видео → контент</div>
+                <div class="accordion__count">3 скилла</div>
+              </div>
+            </div>
+            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="accordion__body">
+            <div class="accordion__content">
+              <ul class="accordion__list">
+                <li><strong>Саммари видео</strong>: транскрипт из YouTube + структурированный конспект</li>
+                <li><strong>Видео в пост</strong>: из любого YouTube-видео → готовый пост-инструкция для Telegram за 5 минут</li>
+                <li><strong>Видео в статью</strong>: полноценная статья 1500-3000 слов из видео за 20-30 минут</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="accordion__header-left">
+              <div class="accordion__icon">📝</div>
+              <div>
+                <div class="accordion__title">Статьи и SEO</div>
+                <div class="accordion__count">1 скилл</div>
+              </div>
+            </div>
+            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="accordion__body">
+            <div class="accordion__content">
+              <ul class="accordion__list">
+                <li><strong>Фабрика статей</strong>: полный конвейер: SEO-исследование → структура → написание → адаптация под 4 площадки (блог, Дзен, Хабр, VC.ru)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="accordion__header-left">
+              <div class="accordion__icon">🎯</div>
+              <div>
+                <div class="accordion__title">Стратегия и прогрев</div>
+                <div class="accordion__count">2 скилла</div>
+              </div>
+            </div>
+            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="accordion__body">
+            <div class="accordion__content">
+              <ul class="accordion__list">
+                <li><strong>Архитектор смыслов</strong>: 40 смыслов для прогрева по Лестнице Ханта, привязанных к конкретному продукту</li>
+                <li><strong>Радар ИИ-новостей</strong>: мониторинг индустрии через веб + GitHub API, дайджест за любой период</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="accordion__header-left">
+              <div class="accordion__icon">🎨</div>
+              <div>
+                <div class="accordion__title">Визуал</div>
+                <div class="accordion__count">1 скилл</div>
+              </div>
+            </div>
+            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="accordion__body">
+            <div class="accordion__content">
+              <ul class="accordion__list">
+                <li><strong>Генератор обложек</strong>: горизонтальные обложки для постов в 11 стилях (от Dark Editorial до YouTube Thumbnail)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="accordion__header-left">
+              <div class="accordion__icon">📚</div>
+              <div>
+                <div class="accordion__title">База знаний</div>
+                <div class="accordion__count">настраивается под тебя</div>
+              </div>
+            </div>
+            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="accordion__body">
+            <div class="accordion__content">
+              <ul class="accordion__list">
+                <li>Голос и тон автора с примерами и антипримерами</li>
+                <li>Портрет аудитории (боли, триггеры, язык)</li>
+                <li>17 формул заголовков</li>
+                <li>10 фреймворков контента</li>
+                <li>30 приёмов живого текста</li>
+                <li>20-пунктный чек-лист редактуры</li>
+                <li>33+ стоп-слов (включая ИИ-маркеры)</li>
+                <li>Банк тем</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="total-line reveal">
+        16 скиллов + база знаний + рабочие потоки + автопубликация = система, которая работает как персональная контент-команда
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 7: Speed Demo
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="speed">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">⚡ Скорость</div>
+        <h2 class="section__title">Сколько времени ты экономишь каждую неделю</h2>
+      </div>
+
+      <!-- Desktop table -->
+      <table class="speed-table reveal">
+        <thead>
+          <tr>
+            <th>Задача</th>
+            <th>Вручную</th>
+            <th>С контент-заводом</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Неделя постов для Telegram (5-7 шт.)</td><td class="old-time">5-8 часов</td><td class="new-time">20 минут</td></tr>
+          <tr><td>Неделя постов для Threads (14 шт.)</td><td class="old-time">7-10 часов</td><td class="new-time">15 мин + автопубликация</td></tr>
+          <tr><td>Пост из YouTube-видео</td><td class="old-time">1-2 часа</td><td class="new-time">5 минут</td></tr>
+          <tr><td>SEO-статья 2000+ слов</td><td class="old-time">4-8 часов</td><td class="new-time">45-60 минут</td></tr>
+          <tr><td>Прогревающая серия к запуску (40 смыслов)</td><td class="old-time">2-3 дня</td><td class="new-time">10 минут</td></tr>
+          <tr><td>Обложка для поста</td><td class="old-time">20-40 минут</td><td class="new-time">2 минуты</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Mobile cards -->
+      <div class="speed-cards reveal">
+        <div class="speed-card-item">
+          <div class="speed-card-item__task">Неделя постов для Telegram (5-7 шт.)</div>
+          <div class="speed-card-item__row"><span class="old-time">Вручную: 5-8 часов</span><span class="new-time">→ 20 минут</span></div>
+        </div>
+        <div class="speed-card-item">
+          <div class="speed-card-item__task">Неделя постов для Threads (14 шт.)</div>
+          <div class="speed-card-item__row"><span class="old-time">Вручную: 7-10 часов</span><span class="new-time">→ 15 мин</span></div>
+        </div>
+        <div class="speed-card-item">
+          <div class="speed-card-item__task">Пост из YouTube-видео</div>
+          <div class="speed-card-item__row"><span class="old-time">Вручную: 1-2 часа</span><span class="new-time">→ 5 минут</span></div>
+        </div>
+        <div class="speed-card-item">
+          <div class="speed-card-item__task">SEO-статья 2000+ слов</div>
+          <div class="speed-card-item__row"><span class="old-time">Вручную: 4-8 часов</span><span class="new-time">→ 45-60 мин</span></div>
+        </div>
+        <div class="speed-card-item">
+          <div class="speed-card-item__task">Прогревающая серия (40 смыслов)</div>
+          <div class="speed-card-item__row"><span class="old-time">Вручную: 2-3 дня</span><span class="new-time">→ 10 минут</span></div>
+        </div>
+        <div class="speed-card-item">
+          <div class="speed-card-item__task">Обложка для поста</div>
+          <div class="speed-card-item__row"><span class="old-time">Вручную: 20-40 мин</span><span class="new-time">→ 2 минуты</span></div>
+        </div>
+      </div>
+
+      <p class="speed-total reveal">В среднем контент-завод экономит <strong>10-15 часов в неделю</strong>, это 40-60 часов в месяц, которые ты тратишь на работу с клиентами, развитие продуктов или отдых.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 8: Comparison
+       ═══════════════════════════════════════ -->
+  <section class="section" id="comparison">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">📊 Сравнение</div>
+        <h2 class="section__title">Одна система вместо ежемесячных расходов</h2>
+      </div>
+
+      <!-- Desktop table -->
+      <table class="comp-table reveal">
+        <thead>
+          <tr>
+            <th>Параметр</th>
+            <th>ChatGPT</th>
+            <th>Копирайтер</th>
+            <th>Агентство</th>
+            <th class="highlight">Контент-завод</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Знает твой голос</td><td>Нет</td><td>Частично</td><td>Нет</td><td class="highlight">Да, обучен на твоих текстах</td></tr>
+          <tr><td>Помнит контекст</td><td>Нет</td><td>Частично</td><td>Нет</td><td class="highlight">Да, 7+ файлов при генерации</td></tr>
+          <tr><td>Сам публикует</td><td>Нет</td><td>Нет</td><td>Да</td><td class="highlight">Да</td></tr>
+          <tr><td>Учится на правках</td><td>Нет</td><td>Медленно</td><td>Нет</td><td class="highlight">Да, саморефлексия</td></tr>
+          <tr><td>Стоимость в месяц</td><td>~2 000 ₽</td><td>30-60 000 ₽</td><td>80-150 000 ₽</td><td class="highlight">~$20 (только подписка Claude)</td></tr>
+          <tr><td>Скорость</td><td>10-15 мин/пост</td><td>1-2 дня/пост</td><td>3-5 дней/пост</td><td class="highlight">5 мин/пост</td></tr>
+          <tr><td>Уходит при отмене</td><td>-</td><td>Да</td><td>Да</td><td class="highlight">Нет, навсегда твоя</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Mobile cards -->
+      <div class="comp-cards reveal">
+        <div class="comp-card-item">
+          <div class="comp-card-item__title">Контент-завод</div>
+          <div class="comp-card-item__row"><span>Голос</span><strong>Обучен на твоих текстах</strong></div>
+          <div class="comp-card-item__row"><span>Контекст</span><strong>7+ файлов</strong></div>
+          <div class="comp-card-item__row"><span>Публикация</span><strong>Автоматически</strong></div>
+          <div class="comp-card-item__row"><span>Обучение</span><strong>Саморефлексия</strong></div>
+          <div class="comp-card-item__row"><span>Стоимость</span><strong style="color:var(--accent)">9 990 ₽ + ~$20/мес Claude</strong></div>
+          <div class="comp-card-item__row"><span>Скорость</span><strong>5 мин/пост</strong></div>
+        </div>
+        <div class="comp-card-item">
+          <div class="comp-card-item__title" style="color:var(--text-muted)">ChatGPT</div>
+          <div class="comp-card-item__row"><span>Голос</span><span>Нет</span></div>
+          <div class="comp-card-item__row"><span>Стоимость</span><span>~2 000 ₽/мес</span></div>
+          <div class="comp-card-item__row"><span>Скорость</span><span>10-15 мин/пост</span></div>
+        </div>
+        <div class="comp-card-item">
+          <div class="comp-card-item__title" style="color:var(--text-muted)">Копирайтер</div>
+          <div class="comp-card-item__row"><span>Голос</span><span>Частично</span></div>
+          <div class="comp-card-item__row"><span>Стоимость</span><span>30-60 000 ₽/мес</span></div>
+          <div class="comp-card-item__row"><span>Скорость</span><span>1-2 дня/пост</span></div>
+        </div>
+        <div class="comp-card-item">
+          <div class="comp-card-item__title" style="color:var(--text-muted)">Агентство</div>
+          <div class="comp-card-item__row"><span>Голос</span><span>Нет</span></div>
+          <div class="comp-card-item__row"><span>Стоимость</span><span>80-150 000 ₽/мес</span></div>
+          <div class="comp-card-item__row"><span>Скорость</span><span>3-5 дней/пост</span></div>
+        </div>
+      </div>
+
+      <p class="comp-accent reveal">Один копирайтер за 3 месяца обойдётся в <strong>90 000-180 000 ₽</strong>, и уволится. Контент-завод стоит <strong>9 990 ₽</strong> за настройку плюс ~$20/мес за подписку Claude, и работает на тебя годами.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 9: For Whom
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="for-whom">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">🎯 Аудитория</div>
+        <h2 class="section__title">Кому подойдёт контент-завод</h2>
+      </div>
+      <div class="segments-grid reveal">
+        <div class="segment-card">
+          <div class="segment-card__icon">🧠</div>
+          <h3 class="segment-card__title">Эксперт с блогом, который устал писать</h3>
+          <p class="segment-card__situation">Ты психолог, коуч, маркетолог, нутрициолог или астролог. У тебя есть экспертиза, но контент отнимает по 2-3 часа в день. Хочешь писать регулярно, но не хочешь тратить на это жизнь.</p>
+          <p class="segment-card__result">→ Система за 20 минут готовит неделю постов твоим голосом.</p>
+        </div>
+        <div class="segment-card">
+          <div class="segment-card__icon">💼</div>
+          <h3 class="segment-card__title">Предприниматель, которому нужен контент для продаж</h3>
+          <p class="segment-card__situation">Ты ведёшь бизнес, понимаешь, что блог это канал продаж, но нет времени заниматься им системно. Нанимать команду дорого, делать самому некогда.</p>
+          <p class="segment-card__result">→ Автономная система контент-маркетинга без ежедневного участия.</p>
+        </div>
+        <div class="segment-card">
+          <div class="segment-card__icon">😤</div>
+          <h3 class="segment-card__title">Эксперт, который разочаровался в ChatGPT</h3>
+          <p class="segment-card__situation">Ты уже использовал нейросети, но получал шаблонные тексты. Подписчики чувствуют фальшь, охваты падают.</p>
+          <p class="segment-card__result">→ 33 стоп-слова, калибровка по эталонам, 30 приёмов живого текста, тексты неотличимы от твоих.</p>
+        </div>
+        <div class="segment-card">
+          <div class="segment-card__icon">🌐</div>
+          <h3 class="segment-card__title">Тот, кто хочет масштабировать присутствие</h3>
+          <p class="segment-card__situation">Ведёшь Telegram, хочешь выйти в Threads, писать статьи на VC или Дзен, но физически не успеваешь покрывать все платформы.</p>
+          <p class="segment-card__result">→ Контент для Telegram, Threads, блога, Хабра, VC.ru и Дзена, из одного места.</p>
+        </div>
+      </div>
+      <p class="segments-note reveal">Система лучше всего работает для мягких ниш: психология, эзотерика, маркетинг, астрология, здоровье, фитнес, коучинг, саморазвитие и похожие направления.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 10: About Expert
+       ═══════════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">👤 Эксперт</div>
+        <h2 class="section__title">Кто настраивает систему</h2>
+      </div>
+      <div class="expert reveal">
+        <div class="expert__photo-wrap">
+          <div class="expert__photo-placeholder">👨‍💻</div>
+        </div>
+        <div>
+          <h3 style="font-size:1.3rem;margin-bottom:20px;">Александр</h3>
+          <p class="expert__bio">
+            8 лет в маркетинге: работал таргетологом, продюсером, владел продюсерским центром. С 2023 года полностью интегрировал нейросети в работу и за это время заработал $150 000+ через блог. Контент-завод это система, которую я построил для себя и использую каждый день.
+          </p>
+          <div class="expert__stats">
+            <div class="expert__stat-item">7 000+ подписчиков в Telegram без рекламы</div>
+            <div class="expert__stat-item">$150 000+ заработано через блог</div>
+            <div class="expert__stat-item">40+ обучений по маркетингу, 25+ книг</div>
+            <div class="expert__stat-item">8 лет в маркетинге (с 2017 года)</div>
+            <div class="expert__stat-item">Автор практикумов GPT-ПРАКТИК и ВАЙБС</div>
+          </div>
+          <div class="expert__quote">
+            Я пользуюсь контент-заводом каждый день и вижу, как он экономит мне часы. Первым трём клиентам готов настроить систему по себестоимости, мне важны ваши кейсы и обратная связь.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 11: Pricing
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="pricing">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">💰 Цена</div>
+        <h2 class="section__title">Стоимость</h2>
+      </div>
+
+      <div class="pricing-card reveal">
+        <div class="pricing-label">Для первых 3 клиентов</div>
+        <div class="pricing-price">
+          <span class="pricing-price__old">50 000 ₽</span>
+          <span class="pricing-price__new">9 990 <span class="pricing-price__currency">₽</span></span>
+        </div>
+        <p class="pricing-reason">Мне нужны 3 кейса с реальными результатами и честными отзывами. Поэтому первые три системы настраиваю практически по себестоимости.</p>
+        <ul class="pricing-includes">
+          <li>Полная настройка всех 16 скиллов под тебя</li>
+          <li>Персональная база знаний (голос, аудитория, эталоны)</li>
+          <li>Zoom-сессия с установкой и обучением</li>
+          <li>Система в твою собственность навсегда</li>
+          <li style="color:var(--text-muted);" class="pricing-note-item">ℹ️ Для работы нужна подписка Claude Pro (~$20/мес)</li>
+        </ul>
+        <a href="#" class="btn btn--large" style="width:100%;justify-content:center;">
+          Занять место за 9 990 ₽
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p class="pricing-slots">Осталось 3 из 3 мест</p>
+      </div>
+
+      <div class="pricing-anchors reveal">
+        <div class="pricing-anchor">
+          <div class="pricing-anchor__label">Копирайтер × 3 мес</div>
+          <div class="pricing-anchor__value">90-180 000 ₽</div>
+        </div>
+        <div class="pricing-anchor">
+          <div class="pricing-anchor__label">Агентство × 3 мес</div>
+          <div class="pricing-anchor__value">240-450 000 ₽</div>
+        </div>
+        <div class="pricing-anchor">
+          <div class="pricing-anchor__label">Контент-завод</div>
+          <div class="pricing-anchor__value" style="color:var(--accent)">9 990 ₽ + ~$20/мес</div>
+        </div>
+      </div>
+
+      <p class="pricing-note reveal">После первых 3 клиентов цена вернётся к 50 000 ₽. Для работы системы нужна подписка Claude Pro (~$20/мес).</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 12: Workflow Demo
+       ═══════════════════════════════════════ -->
+  <section class="section section--dark" id="demo">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">🖥️ Практика</div>
+        <h2 class="section__title" style="color:var(--white)">Как это выглядит на практике</h2>
+      </div>
+      <div class="workflow-grid reveal">
+        <div class="workflow-card">
+          <div class="workflow-card__cmd">/telegram-weekly</div>
+          <h3 class="workflow-card__title">Неделя контента для Telegram</h3>
+          <p class="workflow-card__process">Система собирает ИИ-новости → генерирует 30 тем → ты выбираешь нужные → система пишет посты с точками согласования на каждом этапе</p>
+          <p class="workflow-card__result">Готовые посты, отформатированные для Telegram. Время: 20 минут.</p>
+        </div>
+        <div class="workflow-card">
+          <div class="workflow-card__cmd">/threads-news-reactor</div>
+          <h3 class="workflow-card__title">Горячие новости в Threads</h3>
+          <p class="workflow-card__process">Радар собирает дайджест → фильтрует по вирусности (порог 14+ из 20) → генерирует посты → сам открывает браузер и публикует</p>
+          <p class="workflow-card__result">14 постов на неделю опубликованы автоматически. Время: 15 минут.</p>
+        </div>
+        <div class="workflow-card">
+          <div class="workflow-card__cmd">/video-to-post + URL</div>
+          <h3 class="workflow-card__title">YouTube → пост для Telegram</h3>
+          <p class="workflow-card__process">Система извлекает транскрипт → предлагает 2-3 угла подачи → ты выбираешь → система пишет пост-инструкцию с хуком и выводами</p>
+          <p class="workflow-card__result">Готовый пост на 10-15 абзацев. Время: 5 минут.</p>
+        </div>
+      </div>
+      <p class="workflow-note reveal">На каждом этапе система останавливается и ждёт твоего одобрения, ничего не публикуется без твоего OK.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 13: Quality Proof
+       ═══════════════════════════════════════ -->
+  <section class="section" id="quality">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">✅ Качество</div>
+        <h2 class="section__title">Почему тексты контент-завода не&nbsp;похожи на&nbsp;ИИ</h2>
+      </div>
+      <div class="proof-grid reveal">
+        <div class="proof-card">
+          <div class="proof-card__num">01</div>
+          <h3 class="proof-card__title">33 стоп-слова и запрета</h3>
+          <p class="proof-card__text">Система знает, какие слова убивают живой текст: «уникальный», «инновационный», «невероятно», «меняет правила игры», и никогда их не использует.</p>
+        </div>
+        <div class="proof-card">
+          <div class="proof-card__num">02</div>
+          <h3 class="proof-card__title">30 приёмов живого текста</h3>
+          <p class="proof-card__text">Искренность, детализация, сенсорные триггеры, эффект диалога, ритмичность. Те же техники, которые используют лучшие копирайтеры.</p>
+        </div>
+        <div class="proof-card">
+          <div class="proof-card__num">03</div>
+          <h3 class="proof-card__title">Калибровка по эталонным постам</h3>
+          <p class="proof-card__text">В базе знаний 120+ реальных постов с метриками просмотров. Система знает, какие тексты заходят, и ориентируется на них.</p>
+        </div>
+        <div class="proof-card">
+          <div class="proof-card__num">04</div>
+          <h3 class="proof-card__title">20-пунктный чек-лист редактуры</h3>
+          <p class="proof-card__text">Каждый текст проходит автоматическую проверку: штампы, канцеляризмы, страдательный залог, отглагольные существительные, всё вычищается до выдачи.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 14: FAQ
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="faq">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">❓ FAQ</div>
+        <h2 class="section__title">Частые вопросы</h2>
+      </div>
+      <div class="faq-list reveal">
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Мне нужно разбираться в программировании или нейросетях?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-answer"><div class="faq-answer__inner">Нет. Я настраиваю всё за тебя, устанавливаю Claude Code на созвоне и показываю, как запускать каждый рабочий поток. Управление через текстовые команды на русском языке.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Какая подписка нужна для работы системы?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-answer"><div class="faq-answer__inner">Нужна подписка Claude Pro ($20/мес) или Claude Team. Это единственная регулярная статья расходов. Если подписки нет, помогу подключить на созвоне.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Система подойдёт для моей ниши?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-answer"><div class="faq-answer__inner">Контент-завод настраивается под любую нишу через базу знаний. Лучше всего работает для мягких ниш: психология, маркетинг, эзотерика, астрология, здоровье, фитнес, коучинг, саморазвитие. Для узких технических ниш может потребоваться дополнительная настройка.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>А если мне не понравится качество текстов?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-answer"><div class="faq-answer__inner">Система учится на твоих правках, чем больше пользуешься, тем точнее она пишет. В базу знаний загружаются твои лучшие тексты как эталон. За первую неделю система калибруется, и качество выходит на стабильный уровень.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Почему так дёшево для первых 3 клиентов?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-answer"><div class="faq-answer__inner">Мне нужны реальные кейсы и отзывы от людей, которые используют систему в своём блоге. Поэтому первые три настройки я делаю почти по себестоимости, 9 990 ₽ вместо 50 000 ₽. После этого цена вернётся к полной.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Система останется у меня навсегда?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-answer"><div class="faq-answer__inner">Да. После настройки все 16 скиллов, вся база знаний и все рабочие потоки живут на твоём компьютере. Ты владелец, а не арендатор. Обновления можешь вносить сам или обратиться ко мне.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>На каком компьютере это работает?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-answer"><div class="faq-answer__inner">Mac или Windows, подходит любая система, на которой работает Claude Code. На созвоне проверим, что всё установлено и настроено.</div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 15: Final CTA
+       ═══════════════════════════════════════ -->
+  <section class="final-cta">
+    <div class="container reveal">
+      <h2 class="final-cta__title">Три места. Одна система.<br>Твой контент на автопилоте.</h2>
+      <p class="final-cta__text">16 скиллов, настроенных под тебя. Автопубликация. Самообучение. Экономия 10+ часов в неделю. Разовая настройка + подписка Claude Pro ~$20/мес. Система, которая остаётся у тебя навсегда.</p>
+      <div class="final-cta__price">
+        <s>50 000 ₽</s>&nbsp;&nbsp;<strong>9 990 ₽</strong> <span style="opacity:0.5">для первых 3 клиентов</span>
+      </div>
+      <a href="#" class="btn btn--large">
+        Написать в Telegram и забронировать место
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="final-cta__slots">Осталось <strong>3 из 3</strong> мест. После них полная цена 50 000 ₽</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 16: Footer
+       ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="#">Telegram</a>
+        <a href="#">Telegram-канал</a>
+      </div>
+      <p>&copy; 2026 Александр. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <!-- Fixed Mobile CTA -->
+  <div class="mobile-cta">
+    <a href="#" class="btn">
+      Написать в Telegram
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       Scroll Reveal Script
+       ═══════════════════════════════════════ -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
