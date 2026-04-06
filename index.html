@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Контент-завод под ключ. ИИ-система для экспертов</title>
-  <meta name="description" content="Персональная ИИ-система производства контента. 16 скиллов, автопубликация, самообучение. Настрою на одном созвоне, пользуешься всегда.">
+  <meta name="description" content="Персональная ИИ-система производства контента. 21 функция, автопубликация, самообучение. Настрою на одном созвоне, пользуешься всегда.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -602,100 +602,66 @@
     }
 
     /* ═══════════════════════════════════════
-       BLOCK 6: What You Get — Accordion
+       BLOCK 6: Features Showcase
        ═══════════════════════════════════════ */
-    .accordion {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
       margin-bottom: 32px;
     }
 
-    .accordion__item {
+    .showcase-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
+      border-radius: 18px;
+      padding: 28px 24px;
+      transition: box-shadow 0.3s ease;
     }
 
-    .accordion__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.2s;
+    .showcase-card:hover {
+      box-shadow: var(--card-shadow);
     }
 
-    .accordion__header:hover {
-      background: rgba(232, 130, 42, 0.04);
-    }
-
-    .accordion__header-left {
+    .showcase-card__header {
       display: flex;
       align-items: center;
       gap: 14px;
+      margin-bottom: 20px;
     }
 
-    .accordion__icon {
-      width: 40px;
-      height: 40px;
+    .showcase-card__icon {
+      width: 44px;
+      height: 44px;
       background: var(--accent-light);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
     }
 
-    .accordion__title {
-      font-size: 0.95rem;
+    .showcase-card__title {
+      font-size: 1rem;
       font-weight: 700;
+      line-height: 1.3;
     }
 
-    .accordion__count {
+    .showcase-card__count {
       font-size: 0.75rem;
       color: var(--text-muted);
       font-weight: 500;
     }
 
-    .accordion__chevron {
-      width: 24px;
-      height: 24px;
-      color: var(--text-muted);
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
-
-    .accordion__item.open .accordion__chevron {
-      transform: rotate(180deg);
-    }
-
-    .accordion__body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-
-    .accordion__item.open .accordion__body {
-      max-height: 600px;
-    }
-
-    .accordion__content {
-      padding: 0 24px 20px;
-      padding-left: 78px;
-    }
-
-    .accordion__list {
+    .showcase-card__list {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
 
-    .accordion__list li {
+    .showcase-card__list li {
       font-size: 0.88rem;
       line-height: 1.6;
       color: var(--text-muted);
@@ -703,7 +669,7 @@
       position: relative;
     }
 
-    .accordion__list li::before {
+    .showcase-card__list li::before {
       content: '→';
       position: absolute;
       left: 0;
@@ -919,14 +885,10 @@
       background: var(--bg-alt);
     }
 
-    .expert__photo-placeholder {
+    .expert__photo {
       width: 100%;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--bg-alt), var(--bg));
-      font-size: 4rem;
+      object-fit: cover;
     }
 
     .expert__bio { font-size: 0.95rem; line-height: 1.7; margin-bottom: 28px; color: var(--text-muted); }
@@ -1550,8 +1512,8 @@
 
       .comp-card-item__row:last-child { border-bottom: none; }
 
-      /* Accordion content */
-      .accordion__content { padding-left: 24px; }
+      /* Showcase grid */
+      .showcase-grid { grid-template-columns: 1fr; }
 
       /* Amplifier */
       .amplifier { padding-left: 24px; }
@@ -1587,6 +1549,7 @@
       .compare-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr; }
       .workflow-grid { grid-template-columns: 1fr; }
+      .showcase-grid { grid-template-columns: repeat(2, 1fr); }
       .steps { grid-template-columns: repeat(2, 1fr); }
       .steps::before { display: none; }
     }
@@ -1606,7 +1569,7 @@
         Контент-завод<br><em>под ключ</em>
       </h1>
       <p class="hero__subtitle">
-        Настрою персональную систему производства контента для твоего блога на&nbsp;одном&nbsp;созвоне. 16&nbsp;скиллов, 10&nbsp;фреймворков, автопубликация. Платишь один раз за&nbsp;настройку + подписка Claude&nbsp;Pro&nbsp;~$20/мес для работы системы.
+        Настрою персональную систему производства контента для твоего блога на&nbsp;одном&nbsp;созвоне. 21&nbsp;функция, 10&nbsp;фреймворков, автопубликация. Платишь один раз за&nbsp;настройку + подписка Claude&nbsp;Pro&nbsp;~$20/мес для работы системы.
       </p>
       <div class="hero__price-note">
         <span>🔥</span> Первым 3 клиентам: <s>50 000 ₽</s>&nbsp;&nbsp;<strong>9 990 ₽</strong>
@@ -1619,8 +1582,8 @@
       </div>
       <div class="hero__stats">
         <div class="hero__stat">
-          <div class="hero__stat-number">16</div>
-          <div class="hero__stat-label">скиллов</div>
+          <div class="hero__stat-number">21</div>
+          <div class="hero__stat-label">функций</div>
         </div>
         <div class="hero__stat">
           <div class="hero__stat-number">120+</div>
@@ -1729,7 +1692,7 @@
       <div class="section__header section__header--center reveal">
         <div class="section__badge">🏭 Решение</div>
         <h2 class="section__title">Контент-завод: система, которая работает на&nbsp;тебя каждый день</h2>
-        <p class="section__subtitle">Готовый конвейер производства контента на базе Claude Code, настроенный лично под тебя: под твой голос, твою аудиторию, твои темы. Не набор промптов, а 16 скиллов-модулей, база знаний из 120+ эталонных примеров и мультиагентные конвейеры, которые пишут, форматируют и публикуют контент. Для работы нужна подписка Claude Pro (~$20/мес), всё остальное настраивается один раз.</p>
+        <p class="section__subtitle">Готовый конвейер производства контента на базе Claude Code, настроенный лично под тебя: под твой голос, твою аудиторию, твои темы. Не набор промптов, а 21 функция-модуль, база знаний из 120+ эталонных примеров и мультиагентные конвейеры, которые пишут, форматируют и публикуют контент. Для работы нужна подписка Claude Pro (~$20/мес), всё остальное настраивается один раз.</p>
       </div>
       <div class="features-grid reveal">
         <div class="feature-card">
@@ -1806,175 +1769,115 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       BLOCK 6: What You Get
+       BLOCK 6: Features Showcase
        ═══════════════════════════════════════ -->
   <section class="section" id="skills">
     <div class="container">
       <div class="section__header section__header--center reveal">
-        <div class="section__badge">📦 Комплект</div>
-        <h2 class="section__title">Что внутри контент-завода</h2>
+        <div class="section__badge">🚀 Возможности</div>
+        <h2 class="section__title">21 функция для полного цикла контента</h2>
+        <p class="section__subtitle">От идеи до публикации — всё в одной системе</p>
       </div>
-      <div class="accordion reveal">
 
-        <div class="accordion__item">
-          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="accordion__header-left">
-              <div class="accordion__icon">💬</div>
-              <div>
-                <div class="accordion__title">Telegram-контент</div>
-                <div class="accordion__count">5 скиллов</div>
-              </div>
-            </div>
-            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="accordion__body">
-            <div class="accordion__content">
-              <ul class="accordion__list">
-                <li><strong>Генератор тем</strong>: 30 конкретных тем за одну команду, с привязкой к столпам контента и калибровкой по топ-постам</li>
-                <li><strong>Мастер пользы</strong>: полезные посты по формуле КРЮК-КОНТЕКСТ-МЯСО-ВЫХОД, с тремя типами мяса (алгоритм, фреймворк, разбор кейса)</li>
-                <li><strong>Универсальный копирайтер</strong>: 6 типов постов: сторителлинг, инсайт, экспертный, разбор, продающий, прогревающий</li>
-                <li><strong>Форматирование</strong>: структурирует текст для Telegram: эмодзи, абзацы, акценты</li>
-                <li><strong>Неделя контента</strong>: полный конвейер: от генерации 30 тем до N готовых постов за 20 минут</li>
-              </ul>
+      <div class="showcase-grid reveal">
+
+        <div class="showcase-card">
+          <div class="showcase-card__header">
+            <div class="showcase-card__icon">📝</div>
+            <div>
+              <div class="showcase-card__title">Telegram</div>
+              <div class="showcase-card__count">9 функций</div>
             </div>
           </div>
+          <ul class="showcase-card__list">
+            <li>Написать полезный пост</li>
+            <li>Написать прогревающий пост</li>
+            <li>Написать продающий пост</li>
+            <li>Написать пост-сторителлинг</li>
+            <li>Написать пост-инсайт</li>
+            <li>Написать экспертный разбор</li>
+            <li>Придумать 30 тем для канала</li>
+            <li>Спланировать неделю контента</li>
+            <li>Отформатировать готовый текст</li>
+          </ul>
         </div>
 
-        <div class="accordion__item">
-          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="accordion__header-left">
-              <div class="accordion__icon">🧵</div>
-              <div>
-                <div class="accordion__title">Threads-контент</div>
-                <div class="accordion__count">2 скилла</div>
-              </div>
-            </div>
-            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="accordion__body">
-            <div class="accordion__content">
-              <ul class="accordion__list">
-                <li><strong>Неделя контента для Threads</strong>: 6-агентный конвейер, 21 формула хуков, A/B заголовки, автопубликация через браузер</li>
-                <li><strong>Горячие новости</strong>: мониторинг ИИ-новостей, фильтр по вирусности, автоматическая генерация и публикация</li>
-              </ul>
+        <div class="showcase-card">
+          <div class="showcase-card__header">
+            <div class="showcase-card__icon">🎬</div>
+            <div>
+              <div class="showcase-card__title">Видео → контент</div>
+              <div class="showcase-card__count">3 функции</div>
             </div>
           </div>
+          <ul class="showcase-card__list">
+            <li>Сделать конспект из YouTube-видео</li>
+            <li>Превратить видео в пост</li>
+            <li>Превратить видео в статью</li>
+          </ul>
         </div>
 
-        <div class="accordion__item">
-          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="accordion__header-left">
-              <div class="accordion__icon">🎬</div>
-              <div>
-                <div class="accordion__title">Видео → контент</div>
-                <div class="accordion__count">3 скилла</div>
-              </div>
-            </div>
-            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="accordion__body">
-            <div class="accordion__content">
-              <ul class="accordion__list">
-                <li><strong>Саммари видео</strong>: транскрипт из YouTube + структурированный конспект</li>
-                <li><strong>Видео в пост</strong>: из любого YouTube-видео → готовый пост-инструкция для Telegram за 5 минут</li>
-                <li><strong>Видео в статью</strong>: полноценная статья 1500-3000 слов из видео за 20-30 минут</li>
-              </ul>
+        <div class="showcase-card">
+          <div class="showcase-card__header">
+            <div class="showcase-card__icon">🧵</div>
+            <div>
+              <div class="showcase-card__title">Threads</div>
+              <div class="showcase-card__count">4 функции</div>
             </div>
           </div>
+          <ul class="showcase-card__list">
+            <li>Спланировать неделю постов для Threads</li>
+            <li>Придумать заголовки для постов</li>
+            <li>Написать посты</li>
+            <li>Автоматически опубликовать</li>
+          </ul>
         </div>
 
-        <div class="accordion__item">
-          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="accordion__header-left">
-              <div class="accordion__icon">📝</div>
-              <div>
-                <div class="accordion__title">Статьи и SEO</div>
-                <div class="accordion__count">1 скилл</div>
-              </div>
-            </div>
-            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="accordion__body">
-            <div class="accordion__content">
-              <ul class="accordion__list">
-                <li><strong>Фабрика статей</strong>: полный конвейер: SEO-исследование → структура → написание → адаптация под 4 площадки (блог, Дзен, Хабр, VC.ru)</li>
-              </ul>
+        <div class="showcase-card">
+          <div class="showcase-card__header">
+            <div class="showcase-card__icon">📄</div>
+            <div>
+              <div class="showcase-card__title">Статьи</div>
+              <div class="showcase-card__count">2 функции</div>
             </div>
           </div>
+          <ul class="showcase-card__list">
+            <li>Написать SEO-статью с исследованием ключевых слов</li>
+            <li>Адаптировать статью под блог / Дзен / Хабр / VC</li>
+          </ul>
         </div>
 
-        <div class="accordion__item">
-          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="accordion__header-left">
-              <div class="accordion__icon">🎯</div>
-              <div>
-                <div class="accordion__title">Стратегия и прогрев</div>
-                <div class="accordion__count">2 скилла</div>
-              </div>
-            </div>
-            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="accordion__body">
-            <div class="accordion__content">
-              <ul class="accordion__list">
-                <li><strong>Архитектор смыслов</strong>: 40 смыслов для прогрева по Лестнице Ханта, привязанных к конкретному продукту</li>
-                <li><strong>Радар ИИ-новостей</strong>: мониторинг индустрии через веб + GitHub API, дайджест за любой период</li>
-              </ul>
+        <div class="showcase-card">
+          <div class="showcase-card__header">
+            <div class="showcase-card__icon">🔥</div>
+            <div>
+              <div class="showcase-card__title">Стратегия</div>
+              <div class="showcase-card__count">2 функции</div>
             </div>
           </div>
+          <ul class="showcase-card__list">
+            <li>Построить 40 смыслов для прогрева аудитории</li>
+            <li>Спланировать серию прогревающих постов к запуску</li>
+          </ul>
         </div>
 
-        <div class="accordion__item">
-          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="accordion__header-left">
-              <div class="accordion__icon">🎨</div>
-              <div>
-                <div class="accordion__title">Визуал</div>
-                <div class="accordion__count">1 скилл</div>
-              </div>
-            </div>
-            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="accordion__body">
-            <div class="accordion__content">
-              <ul class="accordion__list">
-                <li><strong>Генератор обложек</strong>: горизонтальные обложки для постов в 11 стилях (от Dark Editorial до YouTube Thumbnail)</li>
-              </ul>
+        <div class="showcase-card">
+          <div class="showcase-card__header">
+            <div class="showcase-card__icon">🎨</div>
+            <div>
+              <div class="showcase-card__title">Визуал</div>
+              <div class="showcase-card__count">1 функция</div>
             </div>
           </div>
-        </div>
-
-        <div class="accordion__item">
-          <div class="accordion__header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="accordion__header-left">
-              <div class="accordion__icon">📚</div>
-              <div>
-                <div class="accordion__title">База знаний</div>
-                <div class="accordion__count">настраивается под тебя</div>
-              </div>
-            </div>
-            <svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="accordion__body">
-            <div class="accordion__content">
-              <ul class="accordion__list">
-                <li>Голос и тон автора с примерами и антипримерами</li>
-                <li>Портрет аудитории (боли, триггеры, язык)</li>
-                <li>17 формул заголовков</li>
-                <li>10 фреймворков контента</li>
-                <li>30 приёмов живого текста</li>
-                <li>20-пунктный чек-лист редактуры</li>
-                <li>33+ стоп-слов (включая ИИ-маркеры)</li>
-                <li>Банк тем</li>
-              </ul>
-            </div>
-          </div>
+          <ul class="showcase-card__list">
+            <li>Нарисовать обложку для поста (11 стилей)</li>
+          </ul>
         </div>
 
       </div>
 
       <div class="total-line reveal">
-        16 скиллов + база знаний + рабочие потоки + автопубликация = система, которая работает как персональная контент-команда
+        21 функция + база знаний + автопубликация = полный цикл контента без копирайтера
       </div>
     </div>
   </section>
@@ -2157,10 +2060,10 @@
       </div>
       <div class="expert reveal">
         <div class="expert__photo-wrap">
-          <div class="expert__photo-placeholder">👨‍💻</div>
+          <img class="expert__photo" src="https://my-data.s3.twcstorage.ru/IMG0033-da6955.jpg" alt="Фото эксперта">
         </div>
         <div>
-          <h3 style="font-size:1.3rem;margin-bottom:20px;">Александр</h3>
+          <h3 style="font-size:1.3rem;margin-bottom:20px;">Александр Унгуренко</h3>
           <p class="expert__bio">
             8 лет в маркетинге: работал таргетологом, продюсером, владел продюсерским центром. С 2023 года полностью интегрировал нейросети в работу и за это время заработал $150 000+ через блог. Контент-завод это система, которую я построил для себя и использую каждый день.
           </p>
@@ -2197,7 +2100,7 @@
         </div>
         <p class="pricing-reason">Мне нужны 3 кейса с реальными результатами и честными отзывами. Поэтому первые три системы настраиваю практически по себестоимости.</p>
         <ul class="pricing-includes">
-          <li>Полная настройка всех 16 скиллов вместе на Zoom</li>
+          <li>Полная настройка всех 21 функции вместе на Zoom</li>
           <li>Персональная база знаний (голос, аудитория, эталоны)</li>
           <li>Система в твою собственность навсегда</li>
           <li>PDF-инструкция по работе с контент-заводом</li>
@@ -2376,7 +2279,7 @@
   <section class="final-cta">
     <div class="container reveal">
       <h2 class="final-cta__title">Три места. Одна система.<br>Твой контент на автопилоте.</h2>
-      <p class="final-cta__text">16 скиллов, настроенных под тебя. Автопубликация. Самообучение. Экономия 10+ часов в неделю. Разовая настройка + подписка Claude Pro ~$20/мес. Система, которая остаётся у тебя навсегда.</p>
+      <p class="final-cta__text">21 функция, настроенная под тебя. Автопубликация. Самообучение. Экономия 10+ часов в неделю. Разовая настройка + подписка Claude Pro ~$20/мес. Система, которая остаётся у тебя навсегда.</p>
       <div class="final-cta__price">
         <s>50 000 ₽</s>&nbsp;&nbsp;<strong>9 990 ₽</strong> <span style="opacity:0.5">для первых 3 клиентов</span>
       </div>
