@@ -77,6 +77,17 @@
       color: var(--white);
     }
 
+    .section--compact {
+      padding: 64px 0;
+    }
+    .section--compact .container {
+      max-width: 960px;
+    }
+
+    .section--spacious {
+      padding: 120px 0;
+    }
+
     .section__badge {
       display: inline-flex;
       align-items: center;
@@ -370,6 +381,7 @@
       flex-direction: column;
       gap: 16px;
       margin-bottom: 32px;
+      max-width: 720px;
     }
 
     .pain-item {
@@ -407,6 +419,7 @@
       padding-left: 52px;
       border-left: 3px solid var(--accent);
       margin-left: 0;
+      max-width: 720px;
     }
 
     /* ═══════════════════════════════════════
@@ -687,6 +700,20 @@
       border-radius: 14px;
     }
 
+    /* Showcase cards — dark mode overrides */
+    .section--dark .showcase-card {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .section--dark .showcase-card__title { color: var(--white); }
+    .section--dark .showcase-card__count { color: rgba(254, 254, 254, 0.5); }
+    .section--dark .showcase-card__list li { color: rgba(254, 254, 254, 0.65); }
+    .section--dark .showcase-card__icon { background: rgba(232, 130, 42, 0.15); }
+    .section--dark .total-line {
+      background: rgba(232, 130, 42, 0.15);
+      color: var(--accent);
+    }
+
     /* ═══════════════════════════════════════
        BLOCK 7: Speed Demo — Table
        ═══════════════════════════════════════ */
@@ -822,9 +849,22 @@
        ═══════════════════════════════════════ */
     .segments-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       margin-bottom: 28px;
+    }
+
+    .segments-grid .segment-card:first-child {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .segments-grid .segment-card:first-child .segment-card__icon {
+      font-size: 2.5rem;
+      margin-bottom: 0;
     }
 
     .segment-card {
@@ -865,6 +905,26 @@
       font-size: 0.88rem;
       color: var(--text-muted);
       font-style: italic;
+    }
+
+    /* For Whom — warm gradient background */
+    #for-whom {
+      background: linear-gradient(170deg, #EDE8DF 0%, #E8DFD2 50%, #F0E6D8 100%);
+    }
+
+    /* Comparison — accent left border */
+    #comparison .container {
+      position: relative;
+    }
+    #comparison .container::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      border-radius: 2px;
     }
 
     /* ═══════════════════════════════════════
@@ -1142,6 +1202,11 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 24px;
+      padding-bottom: 32px;
+    }
+
+    .proof-card:nth-child(even) {
+      transform: translateY(32px);
     }
 
     .proof-card {
@@ -1426,6 +1491,13 @@
       .workflow-grid,
       .proof-grid,
       .segments-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-card:nth-child(even) { transform: none; }
+      .proof-grid { padding-bottom: 0; }
+
+      .segments-grid .segment-card:first-child {
         grid-template-columns: 1fr;
       }
 
@@ -1726,7 +1798,7 @@
   <!-- ═══════════════════════════════════════
        BLOCK 5: How It Works
        ═══════════════════════════════════════ -->
-  <section class="section section--alt" id="how">
+  <section class="section section--alt section--compact" id="how">
     <div class="container">
       <div class="section__header section__header--center reveal">
         <div class="section__badge">📋 Процесс</div>
@@ -1771,7 +1843,7 @@
   <!-- ═══════════════════════════════════════
        BLOCK 6: Features Showcase
        ═══════════════════════════════════════ -->
-  <section class="section" id="skills">
+  <section class="section section--dark" id="skills">
     <div class="container">
       <div class="section__header section__header--center reveal">
         <div class="section__badge">🚀 Возможности</div>
@@ -1887,7 +1959,7 @@
        ═══════════════════════════════════════ -->
   <section class="section section--alt" id="speed">
     <div class="container">
-      <div class="section__header section__header--center reveal">
+      <div class="section__header reveal">
         <div class="section__badge">⚡ Скорость</div>
         <h2 class="section__title">Сколько времени ты экономишь каждую неделю</h2>
       </div>
@@ -2052,7 +2124,7 @@
   <!-- ═══════════════════════════════════════
        BLOCK 10: About Expert
        ═══════════════════════════════════════ -->
-  <section class="section" id="about">
+  <section class="section section--spacious" id="about">
     <div class="container">
       <div class="section__header section__header--center reveal">
         <div class="section__badge">👤 Эксперт</div>
