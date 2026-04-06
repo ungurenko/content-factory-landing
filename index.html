@@ -885,14 +885,10 @@
       background: var(--bg-alt);
     }
 
-    .expert__photo-placeholder {
+    .expert__photo {
       width: 100%;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--bg-alt), var(--bg));
-      font-size: 4rem;
+      object-fit: cover;
     }
 
     .expert__bio { font-size: 0.95rem; line-height: 1.7; margin-bottom: 28px; color: var(--text-muted); }
@@ -2064,7 +2060,7 @@
       </div>
       <div class="expert reveal">
         <div class="expert__photo-wrap">
-          <div class="expert__photo-placeholder">👨‍💻</div>
+          <img class="expert__photo" src="https://my-data.s3.twcstorage.ru/IMG0033-da6955.jpg" alt="Фото эксперта">
         </div>
         <div>
           <h3 style="font-size:1.3rem;margin-bottom:20px;">Александр</h3>
