@@ -1427,10 +1427,40 @@
     }
 
     /* ═══════════════════════════════════════
+       Video Section
+       ═══════════════════════════════════════ */
+    .video-section {
+      padding: 80px 0;
+      background: var(--bg-alt);
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+      padding-top: 56.25%; /* 16:9 */
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(45, 37, 32, 0.12);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ═══════════════════════════════════════
        Responsive — Mobile (≤768px)
        ═══════════════════════════════════════ */
     @media (max-width: 768px) {
       .section { padding: 64px 0; }
+      .video-section { padding: 48px 0; }
+      .video-wrapper { border-radius: 12px; }
 
       /* Hero */
       .hero {
@@ -1700,6 +1730,27 @@
         loading="eager"
         fetchpriority="high"
       >
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK: Video Overview
+       ═══════════════════════════════════════ -->
+  <section class="video-section" id="video">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">🎬 Видео-обзор</div>
+        <h2 class="section__title">Посмотрите, как это работает</h2>
+      </div>
+      <div class="video-wrapper reveal">
+        <iframe
+          src="https://www.youtube.com/embed/qwOFA0OFkg0"
+          title="Контент-завод: видео-обзор"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
     </div>
   </section>
 
