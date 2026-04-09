@@ -184,6 +184,20 @@
       border-radius: 16px;
     }
 
+    .btn--disabled {
+      background: #999;
+      cursor: not-allowed;
+      box-shadow: none;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .btn--disabled:hover {
+      background: #999;
+      transform: none;
+      box-shadow: none;
+    }
+
     .btn--outline {
       background: transparent;
       color: var(--accent);
@@ -315,6 +329,20 @@
     }
 
     .hero__button:active { transform: translateY(0); }
+
+    .hero__button--disabled {
+      background: #999;
+      cursor: not-allowed;
+      box-shadow: none;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .hero__button--disabled:hover {
+      background: #999;
+      transform: none;
+      box-shadow: none;
+    }
 
     .hero__stats {
       display: flex;
@@ -1634,10 +1662,9 @@
         <span>🔥</span> Первым 3 клиентам: <s>50 000 ₽</s>&nbsp;&nbsp;<strong>9 990 ₽</strong>
       </div>
       <div class="hero__cta">
-        <a href="https://t.me/m/N0bTmb18OTUy" target="_blank" rel="noopener" class="hero__button">
-          Написать в Telegram
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <span class="hero__button hero__button--disabled">
+          Все места заняты
+        </span>
       </div>
       <div class="hero__stats">
         <div class="hero__stat">
@@ -2168,11 +2195,10 @@
           <li>Поддержка по вопросам после настройки</li>
           <li style="color:var(--text-muted);" class="pricing-note-item">ℹ️ Для работы нужна подписка Claude Pro (~$20/мес)</li>
         </ul>
-        <a href="https://t.me/m/N0bTmb18OTUy" target="_blank" rel="noopener" class="btn btn--large" style="width:100%;justify-content:center;">
-          Занять место за 9 990 ₽
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <p class="pricing-slots">Осталось 3 из 3 мест</p>
+        <span class="btn btn--large btn--disabled" style="width:100%;justify-content:center;">
+          Все места заняты
+        </span>
+        <p class="pricing-slots">Все 3 места заняты. Ожидайте новых мест</p>
       </div>
 
       <div class="pricing-anchors reveal">
@@ -2342,11 +2368,10 @@
       <div class="final-cta__price">
         <s>50 000 ₽</s>&nbsp;&nbsp;<strong>9 990 ₽</strong> <span style="opacity:0.5">для первых 3 клиентов</span>
       </div>
-      <a href="https://t.me/m/N0bTmb18OTUy" target="_blank" rel="noopener" class="btn btn--large">
-        Написать в Telegram и забронировать место
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <p class="final-cta__slots">Осталось <strong>3 из 3</strong> мест. После них полная цена 50 000 ₽</p>
+      <span class="btn btn--large btn--disabled">
+        Все места заняты
+      </span>
+      <p class="final-cta__slots">Все <strong>3 места заняты</strong>. Ожидайте новых мест</p>
     </div>
   </section>
 
@@ -2365,10 +2390,9 @@
 
   <!-- Fixed Mobile CTA -->
   <div class="mobile-cta">
-    <a href="https://t.me/m/N0bTmb18OTUy" target="_blank" rel="noopener" class="btn">
-      Написать в Telegram
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
+    <span class="btn btn--disabled">
+      Все места заняты
+    </span>
   </div>
 
   <!-- ═══════════════════════════════════════
