@@ -1427,10 +1427,80 @@
     }
 
     /* ═══════════════════════════════════════
+       Video Section
+       ═══════════════════════════════════════ */
+    .video-section {
+      padding: 80px 0;
+      background: var(--bg-alt);
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+      padding-top: 56.25%; /* 16:9 */
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(45, 37, 32, 0.12);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .video-hint__text {
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .video-hint__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--white);
+      animation: bounceDown 1.8s ease-in-out infinite;
+    }
+
+    .video-hint__arrow svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* ═══════════════════════════════════════
        Responsive — Mobile (≤768px)
        ═══════════════════════════════════════ */
     @media (max-width: 768px) {
       .section { padding: 64px 0; }
+      .video-section { padding: 48px 0; }
+      .video-wrapper { border-radius: 12px; }
+      .video-hint__text { font-size: 0.95rem; }
+      .video-hint__arrow { width: 38px; height: 38px; }
+      .video-hint__arrow svg { width: 18px; height: 18px; }
 
       /* Hero */
       .hero {
@@ -1700,6 +1770,29 @@
         loading="eager"
         fetchpriority="high"
       >
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK: Video Overview
+       ═══════════════════════════════════════ -->
+  <section class="video-section" id="video">
+    <div class="container">
+      <div class="video-hint reveal">
+        <p class="video-hint__text">Посмотри, как это работает</p>
+        <div class="video-hint__arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m0 0l-6-6m6 6l6-6"/></svg>
+        </div>
+      </div>
+      <div class="video-wrapper reveal">
+        <iframe
+          src="https://www.youtube.com/embed/qwOFA0OFkg0"
+          title="Контент-завод: видео-обзор"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
     </div>
   </section>
 
