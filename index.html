@@ -1463,8 +1463,9 @@
     }
 
     .video-hint__text {
-      font-size: 1.05rem;
-      color: var(--text-muted);
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      font-weight: 600;
+      color: var(--text);
       text-align: center;
     }
 
@@ -1777,12 +1778,8 @@
        ═══════════════════════════════════════ -->
   <section class="video-section" id="video">
     <div class="container">
-      <div class="section__header section__header--center reveal">
-        <div class="section__badge">🎬 Видео-обзор</div>
-        <h2 class="section__title">Посмотрите, как это работает</h2>
-      </div>
       <div class="video-hint reveal">
-        <p class="video-hint__text">21 минута — и вы поймёте, как устроена система</p>
+        <p class="video-hint__text">Посмотри, как это работает</p>
         <div class="video-hint__arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m0 0l-6-6m6 6l6-6"/></svg>
         </div>
