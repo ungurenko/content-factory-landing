@@ -179,6 +179,10 @@
       padding: 120px 0;
     }
 
+    .section--warm {
+      background: rgba(var(--accent-rgb), 0.05);
+    }
+
     .section__badge {
       display: inline-flex;
       align-items: center;
@@ -536,6 +540,18 @@
       max-width: 720px;
     }
 
+    .section--warm .pain-item {
+      background: var(--white);
+      box-shadow: var(--card-shadow);
+      border-color: rgba(45, 37, 32, 0.06);
+    }
+
+    .section--warm .amplifier {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+
     .pain-item {
       display: flex;
       align-items: flex-start;
@@ -655,9 +671,24 @@
        ═══════════════════════════════════════ */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1.5fr 1fr;
       gap: 28px;
       margin-bottom: 48px;
+    }
+
+    .feature-card:first-child {
+      grid-row: span 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .feature-card:first-child .feature-card__title {
+      font-size: 1.2rem;
+    }
+
+    .feature-card:first-child .feature-card__how {
+      font-size: 0.92rem;
     }
 
     .feature-card {
@@ -879,7 +910,13 @@
       border-radius: 14px;
     }
 
-    /* Showcase cards — dark mode overrides */
+    .showcase-grid--asym {
+      grid-template-columns: 1.5fr 1fr;
+    }
+
+    .showcase-grid--asym .showcase-card:first-child {
+      grid-row: span 2;
+    }
     .section--dark .showcase-card {
       background: rgba(255, 255, 255, 0.06);
       border-color: rgba(255, 255, 255, 0.1);
@@ -1006,9 +1043,15 @@
     }
 
     .comp-table td.highlight {
-      background: rgba(232, 130, 42, 0.04);
+      background: rgba(232, 130, 42, 0.10);
       font-weight: 600;
       color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .comp-table th.highlight {
+      background: var(--accent);
+      box-shadow: 0 2px 12px rgba(var(--accent-rgb), 0.35);
     }
 
     .comp-table tr:last-child td { border-bottom: none; }
@@ -1193,8 +1236,28 @@
       padding: 48px 40px;
       text-align: center;
       position: relative;
-      overflow: hidden;
       box-shadow: var(--shadow-soft);
+    }
+
+    .pricing-glow {
+      position: relative;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .pricing-glow::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(ellipse at center, rgba(var(--accent-rgb), 0.14) 0%, transparent 70%);
+      border-radius: 36px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .pricing-glow .pricing-card {
+      position: relative;
+      z-index: 1;
     }
 
     .pricing-card::before {
@@ -1619,6 +1682,58 @@
     }
 
     /* ═══════════════════════════════════════
+       Bridge Block — rhythm breaker
+       ═══════════════════════════════════════ */
+    .bridge-block {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .bridge-block__icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .bridge-block__text {
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    /* ═══════════════════════════════════════
+       Terminal Block — rhythm breaker 2
+       ═══════════════════════════════════════ */
+    .terminal-section {
+      background: var(--bg-dark);
+      color: var(--white);
+    }
+
+    .terminal-block {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .terminal-block__cmd {
+      display: inline-block;
+      background: rgba(232, 130, 42, 0.15);
+      color: var(--accent);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    .terminal-block__hint {
+      font-size: 0.88rem;
+      color: rgba(254, 254, 254, 0.5);
+    }
+
+    /* ═══════════════════════════════════════
        Animations
        ═══════════════════════════════════════ */
     @keyframes fadeSlideUp {
@@ -1811,6 +1926,10 @@
         grid-template-columns: 1fr;
       }
 
+      .feature-card:first-child { grid-row: auto; }
+      .feature-card:first-child .feature-card__title { font-size: 1.05rem; }
+      .feature-card:first-child .feature-card__how { font-size: 0.85rem; }
+
       .proof-card:nth-child(even) { transform: none; }
       .proof-grid { padding-bottom: 0; }
 
@@ -1899,6 +2018,8 @@
 
       /* Showcase grid */
       .showcase-grid { grid-template-columns: 1fr; }
+      .showcase-grid--asym { grid-template-columns: 1fr; }
+      .showcase-grid--asym .showcase-card:first-child { grid-row: auto; }
 
       /* Amplifier */
       .amplifier { padding-left: 24px; }
@@ -1954,8 +2075,13 @@
       .hero__title { font-size: 2rem; }
       .compare-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr; }
+      .feature-card:first-child { grid-row: auto; }
+      .feature-card:first-child .feature-card__title { font-size: 1.05rem; }
+      .feature-card:first-child .feature-card__how { font-size: 0.85rem; }
       .workflow-grid { grid-template-columns: 1fr; }
       .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+      .showcase-grid--asym { grid-template-columns: 1fr; }
+      .showcase-grid--asym .showcase-card:first-child { grid-row: auto; }
       .steps { grid-template-columns: repeat(2, 1fr); }
       .steps::before { display: none; }
     }
@@ -2051,7 +2177,7 @@
   <!-- ═══════════════════════════════════════
        BLOCK 2: Problem
        ═══════════════════════════════════════ -->
-  <section class="section" id="problem">
+  <section class="section section--warm" id="problem">
     <div class="container">
       <div class="section__header reveal">
         <div class="section__badge">😓 Знакомо?</div>
@@ -2112,6 +2238,18 @@
         </div>
       </div>
       <p class="bridge-text reveal">Месяцами платишь деньги или тратишь время — а&nbsp;контент всё равно не твой. И в следующем месяце всё то же самое.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 3.5: Bridge — rhythm breaker
+       ═══════════════════════════════════════ -->
+  <section class="section section--compact" id="bridge">
+    <div class="container">
+      <div class="bridge-block reveal">
+        <div class="bridge-block__icon">⚡</div>
+        <p class="bridge-block__text">В среднем эксперт тратит <strong>15 часов в неделю</strong> на контент. Завод сокращает это до <strong class="text-accent">20 минут</strong>.</p>
+      </div>
     </div>
   </section>
 
@@ -2316,7 +2454,7 @@
   <!-- ═══════════════════════════════════════
        BLOCK 6.5: What's New
        ═══════════════════════════════════════ -->
-  <section class="section section--alt" id="new">
+   <section class="section section--alt" id="new">
     <div class="container">
       <div class="section__header section__header--center reveal">
         <div class="section__badge">🆕 Новое</div>
@@ -2324,7 +2462,7 @@
         <p class="section__subtitle">Завод обновляется сам — вот что добавилось</p>
       </div>
 
-      <div class="showcase-grid reveal">
+      <div class="showcase-grid showcase-grid--asym reveal">
 
         <div class="showcase-card">
           <div class="showcase-card__header">
@@ -2442,7 +2580,7 @@
   <!-- ═══════════════════════════════════════
        BLOCK 8: Comparison
        ═══════════════════════════════════════ -->
-  <section class="section" id="comparison">
+  <section class="section section--alt section--compact" id="comparison">
     <div class="container">
       <div class="section__header section__header--center reveal">
         <div class="section__badge">📊 Сравнение</div>
@@ -2594,6 +2732,7 @@
         <h2 class="section__title">Стоимость</h2>
       </div>
 
+      <div class="pricing-glow">
       <div class="pricing-card reveal">
         <div class="pricing-label">Следующая очередь</div>
         <div class="pricing-price">
@@ -2616,6 +2755,7 @@
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <p class="pricing-slots">Открыто <strong>5 мест</strong> по сниженной цене. Дальше — дороже.</p>
+      </div>
       </div>
 
       <div class="pricing-anchors reveal">
@@ -2679,6 +2819,18 @@
         </div>
       </div>
       <p class="workflow-note reveal">На каждом этапе завод останавливается и ждёт твоего одобрения, ничего не публикуется без твоего OK.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK 12.5: Terminal — rhythm breaker
+       ═══════════════════════════════════════ -->
+  <section class="section section--compact terminal-section" id="terminal">
+    <div class="container">
+      <div class="terminal-block reveal">
+        <code class="terminal-block__cmd">/telegram-weekly</code>
+        <p class="terminal-block__hint">Так выглядит запуск недели контента</p>
+      </div>
     </div>
   </section>
 
