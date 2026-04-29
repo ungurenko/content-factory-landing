@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&amp;display=swap" rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════
        CSS Custom Properties
@@ -50,6 +51,24 @@
       --motion-fast: 180ms ease-in-out;
       --motion-base: 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --z-mobile-cta: 100;
+      --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --accent-soft: #F4A85C;
+      --accent-deep: #C56519;
+      --decor-bg: rgba(232, 130, 42, 0.08);
+      --decor-bg-strong: rgba(232, 130, 42, 0.16);
+      --noise-bg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.14 0 0 0 0 0.13 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/></svg>");
+    }
+
+    /* Display utility */
+    .display-serif {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-style: italic;
+      letter-spacing: -0.02em;
+    }
+    .display-serif--upright {
+      font-style: normal;
+      font-weight: 700;
     }
 
     /* ═══════════════════════════════════════
@@ -530,15 +549,114 @@
     }
 
     /* ═══════════════════════════════════════
-       BLOCK 2: Problem
+       BLOCK 2: Problem (redesigned)
        ═══════════════════════════════════════ */
-    .pain-list {
+    #problem {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    #problem::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(232, 130, 42, 0.32) 0%, transparent 65%);
+      filter: blur(40px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    #problem::after {
+      content: "";
+      position: absolute;
+      bottom: -100px;
+      left: -120px;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(196, 160, 130, 0.28) 0%, transparent 60%);
+      filter: blur(50px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .problem-intro {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: clamp(28px, 5vw, 64px);
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .problem-intro__visual {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--bg-alt);
+      box-shadow: 0 18px 60px -20px rgba(45, 37, 32, 0.18);
+    }
+    .problem-intro__visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 80% at 0% 0%, rgba(232, 130, 42, 0.18), transparent 60%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .problem-intro__visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .problem-intro__copy {
       display: flex;
       flex-direction: column;
+      gap: 18px;
+    }
+
+    .problem-intro__hook {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.4rem, 2.6vw, 2.05rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .problem-intro__hook em {
+      font-style: italic;
+      color: var(--accent-deep);
+      background: linear-gradient(180deg, transparent 65%, rgba(232, 130, 42, 0.28) 65%);
+      padding: 0 4px;
+    }
+
+    .problem-intro__hint {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 460px;
+    }
+
+    .pain-list {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
       gap: 16px;
       margin-bottom: 32px;
-      max-width: 720px;
     }
+
+    /* bento layout for 5 items */
+    .pain-item:nth-child(1) { grid-column: span 4; }
+    .pain-item:nth-child(2) { grid-column: span 2; }
+    .pain-item:nth-child(3) { grid-column: span 2; }
+    .pain-item:nth-child(4) { grid-column: span 2; }
+    .pain-item:nth-child(5) { grid-column: span 2; }
 
     .section--warm .pain-item {
       background: var(--white);
@@ -553,38 +671,74 @@
     }
 
     .pain-item {
+      position: relative;
       display: flex;
       align-items: flex-start;
-      gap: 16px;
-      padding: 20px 24px;
+      gap: 14px;
+      padding: 22px 24px;
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 16px;
       border: 1px solid var(--border);
-      transition: background var(--motion-fast), border-color var(--motion-fast), transform var(--motion-base);
+      overflow: hidden;
+      transition: background var(--motion-fast), border-color var(--motion-fast), transform var(--motion-base), box-shadow var(--motion-base);
+    }
+    .pain-item::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(232, 130, 42, 0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
     .pain-item:hover {
-      background: rgba(255, 255, 255, 0.62);
-      border-color: rgba(45, 37, 32, 0.14);
-      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.78);
+      border-color: rgba(232, 130, 42, 0.28);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -16px rgba(45, 37, 32, 0.18);
+    }
+    .pain-item:hover::before {
+      opacity: 1;
     }
 
     .pain-icon {
       flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      background: rgba(192, 57, 43, 0.08);
-      color: var(--red);
-      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, rgba(232, 130, 42, 0.18), rgba(232, 130, 42, 0.06));
+      color: var(--accent-deep);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
+      box-shadow: inset 0 0 0 1px rgba(232, 130, 42, 0.2);
     }
 
     .pain-text {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .problem-intro {
+        grid-template-columns: 1fr;
+      }
+      .problem-intro__visual {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .pain-list {
+        grid-template-columns: 1fr;
+      }
+      .pain-item:nth-child(n) {
+        grid-column: span 1;
+      }
     }
 
     .amplifier {
@@ -931,50 +1085,154 @@
     }
 
     /* ═══════════════════════════════════════
-       BLOCK 7: Speed Demo — Table
+       BLOCK 7: Speed Demo — Progress bars (redesigned)
        ═══════════════════════════════════════ */
-    .speed-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      background: var(--card-bg);
-      border-radius: 18px;
+    #speed {
+      position: relative;
+      isolation: isolate;
       overflow: hidden;
-      border: 1px solid var(--border);
-      margin-bottom: 28px;
-      table-layout: fixed;
     }
-
-    .speed-table th {
-      background: var(--bg-dark);
-      color: var(--white);
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 16px 20px;
-      text-align: left;
-    }
-
-    .speed-table td {
-      padding: 16px 20px;
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--border);
-      overflow-wrap: anywhere;
-    }
-
-    .speed-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .speed-table .old-time {
-      color: var(--red);
-      font-weight: 500;
-    }
-
-    .speed-table .new-time {
-      color: var(--green);
+    #speed::before {
+      content: "×40";
+      position: absolute;
+      top: 28px;
+      right: -8px;
+      font-family: var(--font-display);
+      font-style: italic;
       font-weight: 700;
+      font-size: clamp(7rem, 16vw, 14rem);
+      line-height: 0.85;
+      color: var(--accent);
+      opacity: 0.08;
+      letter-spacing: -0.05em;
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+    }
+
+    .speed-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .speed-row {
+      display: grid;
+      grid-template-columns: minmax(180px, 1.1fr) minmax(0, 2fr) auto;
+      align-items: center;
+      gap: 24px;
+      padding: 22px 26px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 4px 22px -16px rgba(45, 37, 32, 0.18);
+      transition: transform var(--motion-base), box-shadow var(--motion-base), border-color var(--motion-fast);
+    }
+
+    .speed-row:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px -18px rgba(45, 37, 32, 0.22);
+      border-color: rgba(232, 130, 42, 0.28);
+    }
+
+    .speed-row__task {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .speed-row__bars {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .speed-row__bar {
+      position: relative;
+      height: 22px;
+      border-radius: 100px;
+      background: rgba(45, 37, 32, 0.05);
+      overflow: hidden;
+    }
+
+    .speed-row__bar--old::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(192, 57, 43, 0.22), rgba(192, 57, 43, 0.08));
+      border-radius: inherit;
+    }
+
+    .speed-row__bar--new::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+      border-radius: inherit;
+      transition: width 1.6s cubic-bezier(0.6, 0.05, 0.3, 0.95) 0.15s;
+    }
+
+    .reveal.visible .speed-row__bar--new::before {
+      width: var(--after, 8%);
+    }
+
+    .speed-row__time {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 12px;
+      height: 100%;
+      font-family: var(--font-display);
+      font-feature-settings: "tnum" 1;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: -0.01em;
+    }
+
+    .speed-row__time-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .speed-row__bar--old .speed-row__time-value {
+      color: rgba(192, 57, 43, 0.9);
+    }
+    .speed-row__bar--new .speed-row__time-value {
+      color: var(--accent-deep);
+    }
+
+    .speed-row__multiplier {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      padding-left: 8px;
+      border-left: 2px solid rgba(232, 130, 42, 0.25);
+    }
+
+    .speed-row__multiplier sup {
+      font-size: 0.55em;
+      font-weight: 600;
+      vertical-align: super;
+      margin-right: 2px;
+      font-style: normal;
+      color: var(--text-muted);
     }
 
     .speed-total {
@@ -984,14 +1242,37 @@
       color: var(--text-muted);
       max-width: 700px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     .speed-total strong {
       color: var(--text);
+      font-weight: 600;
     }
 
-    /* Speed cards (mobile) */
-    .speed-cards { display: none; }
+    .speed-total .speed-total__hours {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1.4em;
+      color: var(--accent-deep);
+    }
+
+    @media (max-width: 720px) {
+      .speed-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 18px 20px;
+      }
+      .speed-row__multiplier {
+        border-left: none;
+        border-top: 2px solid rgba(232, 130, 42, 0.2);
+        padding-left: 0;
+        padding-top: 8px;
+        font-size: 1.6rem;
+      }
+    }
 
     /* ═══════════════════════════════════════
        BLOCK 8: Comparison Table
@@ -1071,50 +1352,145 @@
     .comp-cards { display: none; }
 
     /* ═══════════════════════════════════════
-       BLOCK 9: For Whom — Segment Cards
+       BLOCK 9: For Whom — Bento Segment Cards (redesigned)
        ═══════════════════════════════════════ */
     .segments-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: minmax(220px, auto);
+      gap: 18px;
       margin-bottom: 28px;
     }
 
-    .segments-grid .segment-card:first-child {
-      grid-column: 1 / -1;
+    /* Bento sizing for 5 cards */
+    .segments-grid .segment-card:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 2;
     }
+    .segments-grid .segment-card:nth-child(2) { grid-column: span 2; grid-row: span 1; }
+    .segments-grid .segment-card:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+    .segments-grid .segment-card:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+    .segments-grid .segment-card:nth-child(5) { grid-column: span 4; grid-row: span 1; }
 
     .segment-card {
-      background: var(--card-bg);
+      position: relative;
+      background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 32px 28px;
+      border-radius: 22px;
+      padding: 28px 26px;
       min-width: 0;
+      overflow: hidden;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
       transition: background var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-base), transform var(--motion-base);
     }
 
+    .segment-card::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      right: -20%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(232, 130, 42, 0.18) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      transition: transform 0.8s ease;
+    }
+
     .segment-card:hover {
-      background: rgba(255, 255, 255, 0.62);
-      border-color: rgba(45, 37, 32, 0.14);
-      box-shadow: var(--card-shadow);
-      transform: translateY(-2px);
+      border-color: rgba(232, 130, 42, 0.35);
+      box-shadow: 0 18px 44px -22px rgba(45, 37, 32, 0.22);
+      transform: translateY(-3px);
+    }
+    .segment-card:hover::before {
+      transform: scale(1.15) translate(-8px, 8px);
+    }
+
+    .segment-card--featured {
+      background:
+        radial-gradient(120% 80% at 100% 0%, rgba(232, 130, 42, 0.16), transparent 60%),
+        var(--white);
+      padding: 32px 32px 28px;
+    }
+
+    .segment-card--featured .segment-card__visual {
+      position: relative;
+      margin: 8px -8px 18px;
+      border-radius: 18px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      background: var(--bg-alt);
+    }
+    .segment-card--featured .segment-card__visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .segment-card--featured .segment-card__visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(140% 80% at 100% 100%, rgba(232, 130, 42, 0.18), transparent 55%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .segment-card--wide {
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+      padding: 22px 26px;
+    }
+
+    .segment-card--wide .segment-card__icon {
+      margin-bottom: 0;
+      font-size: 2.4rem;
+      flex-shrink: 0;
+    }
+
+    .segment-card--wide .segment-card__body {
+      flex: 1;
     }
 
     .segment-card__icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(232, 130, 42, 0.18), rgba(232, 130, 42, 0.05));
+      border-radius: 14px;
+      box-shadow: inset 0 0 0 1px rgba(232, 130, 42, 0.18);
     }
 
     .segment-card__title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      line-height: 1.3;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-style: normal;
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      line-height: 1.25;
+      color: var(--text);
+    }
+    .segment-card__title em {
+      font-style: italic;
+      color: var(--accent-deep);
+    }
+
+    .segment-card--featured .segment-card__title {
+      font-size: clamp(1.2rem, 1.9vw, 1.55rem);
     }
 
     .segment-card__situation {
-      font-size: 0.85rem;
-      line-height: 1.65;
+      font-size: 0.88rem;
+      line-height: 1.6;
       color: var(--text-muted);
       margin-bottom: 14px;
     }
@@ -1122,20 +1498,73 @@
     .segment-card__result {
       font-size: 0.88rem;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--accent-deep);
       line-height: 1.5;
+      margin-top: auto;
     }
 
     .segments-note {
       text-align: center;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
+    }
+    .segments-note em {
+      font-family: var(--font-display);
       font-style: italic;
+      font-weight: 600;
+      color: var(--text);
     }
 
     /* For Whom — warm gradient background */
     #for-whom {
       background: linear-gradient(170deg, #EDE8DF 0%, #E8DFD2 50%, #F0E6D8 100%);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    #for-whom::before {
+      content: "";
+      position: absolute;
+      top: 30%;
+      left: -15%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(232, 130, 42, 0.12) 0%, transparent 65%);
+      border-radius: 50%;
+      filter: blur(30px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @media (max-width: 980px) {
+      .segments-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .segments-grid .segment-card:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+      .segments-grid .segment-card:nth-child(2),
+      .segments-grid .segment-card:nth-child(3),
+      .segments-grid .segment-card:nth-child(4) {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+      .segments-grid .segment-card:nth-child(5) { grid-column: span 2; grid-row: span 1; }
+
+      .segment-card--featured .segment-card__visual {
+        aspect-ratio: 16 / 9;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .segments-grid {
+        grid-template-columns: 1fr;
+      }
+      .segments-grid .segment-card:nth-child(n) {
+        grid-column: span 1;
+      }
+      .segment-card--wide {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
     /* Comparison — accent left border */
@@ -1682,24 +2111,131 @@
     }
 
     /* ═══════════════════════════════════════
-       Bridge Block — rhythm breaker
+       Bridge Block — rhythm breaker (redesigned)
        ═══════════════════════════════════════ */
+    #bridge {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background:
+        radial-gradient(60% 80% at 18% 20%, rgba(232, 130, 42, 0.18) 0%, transparent 60%),
+        radial-gradient(50% 70% at 85% 90%, rgba(232, 130, 42, 0.12) 0%, transparent 60%),
+        radial-gradient(55% 75% at 80% 15%, rgba(196, 160, 130, 0.18) 0%, transparent 60%),
+        var(--bg);
+    }
+    #bridge::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: var(--noise-bg);
+      opacity: 0.55;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: -1;
+    }
+
     .bridge-block {
-      text-align: center;
-      max-width: 620px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(16px, 4vw, 40px);
+      max-width: 880px;
       margin: 0 auto;
+      text-align: center;
     }
 
-    .bridge-block__icon {
-      font-size: 2rem;
-      margin-bottom: 12px;
+    .bridge-block__side {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
-    .bridge-block__text {
-      font-size: clamp(1.35rem, 3vw, 1.9rem);
-      font-weight: 800;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
+    .bridge-block__label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .bridge-block__before {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-style: normal;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      text-decoration: line-through;
+      text-decoration-color: rgba(192, 57, 43, 0.55);
+      text-decoration-thickness: 4px;
+      opacity: 0.7;
+    }
+
+    .bridge-block__after {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: clamp(3.5rem, 12vw, 8rem);
+      line-height: 0.9;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      display: inline-block;
+    }
+
+    .bridge-block__after-unit {
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-top: 6px;
+      display: block;
+    }
+
+    .bridge-block__arrow {
+      display: block;
+      width: clamp(80px, 14vw, 180px);
+      height: auto;
+      color: var(--accent);
+    }
+
+    .bridge-block__arrow path {
+      stroke-dasharray: 320;
+      stroke-dashoffset: 320;
+      transition: stroke-dashoffset 1.6s cubic-bezier(0.6, 0.05, 0.3, 0.95) 0.2s;
+    }
+
+    .reveal.visible .bridge-block__arrow path {
+      stroke-dashoffset: 0;
+    }
+
+    .bridge-block__caption {
+      grid-column: 1 / -1;
+      font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 8px auto 0;
+      line-height: 1.55;
+    }
+
+    .bridge-block__caption strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    @media (max-width: 720px) {
+      .bridge-block {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .bridge-block__arrow {
+        transform: rotate(90deg);
+        width: 60px;
+        margin: 4px auto;
+      }
     }
 
     /* ═══════════════════════════════════════
@@ -2183,6 +2719,15 @@
         <div class="section__badge">😓 Знакомо?</div>
         <h2 class="section__title">Знакомая ситуация</h2>
       </div>
+      <div class="problem-intro reveal">
+        <div class="problem-intro__visual">
+          <img src="assets/img/problem-illustration.png" alt="Эксперт в творческом завале — папки, ноутбук, телефон, листы с задачами" loading="lazy">
+        </div>
+        <div class="problem-intro__copy">
+          <p class="problem-intro__hook">Контент должен <em>работать на тебя</em>, а не наоборот. Но каждый день всё повторяется.</p>
+          <p class="problem-intro__hint">Если хотя бы одно из этого знакомо — ты не один. Так живёт большинство экспертов с блогом.</p>
+        </div>
+      </div>
       <div class="pain-list reveal">
         <div class="pain-item">
           <div class="pain-icon">⏰</div>
@@ -2247,8 +2792,22 @@
   <section class="section section--compact" id="bridge">
     <div class="container">
       <div class="bridge-block reveal">
-        <div class="bridge-block__icon">⚡</div>
-        <p class="bridge-block__text">В среднем эксперт тратит <strong>15 часов в неделю</strong> на контент. Завод сокращает это до <strong class="text-accent">20 минут</strong>.</p>
+        <div class="bridge-block__side">
+          <span class="bridge-block__label">Было</span>
+          <span class="bridge-block__before">15 часов</span>
+        </div>
+
+        <svg class="bridge-block__arrow" viewBox="0 0 200 60" fill="none" aria-hidden="true">
+          <path d="M4 30 Q 50 4, 100 30 T 192 30" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M180 18 L194 30 L180 42" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+
+        <div class="bridge-block__side">
+          <span class="bridge-block__label">Стало</span>
+          <span class="bridge-block__after">20<span class="bridge-block__after-unit">минут</span></span>
+        </div>
+
+        <p class="bridge-block__caption">В среднем эксперт тратит <strong>15 часов в неделю</strong> на контент. Завод сокращает это до&nbsp;<strong>20 минут</strong>.</p>
       </div>
     </div>
   </section>
@@ -2526,54 +3085,87 @@
         <h2 class="section__title">Сколько времени ты экономишь каждую неделю</h2>
       </div>
 
-      <!-- Desktop table -->
-      <table class="speed-table reveal">
-        <thead>
-          <tr>
-            <th>Задача</th>
-            <th>Вручную</th>
-            <th>С контент-заводом</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Неделя постов для Telegram (5-7 шт.)</td><td class="old-time">5-8 часов</td><td class="new-time">20 минут</td></tr>
-          <tr><td>Неделя постов для Threads (14 шт.)</td><td class="old-time">7-10 часов</td><td class="new-time">15 мин + автопубликация</td></tr>
-          <tr><td>Пост из YouTube-видео</td><td class="old-time">1-2 часа</td><td class="new-time">5 минут</td></tr>
-          <tr><td>SEO-статья 2000+ слов</td><td class="old-time">4-8 часов</td><td class="new-time">45-60 минут</td></tr>
-          <tr><td>Прогревающая серия к запуску (40 смыслов)</td><td class="old-time">2-3 дня</td><td class="new-time">10 минут</td></tr>
-          <tr><td>Обложка для поста</td><td class="old-time">20-40 минут</td><td class="new-time">2 минуты</td></tr>
-        </tbody>
-      </table>
+      <div class="speed-grid reveal">
+        <div class="speed-row" style="--after: 4%;">
+          <div class="speed-row__task">Неделя постов для&nbsp;Telegram (5-7&nbsp;шт.)</div>
+          <div class="speed-row__bars">
+            <div class="speed-row__bar speed-row__bar--old">
+              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">5-8 ч</span></div>
+            </div>
+            <div class="speed-row__bar speed-row__bar--new">
+              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">20 мин</span></div>
+            </div>
+          </div>
+          <div class="speed-row__multiplier"><sup>×</sup>24</div>
+        </div>
 
-      <!-- Mobile cards -->
-      <div class="speed-cards reveal">
-        <div class="speed-card-item">
-          <div class="speed-card-item__task">Неделя постов для Telegram (5-7 шт.)</div>
-          <div class="speed-card-item__row"><span class="old-time">Вручную: 5-8 часов</span><span class="new-time">→ 20 минут</span></div>
+        <div class="speed-row" style="--after: 2.5%;">
+          <div class="speed-row__task">Неделя постов для&nbsp;Threads (14&nbsp;шт.)</div>
+          <div class="speed-row__bars">
+            <div class="speed-row__bar speed-row__bar--old">
+              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">7-10 ч</span></div>
+            </div>
+            <div class="speed-row__bar speed-row__bar--new">
+              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">15 мин + автопост</span></div>
+            </div>
+          </div>
+          <div class="speed-row__multiplier"><sup>×</sup>40</div>
         </div>
-        <div class="speed-card-item">
-          <div class="speed-card-item__task">Неделя постов для Threads (14 шт.)</div>
-          <div class="speed-card-item__row"><span class="old-time">Вручную: 7-10 часов</span><span class="new-time">→ 15 мин</span></div>
+
+        <div class="speed-row" style="--after: 4.2%;">
+          <div class="speed-row__task">Пост из YouTube-видео</div>
+          <div class="speed-row__bars">
+            <div class="speed-row__bar speed-row__bar--old">
+              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">1-2 ч</span></div>
+            </div>
+            <div class="speed-row__bar speed-row__bar--new">
+              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">5 мин</span></div>
+            </div>
+          </div>
+          <div class="speed-row__multiplier"><sup>×</sup>18</div>
         </div>
-        <div class="speed-card-item">
-          <div class="speed-card-item__task">Пост из YouTube-видео</div>
-          <div class="speed-card-item__row"><span class="old-time">Вручную: 1-2 часа</span><span class="new-time">→ 5 минут</span></div>
+
+        <div class="speed-row" style="--after: 12.5%;">
+          <div class="speed-row__task">SEO-статья 2000+&nbsp;слов</div>
+          <div class="speed-row__bars">
+            <div class="speed-row__bar speed-row__bar--old">
+              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">4-8 ч</span></div>
+            </div>
+            <div class="speed-row__bar speed-row__bar--new">
+              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">45-60 мин</span></div>
+            </div>
+          </div>
+          <div class="speed-row__multiplier"><sup>×</sup>8</div>
         </div>
-        <div class="speed-card-item">
-          <div class="speed-card-item__task">SEO-статья 2000+ слов</div>
-          <div class="speed-card-item__row"><span class="old-time">Вручную: 4-8 часов</span><span class="new-time">→ 45-60 мин</span></div>
+
+        <div class="speed-row" style="--after: 1%;">
+          <div class="speed-row__task">Прогревающая серия (40&nbsp;смыслов)</div>
+          <div class="speed-row__bars">
+            <div class="speed-row__bar speed-row__bar--old">
+              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">2-3 дня</span></div>
+            </div>
+            <div class="speed-row__bar speed-row__bar--new">
+              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">10 мин</span></div>
+            </div>
+          </div>
+          <div class="speed-row__multiplier"><sup>×</sup>96</div>
         </div>
-        <div class="speed-card-item">
-          <div class="speed-card-item__task">Прогревающая серия (40 смыслов)</div>
-          <div class="speed-card-item__row"><span class="old-time">Вручную: 2-3 дня</span><span class="new-time">→ 10 минут</span></div>
-        </div>
-        <div class="speed-card-item">
-          <div class="speed-card-item__task">Обложка для поста</div>
-          <div class="speed-card-item__row"><span class="old-time">Вручную: 20-40 мин</span><span class="new-time">→ 2 минуты</span></div>
+
+        <div class="speed-row" style="--after: 5%;">
+          <div class="speed-row__task">Обложка для поста</div>
+          <div class="speed-row__bars">
+            <div class="speed-row__bar speed-row__bar--old">
+              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">20-40 мин</span></div>
+            </div>
+            <div class="speed-row__bar speed-row__bar--new">
+              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">2 мин</span></div>
+            </div>
+          </div>
+          <div class="speed-row__multiplier"><sup>×</sup>15</div>
         </div>
       </div>
 
-      <p class="speed-total reveal">В среднем завод освобождает <strong>10-15 часов в неделю</strong>. 40-60 часов в месяц, которые ты тратишь на клиентов, продукты или просто отдых.</p>
+      <p class="speed-total reveal">В среднем завод освобождает <span class="speed-total__hours">10-15 часов</span> в&nbsp;неделю. <strong>40-60 часов в месяц</strong>, которые ты тратишь на клиентов, продукты или просто отдых.</p>
     </div>
   </section>
 
@@ -2654,38 +3246,44 @@
         <h2 class="section__title">Кому подойдёт контент-завод</h2>
       </div>
       <div class="segments-grid reveal">
-        <div class="segment-card">
-          <div class="segment-card__icon">🧠</div>
-          <h3 class="segment-card__title">Эксперт с блогом, который устал писать</h3>
-          <p class="segment-card__situation">Ты психолог, коуч, маркетолог, нутрициолог или астролог. У тебя есть экспертиза, но контент отнимает по 2-3 часа в день. Хочешь писать регулярно, но не хочешь тратить на это жизнь.</p>
-          <p class="segment-card__result">→ Завод за 20 минут готовит неделю постов твоим голосом.</p>
+        <div class="segment-card segment-card--featured">
+          <div class="segment-card__visual">
+            <img src="assets/img/for-whom-hero.png" alt="Эксперт с микрофоном, вокруг — карточки контента и иконки соцсетей" loading="lazy">
+          </div>
+          <div class="segment-card__body">
+            <h3 class="segment-card__title">Эксперт с блогом, который <em>устал писать</em></h3>
+            <p class="segment-card__situation">Ты психолог, коуч, маркетолог, нутрициолог или астролог. У тебя есть экспертиза, но контент отнимает по 2-3 часа в день. Хочешь писать регулярно, но не хочешь тратить на это жизнь.</p>
+            <p class="segment-card__result">→ Завод за 20 минут готовит неделю постов твоим голосом.</p>
+          </div>
         </div>
         <div class="segment-card">
           <div class="segment-card__icon">💼</div>
-          <h3 class="segment-card__title">Предприниматель, которому нужен контент для продаж</h3>
+          <h3 class="segment-card__title">Предприниматель, которому нужен <em>контент для продаж</em></h3>
           <p class="segment-card__situation">Ты ведёшь бизнес, понимаешь, что блог это канал продаж, но нет времени заниматься им системно. Нанимать команду дорого, делать самому некогда.</p>
           <p class="segment-card__result">→ Автономный контент-маркетинг без ежедневного участия.</p>
         </div>
         <div class="segment-card">
           <div class="segment-card__icon">😤</div>
-          <h3 class="segment-card__title">Эксперт, который разочаровался в ChatGPT</h3>
-          <p class="segment-card__situation">Ты уже использовал нейросети, но получал шаблонные тексты. Подписчики чувствуют фальшь, охваты падают.</p>
-          <p class="segment-card__result">→ 33 стоп-слова, калибровка по эталонам, 30 приёмов живого текста, тексты неотличимы от твоих.</p>
+          <h3 class="segment-card__title"><em>Разочаровался</em> в ChatGPT</h3>
+          <p class="segment-card__situation">Получал шаблонные тексты, подписчики чувствовали фальшь, охваты падали.</p>
+          <p class="segment-card__result">→ 33 стоп-слова, 30 приёмов живого текста.</p>
         </div>
         <div class="segment-card">
           <div class="segment-card__icon">🌐</div>
-          <h3 class="segment-card__title">Тот, кто хочет масштабировать присутствие</h3>
-          <p class="segment-card__situation">Ведёшь Telegram, хочешь выйти в Threads, писать статьи на VC или Дзен, но физически не успеваешь покрывать все платформы.</p>
-          <p class="segment-card__result">→ Контент для Telegram, Threads, блога, Хабра, VC.ru и Дзена, из одного места.</p>
+          <h3 class="segment-card__title">Хочет <em>масштабировать</em> присутствие</h3>
+          <p class="segment-card__situation">Ведёшь Telegram, хочешь выйти в Threads, писать на VC и Дзен — но не успеваешь покрывать все платформы.</p>
+          <p class="segment-card__result">→ Контент для всех платформ из одного места.</p>
         </div>
-        <div class="segment-card">
+        <div class="segment-card segment-card--wide">
           <div class="segment-card__icon">🏢</div>
-          <h3 class="segment-card__title">Компания или агентство</h3>
-          <p class="segment-card__situation">Студия, бюро, агентство или бизнес с командой. Нужен корпоративный блог от лица компании, но нанимать штатного копирайтера дорого и долго.</p>
-          <p class="segment-card__result">→ Режим «бизнес»: посты от «мы», опора на кейсы и ценности компании.</p>
+          <div class="segment-card__body">
+            <h3 class="segment-card__title">Компания или <em>агентство</em></h3>
+            <p class="segment-card__situation">Студия, бюро, агентство или бизнес с командой. Нужен корпоративный блог от лица компании, но нанимать штатного копирайтера дорого и долго.</p>
+            <p class="segment-card__result">→ Режим «бизнес»: посты от «мы», опора на кейсы и ценности компании.</p>
+          </div>
         </div>
       </div>
-      <p class="segments-note reveal">Лучше всего идёт в нишах, где важны смыслы и личный опыт: психология, маркетинг, эзотерика, астрология, здоровье, фитнес, коучинг, саморазвитие.</p>
+      <p class="segments-note reveal">Лучше всего идёт в нишах, где важны <em>смыслы и личный опыт</em>: психология, маркетинг, эзотерика, астрология, здоровье, фитнес, коучинг, саморазвитие.</p>
     </div>
   </section>
 
