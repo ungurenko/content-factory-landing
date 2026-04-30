@@ -1,0 +1,451 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-04-30T00:00:00.000Z",
+  "title": "Design System: Контент-завод",
+  "extensions": {
+    "colorMeta": {
+      "paper-cream": {
+        "role": "neutral",
+        "displayName": "Warm Paper Cream",
+        "canonical": "oklch(94% 0.012 75)",
+        "tonalRamp": [
+          "oklch(15% 0.01 75)",
+          "oklch(28% 0.012 75)",
+          "oklch(42% 0.013 75)",
+          "oklch(56% 0.014 75)",
+          "oklch(70% 0.014 75)",
+          "oklch(82% 0.013 75)",
+          "oklch(94% 0.012 75)",
+          "oklch(98% 0.008 75)"
+        ]
+      },
+      "paper-aged": {
+        "role": "neutral",
+        "displayName": "Aged Paper",
+        "canonical": "oklch(91% 0.012 70)",
+        "tonalRamp": [
+          "oklch(15% 0.01 70)",
+          "oklch(28% 0.012 70)",
+          "oklch(42% 0.013 70)",
+          "oklch(56% 0.014 70)",
+          "oklch(70% 0.014 70)",
+          "oklch(82% 0.013 70)",
+          "oklch(91% 0.012 70)",
+          "oklch(96% 0.010 70)"
+        ]
+      },
+      "press-ink": {
+        "role": "neutral",
+        "displayName": "Pressroom Ink",
+        "canonical": "oklch(22% 0.013 50)",
+        "tonalRamp": [
+          "oklch(12% 0.012 50)",
+          "oklch(22% 0.013 50)",
+          "oklch(32% 0.014 50)",
+          "oklch(45% 0.015 50)",
+          "oklch(58% 0.014 50)",
+          "oklch(72% 0.013 50)",
+          "oklch(85% 0.011 50)",
+          "oklch(94% 0.008 50)"
+        ]
+      },
+      "press-ink-deep": {
+        "role": "neutral",
+        "displayName": "Pressroom Ink Deep",
+        "canonical": "oklch(15% 0.012 45)",
+        "tonalRamp": [
+          "oklch(8% 0.010 45)",
+          "oklch(15% 0.012 45)",
+          "oklch(25% 0.013 45)",
+          "oklch(38% 0.014 45)",
+          "oklch(52% 0.014 45)",
+          "oklch(68% 0.013 45)",
+          "oklch(82% 0.011 45)",
+          "oklch(93% 0.008 45)"
+        ]
+      },
+      "worn-sepia": {
+        "role": "neutral",
+        "displayName": "Worn Sepia",
+        "canonical": "oklch(46% 0.018 55)",
+        "tonalRamp": [
+          "oklch(15% 0.012 55)",
+          "oklch(25% 0.014 55)",
+          "oklch(35% 0.016 55)",
+          "oklch(46% 0.018 55)",
+          "oklch(58% 0.018 55)",
+          "oklch(70% 0.016 55)",
+          "oklch(82% 0.014 55)",
+          "oklch(93% 0.010 55)"
+        ]
+      },
+      "bleached-paper": {
+        "role": "neutral",
+        "displayName": "Bleached Paper",
+        "canonical": "oklch(99% 0.003 80)",
+        "tonalRamp": [
+          "oklch(20% 0.005 80)",
+          "oklch(35% 0.005 80)",
+          "oklch(50% 0.005 80)",
+          "oklch(65% 0.005 80)",
+          "oklch(78% 0.004 80)",
+          "oklch(88% 0.004 80)",
+          "oklch(95% 0.003 80)",
+          "oklch(99% 0.003 80)"
+        ]
+      },
+      "terracotta": {
+        "role": "primary",
+        "displayName": "Workshop Terracotta",
+        "canonical": "oklch(67% 0.165 50)",
+        "tonalRamp": [
+          "oklch(22% 0.07 50)",
+          "oklch(34% 0.10 50)",
+          "oklch(46% 0.13 50)",
+          "oklch(57% 0.15 50)",
+          "oklch(67% 0.165 50)",
+          "oklch(76% 0.14 50)",
+          "oklch(86% 0.10 50)",
+          "oklch(95% 0.04 50)"
+        ]
+      },
+      "terracotta-hover": {
+        "role": "primary",
+        "displayName": "Workshop Terracotta — Hover",
+        "canonical": "oklch(60% 0.155 48)",
+        "tonalRamp": [
+          "oklch(22% 0.07 48)",
+          "oklch(34% 0.10 48)",
+          "oklch(46% 0.13 48)",
+          "oklch(53% 0.145 48)",
+          "oklch(60% 0.155 48)",
+          "oklch(72% 0.14 48)",
+          "oklch(84% 0.10 48)",
+          "oklch(94% 0.04 48)"
+        ]
+      },
+      "terracotta-deep": {
+        "role": "primary",
+        "displayName": "Workshop Terracotta — Deep",
+        "canonical": "oklch(53% 0.145 45)",
+        "tonalRamp": [
+          "oklch(20% 0.07 45)",
+          "oklch(30% 0.10 45)",
+          "oklch(42% 0.13 45)",
+          "oklch(53% 0.145 45)",
+          "oklch(64% 0.14 45)",
+          "oklch(75% 0.115 45)",
+          "oklch(86% 0.08 45)",
+          "oklch(95% 0.03 45)"
+        ]
+      },
+      "terracotta-soft": {
+        "role": "primary",
+        "displayName": "Workshop Terracotta — Soft",
+        "canonical": "oklch(78% 0.13 60)",
+        "tonalRamp": [
+          "oklch(28% 0.07 60)",
+          "oklch(40% 0.10 60)",
+          "oklch(54% 0.12 60)",
+          "oklch(66% 0.13 60)",
+          "oklch(78% 0.13 60)",
+          "oklch(86% 0.105 60)",
+          "oklch(92% 0.07 60)",
+          "oklch(97% 0.03 60)"
+        ]
+      },
+      "field-olive": {
+        "role": "secondary",
+        "displayName": "Field Olive",
+        "canonical": "oklch(57% 0.07 110)",
+        "tonalRamp": [
+          "oklch(22% 0.04 110)",
+          "oklch(34% 0.05 110)",
+          "oklch(45% 0.06 110)",
+          "oklch(57% 0.07 110)",
+          "oklch(68% 0.07 110)",
+          "oklch(78% 0.055 110)",
+          "oklch(88% 0.04 110)",
+          "oklch(96% 0.02 110)"
+        ]
+      },
+      "burnt-sienna": {
+        "role": "secondary",
+        "displayName": "Burnt Sienna",
+        "canonical": "oklch(45% 0.10 50)",
+        "tonalRamp": [
+          "oklch(18% 0.05 50)",
+          "oklch(28% 0.07 50)",
+          "oklch(36% 0.085 50)",
+          "oklch(45% 0.10 50)",
+          "oklch(58% 0.10 50)",
+          "oklch(72% 0.08 50)",
+          "oklch(85% 0.05 50)",
+          "oklch(95% 0.02 50)"
+        ]
+      },
+      "goal-green": {
+        "role": "tertiary",
+        "displayName": "Goal Green",
+        "canonical": "oklch(64% 0.155 145)",
+        "tonalRamp": [
+          "oklch(22% 0.06 145)",
+          "oklch(34% 0.09 145)",
+          "oklch(46% 0.12 145)",
+          "oklch(56% 0.14 145)",
+          "oklch(64% 0.155 145)",
+          "oklch(75% 0.13 145)",
+          "oklch(86% 0.09 145)",
+          "oklch(95% 0.04 145)"
+        ]
+      },
+      "stop-red": {
+        "role": "tertiary",
+        "displayName": "Stop Red",
+        "canonical": "oklch(53% 0.18 28)",
+        "tonalRamp": [
+          "oklch(22% 0.08 28)",
+          "oklch(32% 0.12 28)",
+          "oklch(43% 0.16 28)",
+          "oklch(53% 0.18 28)",
+          "oklch(64% 0.165 28)",
+          "oklch(76% 0.13 28)",
+          "oklch(86% 0.08 28)",
+          "oklch(95% 0.03 28)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display (Fraunces italic)",
+        "purpose": "Editorial pull-quote (.amplifier) и italic-вставки <em> внутри крупных заголовков. Никогда для длинных абзацев."
+      },
+      "headline": {
+        "displayName": "Headline (Inter 800)",
+        "purpose": "Только <h1> в Hero. Один экземпляр на страницу."
+      },
+      "title": {
+        "displayName": "Title (Inter 800)",
+        "purpose": "<h2> секций. Маркер начала каждого блока."
+      },
+      "body": {
+        "displayName": "Body (Inter 400)",
+        "purpose": "Основной текст и subtitle. Длина строки 65–75ch через max-width контейнеры."
+      },
+      "label": {
+        "displayName": "Label (Inter 700, UPPERCASE)",
+        "purpose": "Section badges, pricing labels, eyebrow-метки. Только UPPERCASE на label-уровне, не выше fs-base."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-soft",
+        "value": "0 2px 20px rgba(45, 37, 32, 0.06)",
+        "purpose": "Едва заметное «дыхание» под одиночными карточками. На default-state почти не используется."
+      },
+      {
+        "name": "shadow-soft",
+        "value": "0 8px 32px rgba(45, 37, 32, 0.10)",
+        "purpose": "Мягкая «пыль» под pricing-card и важными контейнерами в покое."
+      },
+      {
+        "name": "shadow-accent",
+        "value": "0 8px 28px rgba(232, 130, 42, 0.30)",
+        "purpose": "Тёплый ореол под основной CTA-кнопкой при hover/focus."
+      },
+      {
+        "name": "shadow-floating",
+        "value": "0 16px 44px rgba(45, 37, 32, 0.14)",
+        "purpose": "Сильный подъём для редких элементов: открытый FAQ, sticky-CTA на мобильном."
+      },
+      {
+        "name": "shadow-segment-hover",
+        "value": "0 18px 44px -22px rgba(45, 37, 32, 0.22)",
+        "purpose": "Подъём segment-card при hover. Negative spread даёт «концентрированную» тень снизу."
+      },
+      {
+        "name": "focus-ring",
+        "value": "0 0 0 4px rgba(232, 130, 42, 0.24)",
+        "purpose": "Кольцо фокуса в терракотовом стекле — обязательно на всех интерактивных элементах."
+      }
+    ],
+    "motion": [
+      {
+        "name": "motion-fast",
+        "value": "180ms ease-in-out",
+        "purpose": "Микро-реакции: смена цвета границы, opacity, фон полей при focus."
+      },
+      {
+        "name": "motion-base",
+        "value": "260ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "purpose": "Базовая анимация состояний: lift кнопок, hover карточек, transform CTA."
+      },
+      {
+        "name": "reveal-transition",
+        "value": "opacity 0.7s ease, transform 0.7s ease",
+        "purpose": "Scroll-reveal: элементы с .reveal появляются с translateY(24px) → 0. Отключается при prefers-reduced-motion."
+      },
+      {
+        "name": "fade-slide-up",
+        "value": "0.7s-0.8s ease, staggered 150ms",
+        "purpose": "Hero-вход: badge → title → subtitle → price-note → CTA с лесенкой задержек 200/350/500/550/650ms."
+      }
+    ],
+    "breakpoints": [
+      { "name": "mobile-small", "value": "600px" },
+      { "name": "mobile", "value": "768px" },
+      { "name": "tablet", "value": "960px" },
+      { "name": "desktop", "value": "1140px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Главная CTA. Терракотовая заливка, мягкое скругление, ореол, lift на hover.",
+      "html": "<button class=\"ds-btn-primary\"><span>Занять место</span><svg class=\"ds-btn-arrow\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 10h12m0 0l-4-4m4 4l-4 4\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 10px; background: #E8822A; color: #FEFEFE; font-family: 'Inter', -apple-system, sans-serif; font-size: 0.95rem; font-weight: 600; padding: 16px 32px; border: 0; border-radius: 14px; min-height: 52px; cursor: pointer; box-shadow: 0 4px 16px rgba(232, 130, 42, 0.25); transition: background 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94); } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { background: #D4741F; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232, 130, 42, 0.30); outline: none; } .ds-btn-primary:focus-visible { box-shadow: 0 8px 28px rgba(232, 130, 42, 0.30), 0 0 0 4px rgba(232, 130, 42, 0.24); } .ds-btn-primary:active { transform: translateY(1px) scale(0.98); } .ds-btn-arrow { flex-shrink: 0; transition: transform 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94); } .ds-btn-primary:hover .ds-btn-arrow { transform: translateX(4px); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Вторичная CTA. Прозрачный фон, терракотовый бордюр и текст; на hover заливается терракотой.",
+      "html": "<button class=\"ds-btn-outline\">Узнать подробнее</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: #E8822A; font-family: 'Inter', -apple-system, sans-serif; font-size: 0.95rem; font-weight: 600; padding: 14px 30px; border: 2px solid #E8822A; border-radius: 14px; min-height: 52px; cursor: pointer; transition: background 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94), color 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94); } .ds-btn-outline:hover, .ds-btn-outline:focus-visible { background: #E8822A; color: #FEFEFE; outline: none; } .ds-btn-outline:focus-visible { box-shadow: 0 0 0 4px rgba(232, 130, 42, 0.24); }"
+    },
+    {
+      "name": "Section Badge",
+      "kind": "chip",
+      "refersTo": "section-badge",
+      "description": "Pill-бейдж с эмодзи и UPPERCASE-текстом. Открывает секцию.",
+      "html": "<div class=\"ds-section-badge\"><span aria-hidden=\"true\">🎯</span> Аудитория</div>",
+      "css": ".ds-section-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(232, 130, 42, 0.10); color: #C56519; font-family: 'Inter', -apple-system, sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; }"
+    },
+    {
+      "name": "Segment Card",
+      "kind": "card",
+      "refersTo": "segment-card",
+      "description": "Белая карточка с радиальным терракотовым акцентом в правом верхнем углу. Поднимается на hover.",
+      "html": "<article class=\"ds-segment-card\"><div class=\"ds-segment-card-icon\" aria-hidden=\"true\">💼</div><h3 class=\"ds-segment-card-title\">Предприниматель, которому нужен <em>контент для продаж</em></h3><p class=\"ds-segment-card-text\">Ты ведёшь бизнес, понимаешь, что блог это канал продаж, но нет времени заниматься им системно.</p><p class=\"ds-segment-card-result\">→ Автономный контент-маркетинг без ежедневного участия.</p></article>",
+      "css": ".ds-segment-card { position: relative; background: #FEFEFE; border: 1px solid rgba(45, 37, 32, 0.08); border-radius: 20px; padding: 32px 24px; isolation: isolate; overflow: hidden; transition: border-color 180ms ease, transform 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94); } .ds-segment-card::before { content: ''; position: absolute; top: -20%; right: -20%; width: 280px; height: 280px; background: radial-gradient(circle, rgba(232, 130, 42, 0.18) 0%, transparent 65%); border-radius: 50%; pointer-events: none; z-index: -1; transition: transform 0.8s ease; } .ds-segment-card:hover { border-color: rgba(232, 130, 42, 0.35); transform: translateY(-3px); box-shadow: 0 18px 44px -22px rgba(45, 37, 32, 0.22); } .ds-segment-card:hover::before { transform: scale(1.15) translate(-8px, 8px); } .ds-segment-card-icon { font-size: 1.8rem; width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(232, 130, 42, 0.18), rgba(232, 130, 42, 0.05)); border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(232, 130, 42, 0.18); margin-bottom: 14px; } .ds-segment-card-title { font-family: 'Inter', sans-serif; font-size: 1.125rem; font-weight: 700; line-height: 1.3; color: #2D2520; margin: 0 0 12px; } .ds-segment-card-title em { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 600; color: #C56519; } .ds-segment-card-text { font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.65; color: #6B5E52; margin: 0 0 12px; } .ds-segment-card-result { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; line-height: 1.5; color: #2D2520; margin: 0; }"
+    },
+    {
+      "name": "Pricing Card",
+      "kind": "card",
+      "refersTo": "pricing-card",
+      "description": "Центральная карточка цены с двойной рамкой, шапкой-полоской сверху и диффузным ореолом вокруг.",
+      "html": "<div class=\"ds-pricing-glow\"><article class=\"ds-pricing-card\"><div class=\"ds-pricing-label\">Следующая очередь</div><div class=\"ds-pricing-price\"><span class=\"ds-pricing-old\">50 000 ₽</span><span class=\"ds-pricing-new\">14 990 <span class=\"ds-pricing-cur\">₽</span></span></div><p class=\"ds-pricing-reason\">С каждой очередью цена растёт. Сейчас 14 990 ₽.</p></article></div>",
+      "css": ".ds-pricing-glow { position: relative; max-width: 640px; margin: 0 auto; padding: 20px; } .ds-pricing-glow::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(232, 130, 42, 0.14) 0%, transparent 70%); border-radius: 36px; z-index: 0; pointer-events: none; } .ds-pricing-card { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; background: rgba(255, 255, 255, 0.5); border: 2px solid #E8822A; border-radius: 24px; padding: 48px 40px; text-align: center; box-shadow: 0 8px 32px rgba(45, 37, 32, 0.10); overflow: hidden; } .ds-pricing-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #E8822A; } .ds-pricing-label { display: inline-block; background: #E8822A; color: #FEFEFE; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 8px 20px; border-radius: 100px; margin-bottom: 24px; } .ds-pricing-price { margin-bottom: 8px; } .ds-pricing-old { font-family: 'Inter', sans-serif; font-size: 1.4rem; color: #6B5E52; text-decoration: line-through; margin-right: 12px; } .ds-pricing-new { font-family: 'Inter', sans-serif; font-size: 3rem; font-weight: 900; color: #E8822A; letter-spacing: -0.03em; } .ds-pricing-cur { font-size: 1.4rem; font-weight: 600; } .ds-pricing-reason { font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.65; color: #6B5E52; margin: 0; }"
+    },
+    {
+      "name": "Editorial Pull-Quote",
+      "kind": "custom",
+      "refersTo": "amplifier",
+      "description": "Финальная фраза-пуанта секции в Fraunces italic с гигантской декоративной кавычкой сверху.",
+      "html": "<p class=\"ds-amplifier\">Ты эксперт, не копирайтер. Контент должен идти за тобой, а не наоборот.</p>",
+      "css": ".ds-amplifier { position: relative; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; font-size: clamp(1.25rem, 2.4vw, 1.75rem); line-height: 1.4; letter-spacing: -0.015em; color: #2D2520; text-align: center; max-width: 720px; margin: 8px auto 0; padding: 56px 24px 8px; } .ds-amplifier::before { content: '\\201C'; position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-family: 'Fraunces', Georgia, serif; font-style: normal; font-weight: 700; font-size: 6rem; line-height: 1; color: #E8822A; opacity: 0.55; pointer-events: none; }"
+    },
+    {
+      "name": "Hero Signature Button",
+      "kind": "custom",
+      "refersTo": "button-hero",
+      "description": "Сигнатурная split-кнопка: основная панель + перфорированный корешок-стаб с метрикой «осталось 3 из 5».",
+      "html": "<a class=\"ds-hero-btn\" href=\"#\" aria-label=\"Занять место — осталось 3 из 5\"><span class=\"ds-hero-btn-main\"><span>Занять&nbsp;место</span><span class=\"ds-hero-btn-arrow\" aria-hidden=\"true\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 20 20\" fill=\"none\"><path d=\"M4 10h12m0 0l-4-4m4 4l-4 4\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></span><span class=\"ds-hero-btn-stub\" aria-hidden=\"true\"><span class=\"ds-hero-btn-perf ds-hero-btn-perf-top\"></span><span class=\"ds-hero-btn-perf ds-hero-btn-perf-bot\"></span><span class=\"ds-hero-btn-stub-label\">осталось</span><span class=\"ds-hero-btn-stub-value\">3 из 5</span></span></a>",
+      "css": ".ds-hero-btn { position: relative; display: inline-flex; align-items: stretch; text-decoration: none; color: #FEFEFE; border-radius: 18px; transition: transform 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94); } .ds-hero-btn-main { display: inline-flex; align-items: center; gap: 12px; background: #2D2520; color: #FEFEFE; font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; padding: 20px 28px; border-radius: 18px 0 0 18px; min-height: 64px; } .ds-hero-btn-arrow { display: inline-flex; transition: transform 260ms cubic-bezier(0.25, 0.46, 0.45, 0.94); } .ds-hero-btn-stub { position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; background: #E8822A; color: #FEFEFE; font-family: 'Inter', sans-serif; padding: 10px 22px; border-radius: 0 18px 18px 0; min-width: 96px; } .ds-hero-btn-stub-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.85; } .ds-hero-btn-stub-value { font-size: 1.1rem; font-weight: 800; } .ds-hero-btn-perf { position: absolute; left: -7px; width: 14px; height: 14px; border-radius: 50%; background: #F5F0E8; } .ds-hero-btn-perf-top { top: -7px; } .ds-hero-btn-perf-bot { bottom: -7px; } .ds-hero-btn:hover, .ds-hero-btn:focus-visible { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232, 130, 42, 0.30); outline: none; } .ds-hero-btn:hover .ds-hero-btn-arrow, .ds-hero-btn:focus-visible .ds-hero-btn-arrow { transform: translateX(4px); }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Базовое поле ввода. Белая заливка, hairline-граница, терракотовое кольцо фокуса.",
+      "html": "<label class=\"ds-field-label\"><span>Telegram-ник</span><input class=\"ds-field\" type=\"text\" placeholder=\"@username\" /></label>",
+      "css": ".ds-field-label { display: flex; flex-direction: column; gap: 6px; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6B5E52; } .ds-field { width: 100%; background: #FEFEFE; color: #2D2520; font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 400; border: 1px solid rgba(45, 37, 32, 0.08); border-radius: 12px; padding: 14px 16px; transition: border-color 180ms ease-in-out, box-shadow 180ms ease-in-out; } .ds-field:focus { outline: none; border-color: #E8822A; box-shadow: 0 0 0 4px rgba(232, 130, 42, 0.24); } .ds-field:user-invalid { border-color: #C0392B; box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.12); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Editorial Workshop",
+    "overview": "Лендинг — это не сайт, это разворот independent magazine, собранный в студии выпуска. Серифный курсив Fraunces сплетается с строгим Inter, как заголовок с подверсткой. Цвет бумаги, ручная SVG-флористика по углам видео-блока, washi-скотч на polaroid, бегущая лента «23 СКИЛЛА ✦ АВТОПУБЛИКАЦИЯ» — всё это следы редакции, а не SaaS-шаблона. Метафора «завода» работает через серийность (16 пронумерованных блоков, 27 функций, повторяющиеся ритмы), а не через холодную индустриальность. Палитра — обожжённая глина и тёплая бумага — отказ от двух стандартных рефлексов отрасли: «AI-тул значит тёмно-синий» и «лендинг значит белый + градиент». Плотность регулируется ритмом, не количеством элементов. Блоки чередуются: широкие — узкие, светлые — тёмные, плотный список болей — воздушная цитата с гигантским декоративным кавычным знаком, табличное сравнение — рукодельный polaroid. Читатель должен дочитать до конца, не до середины.",
+    "keyCharacteristics": [
+      "Бумажная палитра вместо белого фона; терракота вместо корпоративного синего.",
+      "Двойная типографика: Inter 800 с italic-вставками Fraunces 600 в каждом крупном заголовке.",
+      "Рукотворные SVG-декорации (флора, точки, кривые) и материальные следы (washi, polaroid, marquee).",
+      "Flat-by-default: тени работают как «пыль над бумагой», а не как инженерная иерархия.",
+      "Серийный ритм 16 блоков, но без однообразия — каждый блок узнаваем визуально."
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "section": "colors",
+        "body": "Терракотовый акцент работает на ≤10% любого экрана — на CTA, в italic-вставках заголовков, в radial-gradient декорах. Если он начинает доминировать, это уже не голос, а крик."
+      },
+      {
+        "name": "The Tinted Neutral Rule",
+        "section": "colors",
+        "body": "В палитре нет ни одного чистого #000, ни одного чистого #fff. Любой нейтральный оттенок имеет тёплую подкрутку. #FEFEFE вместо #FFFFFF. #1A1714 вместо #000."
+      },
+      {
+        "name": "The Decor-Only Olive Rule",
+        "section": "colors",
+        "body": "Field Olive и Burnt Sienna появляются исключительно в рукодельных SVG-декорациях. Никогда — на UI: ни на кнопке, ни в тексте, ни на бордюре карточки."
+      },
+      {
+        "name": "The Italic Heartbeat Rule",
+        "section": "typography",
+        "body": "В каждом крупном заголовке (h1, h2) одно слово или короткая фраза набрана Fraunces italic 600 через <em>. Это не декорация, это акустический сдвиг, без которого голос становится product-marketing-ным."
+      },
+      {
+        "name": "The 65–75ch Rule",
+        "section": "typography",
+        "body": "Любой длинный абзац ограничен по ширине через max-width 480–600px или контейнер --container-prose. Текст 100% ширины экрана запрещён."
+      },
+      {
+        "name": "The Upper-Case Reserve Rule",
+        "section": "typography",
+        "body": "UPPERCASE появляется только на label-уровне (section-badge, pricing-label, eyebrow). Любой текст крупнее --fs-base — никогда не в верхнем регистре. Капс-заголовков нет."
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "section": "elevation",
+        "body": "Поверхности плоские в покое. Тени появляются только как реакция на состояние или для signature-карточек (pricing-card, segment-card--featured). Тень в default-state — это лень."
+      },
+      {
+        "name": "The Tonal Layer Rule",
+        "section": "elevation",
+        "body": "Глубина между секциями строится через тон фона (paper-cream ↔ paper-aged ↔ press-ink), а не через тени. Чередование секций — основной инструмент ритма."
+      },
+      {
+        "name": "The Dust, Not Drop Rule",
+        "section": "elevation",
+        "body": "Тени диффузные и мягкие (blur ≥ 20px, opacity ≤ 0.14). Резкие drop-shadow с маленьким blur запрещены. Если тень видна как чёткая линия, она настроена неправильно."
+      }
+    ],
+    "dos": [
+      "Do использовать paper-cream #F5F0E8 как основной фон. Никогда не #fff для основного фона.",
+      "Do ставить Fraunces italic 600 в <em> внутри каждого крупного заголовка — это «italic heartbeat» голоса.",
+      "Do держать акцентный Workshop Terracotta на ≤10% любого экрана — CTA, italic-вставки, decor.",
+      "Do делать карточки flat в покое; тень появляется на hover/focus или в одной-двух signature-карточках.",
+      "Do менять ритм секций: чередовать paper-cream ↔ paper-aged ↔ press-ink, плотный список ↔ воздушная цитата.",
+      "Do ограничивать длину абзаца 65–75ch через max-width контейнеры.",
+      "Do обязательно ставить --focus-ring (терракотовое кольцо) на всех интерактивных элементах.",
+      "Do использовать рукодельные SVG-декорации для атмосферных моментов (флора, точки, кривые).",
+      "Do уважать prefers-reduced-motion: останавливать marquee, отключать scroll-reveal, сокращать transition.",
+      "Do называть числа честно: «3 из 5 мест осталось», «5 минут на пост», «27 функций» — без знака восклицания."
+    ],
+    "donts": [
+      "Don't использовать сине-фиолетовый градиент, glassmorphism-карточки, hero-метрику «большое число + стрелка вверх» — это шаблонный SaaS.",
+      "Don't делать капс-заголовки крупнее --fs-base, кислотные «ОСТАЛОСЬ 2 МЕСТА!!!», красные таймеры обратного отсчёта — это инфоцыганский лендинг.",
+      "Don't уходить в тёмный фон с неон-розовым/фиолетовым, изометрические мокапы, бейджи «Powered by AI», скриншоты ChatGPT-интерфейса — это AI-тул общего назначения.",
+      "Don't добавлять мультяшные иллюстрации, радужные бейджи, скидочные стикеры, ивентовые маскоты — это школьно-обучающий курс.",
+      "Don't ставить border-left или border-right больше 1px как цветной акцент. Pricing-card имеет полоску 6px СВЕРХУ — это полная рамка плюс шапка, не side-stripe.",
+      "Don't использовать background-clip: text с градиентом для текста. Акцент через цвет, вес или italic Fraunces.",
+      "Don't делать Field Olive #7A8E55 или Burnt Sienna #8C5826 цветом UI-элементов. Эти оттенки живут только в декоративных SVG.",
+      "Don't оборачивать всё в карточки. Pain-items сознательно flat-список с тонкой нижней границей. Если карточка не нужна — её нет.",
+      "Don't использовать em-dash в UI-копи и контенте. Только запятые, двоеточия, скобки, точки.",
+      "Don't писать «онбординг ваших инсайтов», «прокачайте ваш контент», «эффективнее в 10 раз» и аналогичный RU-стартап-кринж.",
+      "Don't ставить тень в default-state на каждую карточку. Flat-by-default. Тень — это реакция, не декорация.",
+      "Don't использовать #000 или #FFF. Каждый нейтральный оттенок подкручен в тёплый спектр."
+    ]
+  }
+}
