@@ -450,10 +450,10 @@
     }
 
     .hero__subtitle {
-      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-      line-height: var(--lh-text);
-      color: var(--text-muted);
-      max-width: 480px;
+      font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 520px;
       margin-bottom: 24px;
       overflow-wrap: anywhere;
       animation: fadeSlideUp 0.8s ease 0.5s both;
@@ -1265,6 +1265,51 @@
       gap: 24px;
       margin-bottom: 32px;
     }
+    .showcase-card--wide {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding: var(--space-7) var(--space-9);
+    }
+    .showcase-card--wide .showcase-card__header { margin-bottom: 0; flex-shrink: 0; }
+    .showcase-card--wide .showcase-card__list {
+      display: flex;
+      flex-flow: row wrap;
+      gap: 10px 12px;
+      flex: 1;
+      min-width: 280px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .showcase-card--wide .showcase-card__list li {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: inline-flex;
+      flex: 0 0 auto;
+    }
+    .showcase-card--wide .showcase-card__list li::before { display: none !important; content: none !important; }
+    .showcase-card--wide .pill {
+      display: inline-block;
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: rgba(254,254,254,0.85);
+    }
+    @media (max-width: 768px) {
+      .showcase-card--wide {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--space-7) var(--space-6);
+      }
+    }
 
     .showcase-card {
       background: var(--card-bg);
@@ -1703,7 +1748,7 @@
       margin: 8px -8px 18px;
       border-radius: 18px;
       overflow: hidden;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 4 / 3;
       background: var(--bg-alt);
     }
     .segment-card--featured .segment-card__visual img {
@@ -1771,14 +1816,15 @@
     }
 
     .segment-card__situation {
-      font-size: var(--fs-sm);
-      line-height: var(--lh-text);
-      color: var(--text-muted);
-      margin-bottom: 14px;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--text);
+      opacity: 0.78;
+      margin-bottom: 16px;
     }
 
     .segment-card__result {
-      font-size: var(--fs-sm);
+      font-size: 1rem;
       font-weight: 600;
       color: var(--accent-deep);
       line-height: 1.5;
@@ -1872,6 +1918,7 @@
       grid-template-columns: 1fr 1.2fr;
       gap: 48px;
       align-items: center;
+      margin-bottom: 72px;
     }
 
     .expert__photo-wrap {
@@ -1953,7 +2000,7 @@
     .pricing-glow {
       position: relative;
       max-width: 640px;
-      margin: 0 auto;
+      margin: 32px auto 0;
     }
 
     .pricing-glow::before {
@@ -3230,6 +3277,152 @@
       .steps { grid-template-columns: repeat(2, 1fr); }
       .steps::before { display: none; }
     }
+
+    /* ─────────── NEW бейджи (красные, как «горячее») ─────────── */
+    .badge-new {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      margin-left: 8px;
+      font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(135deg, #ff4757 0%, #d63031 100%);
+      border: 1px solid #b71c1c;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(214, 48, 49, 0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+      text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+      vertical-align: middle;
+      white-space: nowrap;
+      animation: badge-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes badge-pulse {
+      0%, 100% { box-shadow: 0 1px 2px rgba(214, 48, 49, 0.35), inset 0 1px 0 rgba(255,255,255,0.25); }
+      50%      { box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.18), 0 1px 2px rgba(214, 48, 49, 0.5), inset 0 1px 0 rgba(255,255,255,0.25); }
+    }
+    .badge-new--soft {
+      background: linear-gradient(135deg, #ff6b7a 0%, #ff4757 100%);
+      color: #fff;
+      border-color: #d63031;
+      font-size: 9px;
+      padding: 2px 6px;
+      animation: none;
+    }
+    .proof-card { position: relative; }
+    .proof-card .badge-new {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      margin-left: 0;
+    }
+
+    /* ─────────── How: pillars + steps headers ─────────── */
+    .how-pillars-title,
+    .how-steps-title {
+      text-align: center;
+      margin: 56px auto 24px;
+      max-width: 640px;
+    }
+    .how-pillars-title h3,
+    .how-steps-title h3 {
+      font-family: var(--font-display, Georgia, serif);
+      font-size: clamp(22px, 2.6vw, 30px);
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--ink, #1a1a1a);
+    }
+    .how-pillars-title p,
+    .how-steps-title p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--ink-soft, #6b6b6b);
+      margin: 0;
+    }
+
+    /* ─────────── Speed-strip в comparison ─────────── */
+    .speed-strip {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 0 auto 28px;
+      max-width: 920px;
+    }
+    .speed-strip__row {
+      display: grid;
+      grid-template-columns: 1.6fr 0.9fr 28px 1.1fr 0.5fr;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: #fff;
+      border: 1px solid rgba(197, 101, 25, 0.18);
+      border-radius: 12px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+      font-size: 15px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .speed-strip__row:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(197, 101, 25, 0.12);
+    }
+    .speed-strip__task {
+      font-weight: 600;
+      color: var(--ink, #1a1a1a);
+    }
+    .speed-strip__before {
+      color: var(--ink-soft, #6b6b6b);
+      font-size: 14px;
+    }
+    .speed-strip__arrow {
+      text-align: center;
+      color: #C56519;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .speed-strip__after {
+      color: #1a1a1a;
+    }
+    .speed-strip__after strong {
+      color: #C56519;
+      font-weight: 700;
+    }
+    .speed-strip__mult {
+      text-align: right;
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-weight: 700;
+      font-size: 18px;
+      color: #C56519;
+    }
+    .speed-strip__total {
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--ink, #1a1a1a);
+      max-width: 720px;
+      margin: 0 auto 36px;
+    }
+    .speed-strip__total strong {
+      color: #C56519;
+    }
+    @media (max-width: 720px) {
+      .speed-strip__row {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "task task" "before after" "mult mult";
+        gap: 8px;
+        padding: 14px;
+      }
+      .speed-strip__task { grid-area: task; font-size: 16px; }
+      .speed-strip__before { grid-area: before; }
+      .speed-strip__after { grid-area: after; text-align: right; }
+      .speed-strip__arrow { display: none; }
+      .speed-strip__mult { grid-area: mult; text-align: center; padding-top: 4px; border-top: 1px dashed rgba(197,101,25,0.2); }
+      .how-pillars-title,
+      .how-steps-title { margin-top: 40px; }
+      .proof-card .badge-new { position: static; display: inline-flex; margin-bottom: 8px; }
+    }
   </style>
 </head>
 <body>
@@ -3248,7 +3441,8 @@
         Контент-завод<br><em>под ключ</em>
       </h1>
       <p class="hero__subtitle">
-        Настрою завод, который пишет твоим голосом, сам публикует и учится на&nbsp;правках. Один&nbsp;созвон&nbsp;—&nbsp;и контент идёт без тебя. 14&nbsp;990&nbsp;₽ за&nbsp;настройку + Claude&nbsp;Pro&nbsp;~$20/мес.
+        Пишет твоим голосом. Сам публикует. Учится на&nbsp;правках.<br>
+        Один&nbsp;созвон — и контент идёт без тебя.
       </p>
       <div class="hero__price-note">
         <span>🔥</span> Следующая очередь: <s>50 000 ₽</s>&nbsp;&nbsp;<strong>14 990 ₽</strong>
@@ -3271,12 +3465,12 @@
       </div>
       <div class="hero__stats">
         <div class="hero__stat">
-          <div class="hero__stat-number">27</div>
-          <div class="hero__stat-label">функций</div>
+          <div class="hero__stat-number">23</div>
+          <div class="hero__stat-label">функции</div>
         </div>
         <div class="hero__stat">
-          <div class="hero__stat-number">120+</div>
-          <div class="hero__stat-label">эталонных постов</div>
+          <div class="hero__stat-number">4</div>
+          <div class="hero__stat-label">платформы</div>
         </div>
         <div class="hero__stat">
           <div class="hero__stat-number">5 мин</div>
@@ -3291,8 +3485,8 @@
 
     <div class="hero__marquee">
       <div class="hero__marquee-track">
-        <span>23 СКИЛЛА ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ БИЗНЕС ✦ TELEGRAM ✦ THREADS ✦ РАСПАКОВКА ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ SEO ✦ 23 СКИЛЛА ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ БИЗНЕС ✦ TELEGRAM ✦ THREADS ✦ РАСПАКОВКА ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ SEO ✦ </span>
-        <span>23 СКИЛЛА ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ БИЗНЕС ✦ TELEGRAM ✦ THREADS ✦ РАСПАКОВКА ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ SEO ✦ 23 СКИЛЛА ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ БИЗНЕС ✦ TELEGRAM ✦ THREADS ✦ РАСПАКОВКА ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ SEO ✦ </span>
+        <span>23 ФУНКЦИИ ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ БИЗНЕС ✦ TELEGRAM ✦ THREADS ✦ РАСПАКОВКА ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ОБЛОЖКИ ✦ 23 ФУНКЦИИ ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ БИЗНЕС ✦ TELEGRAM ✦ THREADS ✦ РАСПАКОВКА ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ОБЛОЖКИ ✦ </span>
+        <span>23 ФУНКЦИИ ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ БИЗНЕС ✦ TELEGRAM ✦ THREADS ✦ РАСПАКОВКА ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ОБЛОЖКИ ✦ 23 ФУНКЦИИ ✦ АВТОПУБЛИКАЦИЯ ✦ САМООБУЧЕНИЕ ✦ БИЗНЕС ✦ TELEGRAM ✦ THREADS ✦ РАСПАКОВКА ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ОБЛОЖКИ ✦ </span>
       </div>
     </div>
 
@@ -3307,15 +3501,15 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       BLOCK: Video Overview
+       BLOCK 2: Что это и как работает
+       (объединяет video + solution + how)
        ═══════════════════════════════════════ -->
-  <section class="video-section" id="video">
+  <section class="section" id="how-it-works">
     <div class="container">
-      <div class="video-hint reveal">
-        <p class="video-hint__text">Посмотри, <em>как это работает</em></p>
-        <div class="video-hint__arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m0 0l-6-6m6 6l6-6"/></svg>
-        </div>
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">🎬 Что это и как работает</div>
+        <h2 class="section__title">Один созвон — и завод <em>пишет за тебя</em></h2>
+        <p class="section__subtitle">Сначала видео-обзор за 15 минут. Дальше — три опоры завода и четыре шага настройки.</p>
       </div>
 
       <div class="video-stage reveal">
@@ -3402,136 +3596,29 @@
           </p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ═══════════════════════════════════════
-       BLOCK 2: Problem
-       ═══════════════════════════════════════ -->
-  <section class="section section--warm" id="problem">
-    <div class="container">
-      <div class="section__header section__header--center reveal">
-        <h2 class="section__title">Контент-завод создан для тебя, если:</h2>
-      </div>
-      <div class="problem-intro reveal">
-        <div class="problem-intro__visual">
-          <img src="assets/img/problem-illustration.png" alt="Эксперт в творческом завале — папки, ноутбук, телефон, листы с задачами" loading="lazy">
-        </div>
-      </div>
-      <div class="pain-list reveal">
-        <div class="pain-item">
-          <div class="pain-icon">⏰</div>
-          <p class="pain-text">Контент отнимает по 2-3 часа в день, хотя ты эксперт, а не копирайтер</p>
-        </div>
-        <div class="pain-item">
-          <div class="pain-icon">😶</div>
-          <p class="pain-text">Садишься писать пост, и 40 минут смотришь на пустой экран, потому что не знаешь, о чём сегодня</p>
-        </div>
-        <div class="pain-item">
-          <div class="pain-icon">🤖</div>
-          <p class="pain-text">Пробовал ChatGPT, получил гладкий, но мёртвый текст, который подписчики пролистывают</p>
-        </div>
-        <div class="pain-item">
-          <div class="pain-icon">💸</div>
-          <p class="pain-text">Нанимал копирайтера, тратил больше времени на правки, чем если бы писал сам</p>
-        </div>
-        <div class="pain-item">
-          <div class="pain-icon">📉</div>
-          <p class="pain-text">Блог ведётся рывками: неделю пишешь активно, потом две недели тишина, охваты падают, аудитория забывает</p>
-        </div>
-      </div>
-      <blockquote class="amplifier reveal">
-        Пока ты не пишешь, твои клиенты читают кого-то другого. Через неделю они уже не помнят, кто ты.
-      </blockquote>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       BLOCK 3: Agitate
-       ═══════════════════════════════════════ -->
-  <section class="section section--alt" id="agitate">
-    <div class="container">
-      <div class="section__header section__header--center reveal">
-        <div class="section__badge">🚫 Тупик</div>
-        <h2 class="section__title">Почему привычные решения не работают</h2>
-      </div>
-      <div class="compare-grid reveal">
-        <div class="compare-card">
-          <div class="compare-card__icon">🤖</div>
-          <h3 class="compare-card__title">ChatGPT / обычные нейросети</h3>
-          <p class="compare-card__text">Получаешь шаблонный текст без своего голоса, стоп-слов, понимания аудитории. Каждый раз начинаешь с нуля: нет памяти, нет контекста, нет системы. Подписчики чувствуют «это писала нейросеть» и перестают читать.</p>
-        </div>
-        <div class="compare-card">
-          <div class="compare-card__icon">✍️</div>
-          <h3 class="compare-card__title">Копирайтер / SMM-менеджер</h3>
-          <p class="compare-card__text">От 30 000 ₽ в месяц, нужны бесконечные правки, созвоны, брифы. Человек не знает твою тему так, как ты. Уволился, и всё начинается заново. Тратишь деньги и время, а тексты всё равно не звучат как ты.</p>
-        </div>
-        <div class="compare-card">
-          <div class="compare-card__icon">🏢</div>
-          <h3 class="compare-card__title">Агентство / аутсорс</h3>
-          <p class="compare-card__text">От 80 000 ₽ в месяц, контент делают за тебя, теряешь голос и связь с аудиторией. Перестал платить, контент прекратился. Зависимость от подрядчика без выхода на собственную систему.</p>
-        </div>
-      </div>
-      <p class="bridge-text reveal">Месяцами платишь деньги или тратишь время — а&nbsp;контент всё равно не твой. И в следующем месяце всё то же самое.</p>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       BLOCK 3.5: Bridge — rhythm breaker
-       ═══════════════════════════════════════ -->
-  <section class="section section--compact" id="bridge">
-    <div class="container">
-      <div class="bridge-block reveal">
-        <div class="bridge-block__side">
-          <span class="bridge-block__label">Было</span>
-          <span class="bridge-block__before">15 часов</span>
-        </div>
-
-        <svg class="bridge-block__arrow" viewBox="0 0 200 60" fill="none" aria-hidden="true">
-          <path d="M4 30 Q 50 4, 100 30 T 192 30" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
-          <path d="M180 18 L194 30 L180 42" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-
-        <div class="bridge-block__side">
-          <span class="bridge-block__label">Стало</span>
-          <span class="bridge-block__after">20<span class="bridge-block__after-unit">минут</span></span>
-        </div>
-
-        <p class="bridge-block__caption">В среднем эксперт тратит <strong>15 часов в неделю</strong> на контент. Завод сокращает это до&nbsp;<strong>20 минут</strong>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       BLOCK 4: Solution
-       ═══════════════════════════════════════ -->
-  <section class="section" id="solution">
-    <div class="container">
-      <div class="section__header section__header--center reveal">
-        <div class="section__badge">🏭 Решение</div>
-        <h2 class="section__title">Контент-завод: пишет, форматирует, публикует</h2>
-        <p class="section__subtitle">Завод работает на базе Claude Code. Я настраиваю его под твой голос, твою аудиторию и твои темы. 27 функций — от постов в Telegram до SEO-статей и автопубликации в Threads. Платишь один раз, дальше только Claude Pro ~$20/мес.</p>
+      <!-- Три опоры завода (перенесено из solution) -->
+      <div class="how-pillars-title reveal">
+        <h3>На чём держится завод</h3>
+        <p>Три главных свойства, которые отличают его от ChatGPT, копирайтера и агентства.</p>
       </div>
       <div class="features-grid reveal">
         <div class="feature-card">
           <div class="feature-num">1</div>
-          <h3 class="feature-card__title">Тексты звучат как ты</h3>
-          <p class="feature-card__how">Завод читает твои лучшие посты, запоминает голос, тон, стоп-слова и манеру. Генерирует текст с опорой на реальные примеры, а не на шаблоны.</p>
-          <span class="feature-stamp">✓ Как ты</span>
-          <p class="feature-card__result">Подписчики не отличат от твоего текста.</p>
+          <h3 class="feature-card__title">Звучит твоим голосом</h3>
+          <p class="feature-card__how">Завод читает 10–30 твоих лучших постов и собирает <strong>карточку твоего стиля</strong>: типичные фразы, ритм, любимые повороты, стоп-слова. Потом пишет с опорой на твои тексты, а не на усреднённый шаблон «эксперта».</p>
+          <p class="feature-card__result">Подписчики не отличают от того, что писал бы ты сам.</p>
         </div>
         <div class="feature-card">
           <div class="feature-num">2</div>
-          <h3 class="feature-card__title">Автопубликация</h3>
-          <p class="feature-card__how">Завод сам открывает браузер и публикует посты. Например, 14 штук в Threads на неделю — ты только дал команду, всё остальное без тебя.</p>
-          <span class="feature-stamp">✓ В эфире</span>
-          <p class="feature-card__result">Неделя контента выходит одним запуском.</p>
+          <h3 class="feature-card__title">Сам публикует</h3>
+          <p class="feature-card__how">Завод открывает браузер и публикует посты за тебя. 14 постов в Threads на неделю выходят одной командой — пока ты занят другим.</p>
+          <p class="feature-card__result">Неделя контента — один запуск, дальше без тебя.</p>
         </div>
         <div class="feature-card">
           <div class="feature-num">3</div>
           <h3 class="feature-card__title">Учится на правках</h3>
-          <p class="feature-card__how">Ты поправил — завод запомнил и больше эту ошибку не повторяет. Обычные нейросети каждый раз начинают с нуля.</p>
-          <span class="feature-stamp">✓ Обучаемо</span>
+          <p class="feature-card__how">Каждую твою правку завод запоминает отдельно — по типу поста. В понедельник показывает короткую сводку: «За неделю в твой профиль записано 5 уточнений». ChatGPT забывает после каждого диалога.</p>
           <p class="feature-card__result">Через месяц правишь редко. Через три — почти никогда.</p>
         </div>
         <svg class="feature-flow feature-flow--a" viewBox="0 0 36 18" aria-hidden="true">
@@ -3543,9 +3630,49 @@
           <path d="M22 3 L34 9 L22 15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
+
+      <!-- Четыре шага настройки (перенесено из how) -->
+      <div class="how-steps-title reveal">
+        <h3>Настройка — за один созвон</h3>
+        <p>Платишь, созваниваемся, разворачиваем завод вместе. Дальше — работаешь сам.</p>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step__num">1</div>
+          <div>
+            <h3 class="step__title">Оплата и подготовка</h3>
+            <p class="step__text">Оплачиваешь настройку. Если нет Claude Pro — подскажу, как оформить. Договариваемся о времени созвона.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <div>
+            <h3 class="step__title">Zoom-созвон, настройка вместе</h3>
+            <p class="step__text">Разворачиваем завод на твоём компьютере. Загружаем твои посты, прописываем голос, тон, аудиторию, стоп-слова.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <div>
+            <h3 class="step__title">Показываю все функции и запускаем первый пост</h3>
+            <p class="step__text">Прямо на созвоне прохожу с тобой каждую из 23 функций. Запускаем первый пост вместе, чтобы ты увидел изнутри, как это работает.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__num">4</div>
+          <div>
+            <h3 class="step__title">Работаешь самостоятельно</h3>
+            <p class="step__text">У тебя на компьютере: папка с заводом, PDF-инструкция, запись созвона, автообновления и моя поддержка по вопросам.</p>
+          </div>
+        </div>
+      </div>
+      <div class="step-note reveal">
+        💡 Завод работает на трёх ИИ-помощниках: Claude Code, Codex или OpenCode. Выбираешь любого. Минимум — подписка Claude Pro ~$20/мес.
+      </div>
+
       <div class="cta-center reveal">
         <a href="https://t.me/m/N0bTmb18OTUy" target="_blank" rel="noopener" class="btn">
-          Написать в Telegram
+          Занять место
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -3553,49 +3680,9 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       BLOCK 5: How It Works
+       DELETED: Problem / Agitate / Bridge / Solution / How
+       (поглощены секцией #how-it-works выше)
        ═══════════════════════════════════════ -->
-  <section class="section section--alt section--compact" id="how">
-    <div class="container">
-      <div class="section__header section__header--center reveal">
-        <div class="section__badge">📋 Процесс</div>
-        <h2 class="section__title">Один созвон — и завод работает</h2>
-      </div>
-      <div class="steps reveal">
-        <div class="step">
-          <div class="step__num">1</div>
-          <div>
-            <h3 class="step__title">Оплата и подготовка</h3>
-            <p class="step__text">Оплачиваешь настройку. Если нет Claude Pro — подскажу как оформить. Договариваемся о созвоне.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step__num">2</div>
-          <div>
-            <h3 class="step__title">Zoom-созвон: настройка вместе</h3>
-            <p class="step__text">Созваниваемся. Разворачиваем завод, загружаем твои тексты, прописываем голос, тон, аудиторию, стоп-слова.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step__num">3</div>
-          <div>
-            <h3 class="step__title">Обучение и первые результаты</h3>
-            <p class="step__text">Сразу на созвоне показываю каждый скилл. Запускаем первый контент вместе.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step__num">4</div>
-          <div>
-            <h3 class="step__title">Работаешь самостоятельно</h3>
-            <p class="step__text">После звонка у тебя: папка с заводом на компьютере, PDF-инструкция, запись созвона, автообновления и моя поддержка.</p>
-          </div>
-        </div>
-      </div>
-      <div class="step-note reveal">
-        💡 Для работы нужен Claude Pro (~$20/мес). Нет — помогу подключить.
-      </div>
-    </div>
-  </section>
 
   <!-- ═══════════════════════════════════════
        BLOCK 6: Features Showcase
@@ -3604,8 +3691,8 @@
     <div class="container">
       <div class="section__header section__header--center reveal">
         <div class="section__badge">🚀 Возможности</div>
-        <h2 class="section__title">Что умеет завод</h2>
-        <p class="section__subtitle">От идеи до публикации — в одном месте</p>
+        <h2 class="section__title">23 функции на <em>4 платформах</em></h2>
+        <p class="section__subtitle">Telegram, Threads, статьи (Дзен/Хабр/VC) и Instagram-карусели — из одного места.</p>
       </div>
 
       <div class="showcase-grid reveal">
@@ -3633,21 +3720,6 @@
 
         <div class="showcase-card">
           <div class="showcase-card__header">
-            <div class="showcase-card__icon">🎬</div>
-            <div>
-              <div class="showcase-card__title">Видео → контент</div>
-              <div class="showcase-card__count">3 функции</div>
-            </div>
-          </div>
-          <ul class="showcase-card__list">
-            <li>Сделать конспект из YouTube-видео</li>
-            <li>Превратить видео в пост</li>
-            <li>Превратить видео в статью</li>
-          </ul>
-        </div>
-
-        <div class="showcase-card">
-          <div class="showcase-card__header">
             <div class="showcase-card__icon">🧵</div>
             <div>
               <div class="showcase-card__title">Threads</div>
@@ -3658,7 +3730,22 @@
             <li>Спланировать неделю постов для Threads</li>
             <li>Придумать заголовки для постов</li>
             <li>Написать посты</li>
-            <li>Автоматически опубликовать</li>
+            <li>Автоматически опубликовать через браузер</li>
+          </ul>
+        </div>
+
+        <div class="showcase-card">
+          <div class="showcase-card__header">
+            <div class="showcase-card__icon">🎬</div>
+            <div>
+              <div class="showcase-card__title">Видео → контент</div>
+              <div class="showcase-card__count">3 функции</div>
+            </div>
+          </div>
+          <ul class="showcase-card__list">
+            <li>Сделать конспект из YouTube-видео</li>
+            <li>Превратить видео в пост Telegram</li>
+            <li>Превратить видео в статью на 1500–3000 слов</li>
           </ul>
         </div>
 
@@ -3685,57 +3772,8 @@
             </div>
           </div>
           <ul class="showcase-card__list">
-            <li>Построить 40 смыслов для прогрева аудитории</li>
+            <li>Построить 40 смыслов для прогрева по Лестнице Ханта</li>
             <li>Спланировать серию прогревающих постов к запуску</li>
-          </ul>
-        </div>
-
-        <div class="showcase-card">
-          <div class="showcase-card__header">
-            <div class="showcase-card__icon">🎨</div>
-            <div>
-              <div class="showcase-card__title">Визуал</div>
-              <div class="showcase-card__count">1 функция</div>
-            </div>
-          </div>
-          <ul class="showcase-card__list">
-            <li>Нарисовать обложку для поста (11 стилей)</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="total-line reveal">
-        27 функций. База знаний. Автопубликация. Копирайтер не нужен.
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       BLOCK 6.5: What's New
-       ═══════════════════════════════════════ -->
-   <section class="section section--alt" id="new">
-    <div class="container">
-      <div class="section__header section__header--center reveal">
-        <div class="section__badge">🆕 Новое</div>
-        <h2 class="section__title">Что нового</h2>
-        <p class="section__subtitle">Завод обновляется сам — вот что добавилось</p>
-      </div>
-
-      <div class="showcase-grid showcase-grid--asym reveal">
-
-        <div class="showcase-card">
-          <div class="showcase-card__header">
-            <div class="showcase-card__icon">🏢</div>
-            <div>
-              <div class="showcase-card__title">Контент-завод для бизнеса</div>
-              <div class="showcase-card__count">3 функции</div>
-            </div>
-          </div>
-          <ul class="showcase-card__list">
-            <li>Завод умеет работать от лица компании — не только эксперта. Задай 9 вопросов про бренд, команду и услуги</li>
-            <li>Все посты пишутся от «мы», опираются на реальные кейсы, а не на выдумку</li>
-            <li>Отдельный скилл для распаковки бренда: ценности, позиционирование, язык компании</li>
           </ul>
         </div>
 
@@ -3743,132 +3781,98 @@
           <div class="showcase-card__header">
             <div class="showcase-card__icon">🔍</div>
             <div>
-              <div class="showcase-card__title">Распаковка знаний</div>
+              <div class="showcase-card__title">Распаковка <span class="badge-new" title="Релиз v2.7–v2.9 · апрель 2026">NEW</span></div>
               <div class="showcase-card__count">3 функции</div>
             </div>
           </div>
           <ul class="showcase-card__list">
-            <li>Завод проводит с тобой интервью на 15 глубоких вопросов — как продюсер. Твои ответы навсегда остаются в базе знаний</li>
-            <li>Читает последние 50 постов твоего Telegram-канала и вытаскивает оттуда убеждения, кейсы, термины, язык</li>
-            <li>Для бизнеса — отдельно распаковывает ценности компании, принципы работы, позиционирование</li>
+            <li>Интервью на 15 глубоких вопросов — записывает в базу знаний</li>
+            <li>Извлекает экспертизу из 50 последних постов канала</li>
+            <li>Режим «Бизнес» — распаковка ценностей и кейсов компании <span class="badge-new badge-new--soft">NEW</span></li>
           </ul>
         </div>
 
-        <div class="showcase-card">
+        <div class="showcase-card showcase-card--wide">
           <div class="showcase-card__header">
-            <div class="showcase-card__icon">🧠</div>
+            <div class="showcase-card__icon">🎨</div>
             <div>
-              <div class="showcase-card__title">Саморедактура</div>
-              <div class="showcase-card__count">2 функции</div>
+              <div class="showcase-card__title">Визуал — обложки для постов</div>
+              <div class="showcase-card__count">11 стилей на выбор</div>
             </div>
           </div>
           <ul class="showcase-card__list">
-            <li>Перед тем как ты увидишь пост, завод сам его проверяет — ищет шаблонные фразы, неестественный ритм, машинные слова-маркеры</li>
-            <li>Если нашла — переписывает. Ты получаешь уже чистый результат, а не черновик на доработку</li>
+            <li><span class="pill">Минимализм</span></li>
+            <li><span class="pill">Поп-арт</span></li>
+            <li><span class="pill">Газета</span></li>
+            <li><span class="pill">Книжная обложка</span></li>
+            <li><span class="pill">Авторская иллюстрация</span></li>
+            <li><span class="pill">Журнал</span></li>
+            <li><span class="pill">Стикер</span></li>
+            <li><span class="pill">Постер</span></li>
+            <li><span class="pill">Polaroid</span></li>
+            <li><span class="pill">Скетч</span></li>
+            <li><span class="pill">+ ещё</span></li>
           </ul>
         </div>
 
       </div>
 
       <div class="total-line reveal">
-        Раз в неделю завод сам анализирует логи и всё лучше тебя понимает. Скиллы прилетают автоматически.
+        23 функции, 4 платформы, три ИИ-помощника на выбор: Claude Code, Codex или OpenCode. Копирайтер больше не нужен.
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════
-       BLOCK 7: Speed Demo
+       BLOCK: Почему звучит как ты, а не как ИИ
+       (объединяет старый #new + #quality)
        ═══════════════════════════════════════ -->
-  <section class="section section--alt" id="speed">
+  <section class="section" id="quality">
     <div class="container">
-      <div class="section__header reveal">
-        <div class="section__badge">⚡ Скорость</div>
-        <h2 class="section__title">Сколько времени ты экономишь каждую неделю</h2>
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">✅ Качество</div>
+        <h2 class="section__title">Почему звучит <em>как ты</em>, а не как ChatGPT</h2>
+        <p class="section__subtitle">Три новых слоя защиты от ИИ-стиля и три проверенных приёма живого текста.</p>
       </div>
 
-      <div class="speed-grid reveal">
-        <div class="speed-row" style="--after: 4%;">
-          <div class="speed-row__task">Неделя постов для&nbsp;Telegram (5-7&nbsp;шт.)</div>
-          <div class="speed-row__bars">
-            <div class="speed-row__bar speed-row__bar--old">
-              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">5-8 ч</span></div>
-            </div>
-            <div class="speed-row__bar speed-row__bar--new">
-              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">20 мин</span></div>
-            </div>
-          </div>
-          <div class="speed-row__multiplier"><sup>×</sup>24</div>
+      <div class="proof-grid reveal">
+        <div class="proof-card">
+          <div class="proof-card__num">01</div>
+          <span class="badge-new" title="Релиз v2.16 · 30 апр 2026">NEW · апр 2026</span>
+          <h3 class="proof-card__title">Карточка твоего стиля из твоих постов</h3>
+          <p class="proof-card__text">Завод читает 10–30 твоих лучших текстов и собирает карточку твоего стиля: типичные фразы, ритм, любимые повороты, построение предложений. Дальше пишет с опорой на твои тексты, а не на усреднённый шаблон «эксперта».</p>
         </div>
-
-        <div class="speed-row" style="--after: 2.5%;">
-          <div class="speed-row__task">Неделя постов для&nbsp;Threads (14&nbsp;шт.)</div>
-          <div class="speed-row__bars">
-            <div class="speed-row__bar speed-row__bar--old">
-              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">7-10 ч</span></div>
-            </div>
-            <div class="speed-row__bar speed-row__bar--new">
-              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">15 мин + автопост</span></div>
-            </div>
-          </div>
-          <div class="speed-row__multiplier"><sup>×</sup>40</div>
+        <div class="proof-card">
+          <div class="proof-card__num">02</div>
+          <span class="badge-new" title="Релиз v2.13 · 17 апр 2026">NEW · апр 2026</span>
+          <h3 class="proof-card__title">Гейт против ИИ-стиля</h3>
+          <p class="proof-card__text">Перед тем как ты увидишь текст, завод сам прогоняет его через проверку на 29 признаков машинного письма и 11 русских шаблонов: гладкие противопоставления, длинные тире через каждое слово, штампы. Всё это переписывается автоматически. Ты получаешь чистый результат, а не черновик на доработку.</p>
         </div>
-
-        <div class="speed-row" style="--after: 4.2%;">
-          <div class="speed-row__task">Пост из YouTube-видео</div>
-          <div class="speed-row__bars">
-            <div class="speed-row__bar speed-row__bar--old">
-              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">1-2 ч</span></div>
-            </div>
-            <div class="speed-row__bar speed-row__bar--new">
-              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">5 мин</span></div>
-            </div>
-          </div>
-          <div class="speed-row__multiplier"><sup>×</sup>18</div>
+        <div class="proof-card">
+          <div class="proof-card__num">03</div>
+          <span class="badge-new" title="Релиз v2.17 · 30 апр 2026">NEW · апр 2026</span>
+          <h3 class="proof-card__title">Учится на каждой твоей правке</h3>
+          <p class="proof-card__text">Каждое исправление завод запоминает отдельно по типу поста. В понедельник на старте — короткая сводка: «За неделю в твой профиль записано 5 уточнений». ChatGPT забывает после каждого диалога. Завод запоминает.</p>
         </div>
-
-        <div class="speed-row" style="--after: 12.5%;">
-          <div class="speed-row__task">SEO-статья 2000+&nbsp;слов</div>
-          <div class="speed-row__bars">
-            <div class="speed-row__bar speed-row__bar--old">
-              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">4-8 ч</span></div>
-            </div>
-            <div class="speed-row__bar speed-row__bar--new">
-              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">45-60 мин</span></div>
-            </div>
-          </div>
-          <div class="speed-row__multiplier"><sup>×</sup>8</div>
+        <div class="proof-card">
+          <div class="proof-card__num">04</div>
+          <h3 class="proof-card__title">Стоп-лист и приёмы живого текста</h3>
+          <p class="proof-card__text">33 стоп-слова, которые убивают живость («уникальный», «инновационный», «меняет правила игры»), и 30 приёмов копирайтеров: искренность, детали, сенсорные триггеры, эффект диалога, ритм.</p>
         </div>
-
-        <div class="speed-row" style="--after: 1%;">
-          <div class="speed-row__task">Прогревающая серия (40&nbsp;смыслов)</div>
-          <div class="speed-row__bars">
-            <div class="speed-row__bar speed-row__bar--old">
-              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">2-3 дня</span></div>
-            </div>
-            <div class="speed-row__bar speed-row__bar--new">
-              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">10 мин</span></div>
-            </div>
-          </div>
-          <div class="speed-row__multiplier"><sup>×</sup>96</div>
+        <div class="proof-card">
+          <div class="proof-card__num">05</div>
+          <h3 class="proof-card__title">18-пунктовый чек-лист редактуры</h3>
+          <p class="proof-card__text">Каждый текст автоматически проходит чек-лист: канцеляризмы, страдательный залог, отглагольные существительные, рваный ритм, дешёвые противопоставления — всё вычищается до выдачи.</p>
         </div>
-
-        <div class="speed-row" style="--after: 5%;">
-          <div class="speed-row__task">Обложка для поста</div>
-          <div class="speed-row__bars">
-            <div class="speed-row__bar speed-row__bar--old">
-              <div class="speed-row__time"><span class="speed-row__time-label">Вручную</span><span class="speed-row__time-value">20-40 мин</span></div>
-            </div>
-            <div class="speed-row__bar speed-row__bar--new">
-              <div class="speed-row__time"><span class="speed-row__time-label">Завод</span><span class="speed-row__time-value">2 мин</span></div>
-            </div>
-          </div>
-          <div class="speed-row__multiplier"><sup>×</sup>15</div>
+        <div class="proof-card">
+          <div class="proof-card__num">06</div>
+          <h3 class="proof-card__title">Распаковка экспертизы</h3>
+          <p class="proof-card__text">Перед стартом завод проводит с тобой интервью на 15 вопросов и читает 50 последних постов твоего канала. В базу знаний попадают твои убеждения, кейсы, термины — каждый пост опирается на реальные слова, а не на выдумку.</p>
         </div>
       </div>
-
-      <p class="speed-total reveal">В среднем завод освобождает <span class="speed-total__hours">10-15 часов</span> в&nbsp;неделю. <strong>40-60 часов в месяц</strong>, которые ты тратишь на клиентов, продукты или просто отдых.</p>
     </div>
   </section>
+
 
   <!-- ═══════════════════════════════════════
        BLOCK 8: Comparison
@@ -3877,8 +3881,43 @@
     <div class="container">
       <div class="section__header section__header--center reveal">
         <div class="section__badge">📊 Сравнение</div>
-        <h2 class="section__title">Один завод вместо ежемесячных расходов</h2>
+        <h2 class="section__title">Контент-завод <em>vs</em> альтернативы</h2>
+        <p class="section__subtitle">Эксперт тратит на контент 15 часов в неделю. Завод — 20 минут.</p>
       </div>
+
+      <!-- Speed-strip: ключевые задачи -->
+      <div class="speed-strip reveal">
+        <div class="speed-strip__row">
+          <div class="speed-strip__task">Неделя постов в Telegram (5–7 шт.)</div>
+          <div class="speed-strip__before">Вручную: 5–8 ч</div>
+          <div class="speed-strip__arrow" aria-hidden="true">→</div>
+          <div class="speed-strip__after">Завод: <strong>20 мин</strong></div>
+          <div class="speed-strip__mult">×24</div>
+        </div>
+        <div class="speed-strip__row">
+          <div class="speed-strip__task">Неделя постов в Threads (14 шт.)</div>
+          <div class="speed-strip__before">Вручную: 7–10 ч</div>
+          <div class="speed-strip__arrow" aria-hidden="true">→</div>
+          <div class="speed-strip__after">Завод: <strong>15 мин + автопост</strong></div>
+          <div class="speed-strip__mult">×40</div>
+        </div>
+        <div class="speed-strip__row">
+          <div class="speed-strip__task">Пост из YouTube-видео</div>
+          <div class="speed-strip__before">Вручную: 1–2 ч</div>
+          <div class="speed-strip__arrow" aria-hidden="true">→</div>
+          <div class="speed-strip__after">Завод: <strong>5 мин</strong></div>
+          <div class="speed-strip__mult">×18</div>
+        </div>
+        <div class="speed-strip__row">
+          <div class="speed-strip__task">SEO-статья 2000+ слов</div>
+          <div class="speed-strip__before">Вручную: 4–8 ч</div>
+          <div class="speed-strip__arrow" aria-hidden="true">→</div>
+          <div class="speed-strip__after">Завод: <strong>45–60 мин</strong></div>
+          <div class="speed-strip__mult">×8</div>
+        </div>
+      </div>
+
+      <p class="speed-strip__total reveal">В среднем — <strong>10–15 часов в неделю</strong>, или 40–60 часов в месяц на клиентов, продукты или просто отдых.</p>
 
       <!-- Desktop table -->
       <table class="comp-table reveal">
@@ -3989,22 +4028,24 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       BLOCK 10: About Expert
+       BLOCK: Об авторе и стоимость
+       (объединяет about + pricing)
        ═══════════════════════════════════════ -->
-  <section class="section section--spacious" id="about">
+  <section class="section section--alt" id="pricing">
     <div class="container">
       <div class="section__header section__header--center reveal">
-        <div class="section__badge">👤 Эксперт</div>
-        <h2 class="section__title">Кто настраивает завод</h2>
+        <div class="section__badge">👤 Автор и цена</div>
+        <h2 class="section__title">Кто настраивает завод и сколько это стоит</h2>
       </div>
-      <div class="expert reveal">
+
+      <div class="expert reveal" id="about">
         <div class="expert__photo-wrap">
-          <img class="expert__photo" src="https://my-data.s3.twcstorage.ru/IMG0033-da6955.jpg" alt="Фото эксперта">
+          <img class="expert__photo" src="https://my-data.s3.twcstorage.ru/IMG0033-da6955.jpg" alt="Фото Александра Унгуренко">
         </div>
         <div>
           <h3 class="expert__name">Александр Унгуренко</h3>
           <p class="expert__bio">
-            8 лет в маркетинге: работал таргетологом, продюсером, владел продюсерским центром. С 2023 года полностью интегрировал нейросети в работу и за это время заработал $150 000+ через блог. Контент-завод — то, что я построил для себя и использую каждый день.
+            8 лет в маркетинге: таргетолог, продюсер, владелец продюсерского центра. С 2023 года интегрировал нейросети в ежедневную работу и заработал через блог $150 000+. Контент-завод — то, что я собрал для себя и использую каждый день.
           </p>
           <div class="expert__stats">
             <div class="expert__stat-item">7 000+ подписчиков в Telegram без рекламы</div>
@@ -4014,21 +4055,9 @@
             <div class="expert__stat-item">Автор практикумов GPT-ПРАКТИК и ВАЙБС</div>
           </div>
           <div class="expert__quote">
-            Я пользуюсь заводом каждый день — он экономит мне часы, и это не фигура речи. Мне важны твои кейсы и обратная связь, поэтому сейчас цена снижена.
+            Я пользуюсь заводом каждый день, он экономит мне часы — это не фигура речи. Сейчас цена снижена: мне важны твои кейсы и обратная связь.
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       BLOCK 11: Pricing
-       ═══════════════════════════════════════ -->
-  <section class="section section--alt" id="pricing">
-    <div class="container">
-      <div class="section__header section__header--center reveal">
-        <div class="section__badge">💰 Цена</div>
-        <h2 class="section__title">Стоимость</h2>
       </div>
 
       <div class="pricing-glow">
@@ -4040,14 +4069,14 @@
         </div>
         <p class="pricing-reason">С каждой очередью цена растёт. Полная стоимость — 50 000 ₽. Сейчас 14 990 ₽.</p>
         <ul class="pricing-includes">
-          <li>Полная настройка всех 27 функций вместе на Zoom</li>
-          <li>Персональная база знаний (голос, аудитория, эталоны)</li>
-          <li>Завод в твою собственность навсегда</li>
-          <li>PDF-инструкция по работе с контент-заводом</li>
-          <li>Запись Zoom-звонка</li>
-          <li>Доступ к обновлениям (новые скиллы, фичи, улучшения)</li>
+          <li>Настройка всех 23 функций вместе на Zoom-созвоне</li>
+          <li>Карточка твоего стиля на основе твоих лучших постов</li>
+          <li>Персональная база знаний: голос, аудитория, экспертиза</li>
+          <li>Завод в твою собственность навсегда — папка на твоём компьютере</li>
+          <li>PDF-инструкция и запись Zoom-созвона</li>
+          <li>Автообновления: новые функции прилетают сами</li>
           <li>Поддержка по вопросам после настройки</li>
-          <li class="pricing-note-item">ℹ️ Для работы нужна подписка Claude Pro (~$20/мес)</li>
+          <li class="pricing-note-item">ℹ️ Для работы нужна подписка Claude Pro ~$20/мес (или Codex/OpenCode на выбор)</li>
         </ul>
         <a href="https://t.me/m/N0bTmb18OTUy" target="_blank" rel="noopener" class="btn btn--large btn--full">
           Занять место
@@ -4060,15 +4089,15 @@
       <div class="pricing-anchors reveal">
         <div class="pricing-anchor">
           <div class="pricing-anchor__label">Копирайтер × 3 мес</div>
-          <div class="pricing-anchor__value">90-180 000 ₽</div>
+          <div class="pricing-anchor__value">90–180 000 ₽</div>
         </div>
         <div class="pricing-anchor">
           <div class="pricing-anchor__label">Агентство × 3 мес</div>
-          <div class="pricing-anchor__value">240-450 000 ₽</div>
+          <div class="pricing-anchor__value">240–450 000 ₽</div>
         </div>
         <div class="pricing-anchor">
           <div class="pricing-anchor__label">Контент-завод</div>
-          <div class="pricing-anchor__value text-accent">14 990 ₽ + ~$20/мес</div>
+          <div class="pricing-anchor__value text-accent">14 990 ₽ один раз + ~$20/мес</div>
         </div>
       </div>
 
@@ -4076,96 +4105,8 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       BLOCK 12: Workflow Demo
-       ═══════════════════════════════════════ -->
-  <section class="section section--dark" id="demo">
-    <div class="container">
-      <div class="section__header section__header--center reveal">
-        <div class="section__badge">🖥️ Практика</div>
-        <h2 class="section__title text-white">Как это выглядит на практике</h2>
-      </div>
-      <div class="workflow-grid reveal">
-        <div class="workflow-card">
-          <div class="workflow-card__cmd">/telegram-weekly</div>
-          <h3 class="workflow-card__title">Неделя контента для Telegram</h3>
-          <p class="workflow-card__process">Завод собирает ИИ-новости → генерирует 30 тем → ты выбираешь нужные → пишет посты с точками согласования на каждом этапе</p>
-          <p class="workflow-card__result">Готовые посты, отформатированные для Telegram. Время: 20 минут.</p>
-        </div>
-        <div class="workflow-card">
-          <div class="workflow-card__cmd">/threads-news-reactor</div>
-          <h3 class="workflow-card__title">Горячие новости в Threads</h3>
-          <p class="workflow-card__process">Радар собирает дайджест → фильтрует по вирусности (порог 14+ из 20) → генерирует посты → сам открывает браузер и публикует</p>
-          <p class="workflow-card__result">14 постов на неделю опубликованы автоматически. Время: 15 минут.</p>
-        </div>
-        <div class="workflow-card">
-          <div class="workflow-card__cmd">/video-to-post + URL</div>
-          <h3 class="workflow-card__title">YouTube → пост для Telegram</h3>
-          <p class="workflow-card__process">Завод извлекает транскрипт → предлагает 2-3 угла подачи → ты выбираешь → пишет пост-инструкцию с хуком и выводами</p>
-          <p class="workflow-card__result">Готовый пост на 10-15 абзацев. Время: 5 минут.</p>
-        </div>
-        <div class="workflow-card">
-          <div class="workflow-card__cmd">/unpacking-personality</div>
-          <h3 class="workflow-card__title">Глубинная распаковка экспертности</h3>
-          <p class="workflow-card__process">Завод задаёт 15 глубоких вопросов о твоём пути, методике и убеждениях → ты отвечаешь в свободном режиме → завод записывает всё в базу знаний</p>
-          <p class="workflow-card__result">Твоя экспертиза зафиксирована — все будущие посты пишутся с опорой на неё. Время: 20-30 минут.</p>
-        </div>
-        <div class="workflow-card">
-          <div class="workflow-card__cmd">/unpacking-from-posts</div>
-          <h3 class="workflow-card__title">Извлечение знаний из канала</h3>
-          <p class="workflow-card__process">Завод читает 50 последних постов твоего Telegram-канала → вытаскивает убеждения, кейсы, термины и язык → показывает что нашёл → ты соглашаешься или снимаешь галочки</p>
-          <p class="workflow-card__result">Всё, что ты уже сказал аудитории, попадает в базу знаний и усиливает будущие посты. Время: 5-10 минут.</p>
-        </div>
-      </div>
-      <p class="workflow-note reveal">На каждом этапе завод останавливается и ждёт твоего одобрения, ничего не публикуется без твоего OK.</p>
-    </div>
-  </section>
 
-  <!-- ═══════════════════════════════════════
-       BLOCK 12.5: Terminal — rhythm breaker
-       ═══════════════════════════════════════ -->
-  <section class="section section--compact terminal-section" id="terminal">
-    <div class="container">
-      <div class="terminal-block reveal">
-        <code class="terminal-block__cmd">/telegram-weekly</code>
-        <p class="terminal-block__hint">Так выглядит запуск недели контента</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- ═══════════════════════════════════════
-       BLOCK 13: Quality Proof
-       ═══════════════════════════════════════ -->
-  <section class="section" id="quality">
-    <div class="container">
-      <div class="section__header section__header--center reveal">
-        <div class="section__badge">✅ Качество</div>
-        <h2 class="section__title">Почему тексты контент-завода не&nbsp;похожи на&nbsp;ИИ</h2>
-      </div>
-      <div class="proof-grid reveal">
-        <div class="proof-card">
-          <div class="proof-card__num">01</div>
-          <h3 class="proof-card__title">33 стоп-слова и запрета</h3>
-          <p class="proof-card__text">Завод знает, какие слова убивают живой текст: «уникальный», «инновационный», «невероятно», «меняет правила игры», и никогда их не использует.</p>
-        </div>
-        <div class="proof-card">
-          <div class="proof-card__num">02</div>
-          <h3 class="proof-card__title">30 приёмов живого текста</h3>
-          <p class="proof-card__text">Искренность, детализация, сенсорные триггеры, эффект диалога, ритмичность. Те же техники, которые используют лучшие копирайтеры.</p>
-        </div>
-        <div class="proof-card">
-          <div class="proof-card__num">03</div>
-          <h3 class="proof-card__title">Калибровка по эталонным постам</h3>
-          <p class="proof-card__text">В базе знаний 120+ реальных постов с метриками просмотров. Завод знает, какие тексты заходят, и ориентируется на них.</p>
-        </div>
-        <div class="proof-card">
-          <div class="proof-card__num">04</div>
-          <h3 class="proof-card__title">20-пунктный чек-лист редактуры</h3>
-          <p class="proof-card__text">Каждый текст проходит автоматическую проверку: штампы, канцеляризмы, страдательный залог, отглагольные существительные, всё вычищается до выдачи.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ═══════════════════════════════════════
        BLOCK 14: FAQ
@@ -4191,7 +4132,15 @@
             <span>Какая подписка нужна для работы завода?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-answer" id="faq-a-2" role="region" aria-labelledby="faq-q-2"><div class="faq-answer__inner">Нужна подписка Claude Pro ($20/мес) или Claude Team. Это единственная регулярная статья расходов. Если подписки нет - подскажу, где оплатить и как подключить.</div></div>
+          <div class="faq-answer" id="faq-a-2" role="region" aria-labelledby="faq-q-2"><div class="faq-answer__inner">Завод работает на трёх ИИ-помощниках на выбор: <strong>Claude Pro ~$20/мес</strong> (рекомендую, самая стабильная), Codex или OpenCode. Это единственная регулярная статья расходов. Если подписки нет — подскажу, где оформить.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" id="faq-q-2b" aria-expanded="false" aria-controls="faq-a-2b">
+            <span>А если у меня ещё нет постов — на чём он откалибрует мой стиль? <span class="badge-new badge-new--soft">NEW</span></span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer" id="faq-a-2b" role="region" aria-labelledby="faq-q-2b"><div class="faq-answer__inner">Есть отдельная настройка для тех, кто только начинает. За 25–30 минут завод проводит тебя по семи сторонам твоего стиля письма (как ты строишь фразы, какой у тебя ритм, какие слова любишь, какой тон) и показывает по два варианта одного текста — ты выбираешь, что звучит как ты. На выходе получаешь карточку твоего стиля, которая дальше уточняется с каждой правкой.</div></div>
         </div>
 
         <div class="faq-item">
@@ -4199,7 +4148,7 @@
             <span>Завод подойдёт для моей ниши?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-answer" id="faq-a-3" role="region" aria-labelledby="faq-q-3"><div class="faq-answer__inner">Контент-завод настраивается под любую нишу через базу знаний. Лучше всего работает для мягких ниш: психология, маркетинг, эзотерика, астрология, здоровье, фитнес, коучинг, саморазвитие. Для узких технических ниш может потребоваться дополнительная настройка.</div></div>
+          <div class="faq-answer" id="faq-a-3" role="region" aria-labelledby="faq-q-3"><div class="faq-answer__inner">Контент-завод настраивается под любую нишу через базу знаний. Лучше всего работает для мягких ниш: психология, маркетинг, эзотерика, астрология, здоровье, фитнес, коучинг, саморазвитие. Для узких технических ниш может потребоваться дополнительная настройка. Для компаний — отдельный режим «Бизнес» с распаковкой ценностей и кейсов.</div></div>
         </div>
 
         <div class="faq-item">
@@ -4207,7 +4156,7 @@
             <span>А если мне не понравится качество текстов?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-answer" id="faq-a-4" role="region" aria-labelledby="faq-q-4"><div class="faq-answer__inner">Завод учится на твоих правках, чем больше пользуешься, тем точнее он пишет. В базу знаний загружаются твои лучшие тексты как эталон. За первую неделю он калибруется, и качество выходит на стабильный уровень.</div></div>
+          <div class="faq-answer" id="faq-a-4" role="region" aria-labelledby="faq-q-4"><div class="faq-answer__inner">Перед тем как ты увидишь текст, завод прогоняет его через проверку на 29 признаков машинного письма и 11 русских шаблонов — всё вычищается автоматически. На старте завод собирает карточку твоего стиля из 10–30 твоих постов и опирается на неё, а не на усреднённый шаблон «эксперта». Дальше учится на каждой твоей правке: через месяц правишь редко, через три — почти никогда.</div></div>
         </div>
 
         <div class="faq-item">
@@ -4223,7 +4172,7 @@
             <span>Завод останется у меня навсегда?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-answer" id="faq-a-6" role="region" aria-labelledby="faq-q-6"><div class="faq-answer__inner">Да. Всё живёт в папке на твоём компьютере — ты владелец, а не арендатор. Плюс у тебя доступ к обновлениям: новые скиллы и фичи прилетают автоматически. А ещё PDF-инструкция, запись созвона и моя поддержка по вопросам.</div></div>
+          <div class="faq-answer" id="faq-a-6" role="region" aria-labelledby="faq-q-6"><div class="faq-answer__inner">Да. Всё живёт в папке на твоём компьютере — ты владелец, а не арендатор. Плюс у тебя доступ к обновлениям: новые функции и улучшения прилетают автоматически. А ещё PDF-инструкция, запись созвона и моя поддержка по вопросам.</div></div>
         </div>
 
         <div class="faq-item">
