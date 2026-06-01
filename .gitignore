@@ -20,3 +20,8 @@
 
 # Зависимости (если появятся)
 node_modules/
+
+# Служебные артефакты ревью (Playwright, мобильные скриншоты)
+.playwright-mcp/
+mobile-*.png
+mobile-*.jpeg

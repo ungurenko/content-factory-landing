@@ -307,7 +307,7 @@
     }
 
     .section__subtitle {
-      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      font-size: clamp(1rem, 1.2vw, 1.0625rem);
       line-height: var(--lh-text);
       color: var(--text-muted);
       max-width: 600px;
@@ -3144,7 +3144,7 @@
        Responsive — Mobile (≤768px)
        ═══════════════════════════════════════ */
     @media (max-width: 768px) {
-      .section { padding: var(--space-20) 0; }
+      .section { padding: var(--space-24) 0; }
       .video-section { padding: var(--space-16) 0 var(--space-18); }
       .video-hint { margin-bottom: 40px; gap: 12px; }
       .video-hint__text { font-size: var(--fs-md); }
@@ -3178,36 +3178,36 @@
       /* Hero */
       .hero {
         grid-template-columns: 1fr;
-        grid-template-rows: 42vh auto auto;
+        grid-template-rows: auto auto;
         min-height: auto;
       }
 
-      .hero__right   { order: 1; }
+      .hero__right   { order: 1; display: none; }
       .hero__marquee { order: 2; }
       .hero__left    { order: 3; }
 
       .hero__left {
         text-align: center;
         align-items: center;
-        justify-self: start;
-        inline-size: 100vw;
-        padding: 40px 24px 108px;
-        overflow: hidden;
-        width: 100vw;
-        max-width: 100vw;
+        justify-self: stretch;
+        box-sizing: border-box;
+        max-width: 100%;
+        padding: 32px 24px 64px;
       }
 
       .hero__title {
         font-size: var(--fs-3xl);
-        margin-bottom: 24px;
+        line-height: 1.2;
+        margin-bottom: 32px;
       }
 
       .hero__subtitle {
         width: min(100%, 360px);
-        max-width: calc(100vw - 48px);
-        font-size: var(--fs-base);
+        max-width: calc(100% - 48px);
+        font-size: var(--fs-body-large);
+        line-height: 1.5;
         text-wrap: pretty;
-        margin-bottom: 28px;
+        margin-bottom: 32px;
       }
 
       .hero__price-note {
@@ -3220,7 +3220,7 @@
         flex-direction: column;
         gap: 16px;
         width: 100%;
-        margin-bottom: 40px;
+        margin-bottom: 48px;
       }
 
       .hero__button {
@@ -3243,8 +3243,10 @@
       }
 
       .hero__stats {
-        justify-content: center;
-        gap: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 24px;
+        justify-items: center;
       }
 
       .hero__stat-number { font-size: var(--fs-xl); }
@@ -3329,9 +3331,9 @@
       /* Pricing */
       .pricing-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 24px;
       }
-      .pricing-card { padding: 36px 28px; }
+      .pricing-card { padding: 40px 32px; }
       .pricing-anchors { grid-template-columns: 1fr; }
 
       /* Tables → cards */
@@ -3399,21 +3401,21 @@
       h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
       p, li { text-wrap: pretty; }
       
-      .section__header { margin-bottom: 40px; }
-      .features-grid { gap: 28px; }
-      .showcase-card { padding: 28px 24px; }
-      .segment-card { padding: 28px 24px; }
-      .segment-card--featured { padding: 28px 24px; }
-      .expert { margin-bottom: 48px; }
+      .section__header { margin-bottom: 56px; }
+      .features-grid { gap: 32px; }
+      .showcase-card { padding: 32px 28px; }
+      .segment-card { padding: 32px 28px; }
+      .segment-card--featured { padding: 32px 28px; }
+      .expert { margin-bottom: 56px; }
       .pricing-price__new { font-size: var(--fs-3xl); }
       .faq-question { padding: 18px 20px; }
       .faq-answer__inner { padding: 0 20px 24px; }
-      .final-cta { padding: var(--space-16) 0; }
-      .footer { padding: var(--space-12) 0; }
+      .final-cta { padding: calc(var(--space-20) + var(--space-2)) 0; }
+      .footer { padding: var(--space-16) 0 var(--space-24); }
       .footer__links { flex-wrap: wrap; gap: 20px; }
-      
+
       /* Hero badge more breathing room */
-      .hero__badge { margin-bottom: 28px; }
+      .hero__badge { margin-bottom: 32px; }
     }
 
     /* ═══════════════════════════════════════
@@ -3442,7 +3444,7 @@
       }
 
       /* Extra padding for fixed CTA */
-      .footer { padding-bottom: var(--space-20); }
+      .footer { padding-bottom: var(--space-24); }
     }
 
     @media (prefers-reduced-motion: reduce) {
