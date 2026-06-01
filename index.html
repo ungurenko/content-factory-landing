@@ -441,9 +441,13 @@
       min-height: 100dvh;
       display: grid;
       grid-template-columns: 1fr 1fr;
+      grid-template-areas: "left right";
       background: var(--bg);
       overflow: hidden;
     }
+
+    .hero__left  { grid-area: left; }
+    .hero__right { grid-area: right; }
 
     .hero__left {
       display: flex;
@@ -3179,13 +3183,16 @@
       /* Hero */
       .hero {
         grid-template-columns: 1fr;
-        grid-template-rows: 24vh auto auto;
+        grid-template-areas:
+          "right"
+          "marquee"
+          "left";
         min-height: auto;
       }
 
-      .hero__right   { order: 1; }
-      .hero__marquee { order: 2; }
-      .hero__left    { order: 3; }
+      .hero__right  { grid-area: right; height: 24vh; }
+      .hero__marquee { grid-area: marquee; }
+      .hero__left   { grid-area: left; }
 
       .hero__left {
         text-align: center;
@@ -3668,6 +3675,22 @@
        BLOCK 1: Hero
        ═══════════════════════════════════════ -->
   <section class="hero">
+    <div class="hero__right">
+      <img class="hero__image"
+        src="https://my-data.s3.twcstorage.ru/ChatGPT-Image-27-2026-.-195831-994435.jpg"
+        alt="Контент-агент, который знает твой стиль, тему и аудиторию"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </div>
+
+    <div class="hero__marquee">
+      <div class="hero__marquee-track">
+        <span>34 ИНСТРУМЕНТА ✦ ОДИН РАЗ ✦ БЕЗ ПОДПИСКИ ✦ TELEGRAM ✦ THREADS ✦ INSTAGRAM ✦ КАРУСЕЛИ ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ПРОГРЕВЫ ✦ 34 ИНСТРУМЕНТА ✦ ОДИН РАЗ ✦ БЕЗ ПОДПИСКИ ✦ TELEGRAM ✦ THREADS ✦ INSTAGRAM ✦ КАРУСЕЛИ ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ПРОГРЕВЫ ✦ </span>
+        <span>34 ИНСТРУМЕНТА ✦ ОДИН РАЗ ✦ БЕЗ ПОДПИСКИ ✦ TELEGRAM ✦ THREADS ✦ INSTAGRAM ✦ КАРУСЕЛИ ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ПРОГРЕВЫ ✦ 34 ИНСТРУМЕНТА ✦ ОДИН РАЗ ✦ БЕЗ ПОДПИСКИ ✦ TELEGRAM ✦ THREADS ✦ INSTAGRAM ✦ КАРУСЕЛИ ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ПРОГРЕВЫ ✦ </span>
+      </div>
+    </div>
+
     <div class="hero__left">
       <div class="hero__badge">
         <span>⚡</span> Контент-агент
@@ -3719,22 +3742,6 @@
           <div class="hero__stat-label">контент-план</div>
         </div>
       </div>
-    </div>
-
-    <div class="hero__marquee">
-      <div class="hero__marquee-track">
-        <span>34 ИНСТРУМЕНТА ✦ ОДИН РАЗ ✦ БЕЗ ПОДПИСКИ ✦ TELEGRAM ✦ THREADS ✦ INSTAGRAM ✦ КАРУСЕЛИ ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ПРОГРЕВЫ ✦ 34 ИНСТРУМЕНТА ✦ ОДИН РАЗ ✦ БЕЗ ПОДПИСКИ ✦ TELEGRAM ✦ THREADS ✦ INSTAGRAM ✦ КАРУСЕЛИ ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ПРОГРЕВЫ ✦ </span>
-        <span>34 ИНСТРУМЕНТА ✦ ОДИН РАЗ ✦ БЕЗ ПОДПИСКИ ✦ TELEGRAM ✦ THREADS ✦ INSTAGRAM ✦ КАРУСЕЛИ ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ПРОГРЕВЫ ✦ 34 ИНСТРУМЕНТА ✦ ОДИН РАЗ ✦ БЕЗ ПОДПИСКИ ✦ TELEGRAM ✦ THREADS ✦ INSTAGRAM ✦ КАРУСЕЛИ ✦ СТАТЬИ ✦ ВИДЕО В ПОСТ ✦ ПРОГРЕВЫ ✦ </span>
-      </div>
-    </div>
-
-    <div class="hero__right">
-      <img class="hero__image"
-        src="https://my-data.s3.twcstorage.ru/ChatGPT-Image-27-2026-.-195831-994435.jpg"
-        alt="Контент-агент, который знает твой стиль, тему и аудиторию"
-        loading="eager"
-        fetchpriority="high"
-      >
     </div>
   </section>
 
