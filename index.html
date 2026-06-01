@@ -3261,13 +3261,24 @@
       }
 
     .hero__stats {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px 24px;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
     }
 
-    .hero__stat:last-child {
-      display: none;
+    .hero__stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-width: 0;
+    }
+
+    .hero__stat-label {
+      white-space: nowrap;
     }
 
     .hero__model-note {
@@ -3734,15 +3745,15 @@
         </div>
         <div class="hero__stat">
           <div class="hero__stat-number">2 мин</div>
-          <div class="hero__stat-label">пост за</div>
+          <div class="hero__stat-label">на пост</div>
         </div>
         <div class="hero__stat">
           <div class="hero__stat-number">10 мин</div>
-          <div class="hero__stat-label">карусель за</div>
+          <div class="hero__stat-label">на карусель</div>
         </div>
         <div class="hero__stat">
           <div class="hero__stat-number">40 мин</div>
-          <div class="hero__stat-label">контент-план</div>
+          <div class="hero__stat-label">на контент-план</div>
         </div>
       </div>
     </div>
