@@ -76,14 +76,18 @@
       --noise-bg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.14 0 0 0 0 0.13 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/></svg>");
 
       /* ─── Design tokens (unification) ─── */
-      /* Typography scale */
-      --fs-2xs: 0.72rem;   /* stat-label, stamp, eyebrow */
-      --fs-xs:  0.78rem;   /* badge, pricing-label, table-th */
-      --fs-sm:  0.88rem;   /* body-text карточек */
-      --fs-base: 0.95rem;  /* основной body, subtitle, button */
-      --fs-md:  1rem;      /* card titles */
-      --fs-lg:  1.125rem;  /* выделенные подзаголовки */
-      --fs-body-large: 1.05rem; /* увеличенный текст описаний */
+      /* Typography scale (mobile-first, шаг 1.2) */
+      --fs-2xs: 0.72rem;   /* 11.5px — stat-label, eyebrow, meta */
+      --fs-xs:  0.8125rem;/* 13px   — badge, footer, table-th */
+      --fs-sm:  0.9375rem;/* 15px   — body-text карточек, pain */
+      --fs-base: 1rem;     /* 16px   — основной body, subtitle, button */
+      --fs-md:  1.125rem;  /* 18px   — card titles */
+      --fs-lg:  1.25rem;   /* 20px   — выделенные подзаголовки, h3 */
+      --fs-xl:  1.5rem;    /* 24px   — h2 mobile */
+      --fs-2xl: 1.875rem;  /* 30px   — h1 mobile */
+      --fs-3xl: 2.25rem;   /* 36px   — display mobile */
+      --fs-4xl: 2.75rem;   /* 44px   — hero display */
+      --fs-body-large: 1.0625rem; /* 17px — увеличенный текст описаний */
 
       /* Letter-spacing для CAPS */
       --ls-tight: 0.04em;
@@ -371,7 +375,7 @@
     .btn:active { transform: translateY(1px) scale(0.98); }
 
     .btn--large {
-      font-size: 1.05rem;
+      font-size: var(--fs-body-large);
       padding: 20px 40px;
       border-radius: 16px;
     }
@@ -458,7 +462,7 @@
     .hero__title {
       font-size: clamp(2rem, 3.8vw, 3.2rem);
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.15;
       letter-spacing: -0.02em;
       color: var(--text);
       margin-bottom: 20px;
@@ -471,8 +475,8 @@
     }
 
     .hero__subtitle {
-      font-size: clamp(1.05rem, 1.35vw, 1.25rem);
-      line-height: 1.55;
+      font-size: clamp(1rem, 1.35vw, 1.25rem);
+      line-height: 1.5;
       color: var(--text);
       max-width: 520px;
       margin-bottom: 24px;
@@ -487,9 +491,10 @@
       gap: 8px;
       background: rgba(39, 174, 96, 0.08);
       color: var(--green-deep);
-      font-size: var(--fs-xs);
+      font-size: var(--fs-sm);
       font-weight: 600;
-      padding: 10px 16px;
+      line-height: 1.45;
+      padding: 12px 16px;
       border-radius: 10px;
       margin-bottom: 28px;
       max-width: 100%;
@@ -500,6 +505,11 @@
     .hero__price-note s {
       color: var(--text-muted);
       font-weight: 400;
+    }
+
+    .hero__price-note strong {
+      font-size: 1.0625rem;
+      color: var(--green-deep);
     }
 
     .hero__cta {
@@ -653,7 +663,7 @@
       font-family: var(--font-display);
       font-style: italic;
       font-weight: 500;
-      font-size: 0.7rem;
+      font-size: var(--fs-2xs);
       line-height: 1;
       opacity: 0.7;
       letter-spacing: 0.01em;
@@ -717,7 +727,7 @@
     }
 
     .hero__stat-number {
-      font-size: 1.4rem;
+      font-size: var(--fs-lg);
       font-weight: 800;
       color: var(--text);
       letter-spacing: -0.02em;
@@ -1005,7 +1015,7 @@
       }
       .pain-icon { width: 22px; height: 22px; margin-top: 4px; }
       .pain-icon::after { width: 10px; height: 6px; }
-      .pain-text { font-size: 0.98rem; line-height: 1.5; }
+      .pain-text { font-size: var(--fs-sm); line-height: 1.5; }
     }
 
     .amplifier {
@@ -1054,7 +1064,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: var(--fs-xl);
       margin-bottom: 20px;
     }
 
@@ -1121,7 +1131,7 @@
       background: var(--accent-deep);
       color: var(--white);
       border-radius: 50%;
-      font-size: 1.05rem;
+      font-size: var(--fs-body-large);
       font-weight: 800;
       letter-spacing: 0.02em;
       margin-bottom: 20px;
@@ -1241,7 +1251,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: var(--fs-lg);
       font-weight: 800;
       margin: 0 auto 20px;
       box-shadow: 0 4px 20px rgba(var(--accent-rgb), 0.3);
@@ -1316,7 +1326,7 @@
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: var(--fs-xs);
       color: rgba(254,254,254,0.85);
     }
     @media (max-width: 768px) {
@@ -1357,7 +1367,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: var(--fs-lg);
       flex-shrink: 0;
     }
 
@@ -1369,7 +1379,7 @@
     }
 
     .showcase-card__count {
-      font-size: 0.75rem;
+      font-size: var(--fs-xs);
       color: var(--text-muted);
       font-weight: 500;
     }
@@ -1542,7 +1552,7 @@
 
     .speed-row__time-label {
       font-family: 'Inter', sans-serif;
-      font-size: 0.7rem;
+      font-size: var(--fs-2xs);
       font-weight: 600;
       letter-spacing: var(--ls-wide);
       text-transform: uppercase;
@@ -1613,7 +1623,7 @@
         border-top: 2px solid rgba(232, 130, 42, 0.2);
         padding-left: 0;
         padding-top: 8px;
-        font-size: 1.6rem;
+        font-size: var(--fs-xl);
       }
     }
 
@@ -1682,7 +1692,7 @@
 
     .comp-accent {
       text-align: center;
-      font-size: 0.95rem;
+      font-size: var(--fs-sm);
       line-height: var(--lh-text);
       color: var(--text-muted);
       max-width: var(--container-narrow);
@@ -1791,7 +1801,7 @@
 
     .segment-card--wide .segment-card__icon {
       margin-bottom: 0;
-      font-size: 2.4rem;
+      font-size: var(--fs-3xl);
       flex-shrink: 0;
     }
 
@@ -1800,7 +1810,7 @@
     }
 
     .segment-card__icon {
-      font-size: 1.8rem;
+      font-size: var(--fs-2xl);
       margin-bottom: 14px;
       width: 48px;
       height: 48px;
@@ -1832,7 +1842,7 @@
     }
 
     .segment-card__situation {
-      font-size: 0.98rem;
+      font-size: var(--fs-sm);
       line-height: 1.55;
       color: var(--text);
       opacity: 0.78;
@@ -1849,7 +1859,7 @@
 
     .segments-note {
       text-align: center;
-      font-size: 0.9rem;
+      font-size: var(--fs-sm);
       color: var(--text-muted);
     }
     .segments-note em {
@@ -1942,10 +1952,10 @@
       object-fit: cover;
     }
 
-    .expert__bio { font-size: 0.95rem; line-height: var(--lh-text); margin-bottom: 28px; color: var(--text-muted); }
+    .expert__bio { font-size: var(--fs-sm); line-height: var(--lh-text); margin-bottom: 28px; color: var(--text-muted); }
 
     .expert__name {
-      font-size: 1.3rem;
+      font-size: var(--fs-lg);
       margin-bottom: 20px;
     }
 
@@ -1974,13 +1984,13 @@
       background: rgba(39, 174, 96, 0.1);
       color: var(--green);
       border-radius: 8px;
-      font-size: 0.75rem;
+      font-size: var(--fs-xs);
       font-weight: 700;
       flex-shrink: 0;
     }
 
     .expert__quote {
-      font-size: 0.92rem;
+      font-size: var(--fs-sm);
       line-height: var(--lh-text);
       color: var(--text-muted);
       padding: 20px 24px;
@@ -2065,7 +2075,7 @@
       transform: translateX(-50%);
       background: var(--accent);
       color: var(--white);
-      font-size: 0.75rem;
+      font-size: var(--fs-xs);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: var(--ls-wide);
@@ -2087,14 +2097,14 @@
     }
 
     .pricing-title {
-      font-size: 1.4rem;
+      font-size: var(--fs-lg);
       font-weight: 800;
       color: var(--text);
       margin: 0;
     }
 
     .pricing-icon {
-      font-size: 1.5rem;
+      font-size: var(--fs-xl);
       line-height: 1;
     }
 
@@ -2111,7 +2121,7 @@
     }
 
     .pricing-price__old {
-      font-size: 1.3rem;
+      font-size: var(--fs-lg);
       color: var(--text-muted);
       text-decoration: line-through;
       font-weight: 500;
@@ -2119,7 +2129,7 @@
     }
 
     .pricing-price__new {
-      font-size: 2.8rem;
+      font-size: var(--fs-4xl);
       font-weight: 900;
       color: var(--green);
       letter-spacing: -0.03em;
@@ -2135,12 +2145,12 @@
     }
 
     .pricing-price__currency {
-      font-size: 1.4rem;
+      font-size: var(--fs-lg);
       font-weight: 600;
     }
 
     .pricing-desc {
-      font-size: 0.95rem;
+      font-size: var(--fs-sm);
       line-height: 1.5;
       color: var(--text-muted);
       margin-bottom: 24px;
@@ -2149,7 +2159,7 @@
     }
 
     .pricing-includes-label {
-      font-size: 0.85rem;
+      font-size: var(--fs-xs);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: var(--ls-wide);
@@ -2167,7 +2177,7 @@
     }
 
     .pricing-includes li {
-      font-size: 0.95rem;
+      font-size: var(--fs-sm);
       padding-left: 28px;
       position: relative;
       line-height: 1.5;
@@ -2217,13 +2227,13 @@
     }
 
     .pricing-anchor__label {
-      font-size: 0.75rem;
+      font-size: var(--fs-xs);
       color: var(--text-muted);
       margin-bottom: 4px;
     }
 
     .pricing-anchor__value {
-      font-size: 1.1rem;
+      font-size: var(--fs-md);
       font-weight: 800;
       color: var(--text);
     }
@@ -2384,7 +2394,7 @@
       padding: 20px 24px;
       cursor: pointer;
       user-select: none;
-      font-size: 0.92rem;
+      font-size: var(--fs-sm);
       font-weight: 600;
       color: var(--text);
       text-align: left;
@@ -2451,7 +2461,7 @@
     }
 
     .final-cta__text {
-      font-size: 0.95rem;
+      font-size: var(--fs-sm);
       line-height: var(--lh-text);
       color: rgba(254, 254, 254, 0.65);
       max-width: 560px;
@@ -2459,7 +2469,7 @@
     }
 
     .final-cta__price {
-      font-size: 1.2rem;
+      font-size: var(--fs-lg);
       margin-bottom: 28px;
     }
 
@@ -2470,7 +2480,7 @@
 
     .final-cta__price strong {
       color: var(--accent);
-      font-size: 1.5rem;
+      font-size: var(--fs-xl);
       font-weight: 800;
     }
 
@@ -2536,7 +2546,7 @@
       background: var(--bg-dark-deep);
       color: rgba(254, 254, 254, 0.55);
       text-align: center;
-      font-size: 0.8rem;
+      font-size: var(--fs-xs);
     }
 
     .footer a {
@@ -2874,7 +2884,7 @@
       font-style: italic;
       font-weight: 500;
       color: var(--text);
-      font-size: 1.15rem;
+      font-size: var(--fs-md);
     }
 
     .video-polaroid__caption .dot {
@@ -3065,7 +3075,7 @@
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       color: var(--white);
-      font-size: 0.78rem;
+      font-size: var(--fs-xs);
       font-weight: 600;
       letter-spacing: 0.02em;
       z-index: 2;
@@ -3135,7 +3145,7 @@
       .section { padding: var(--space-16) 0; }
       .video-section { padding: var(--space-14) 0 var(--space-16); }
       .video-hint { margin-bottom: 32px; gap: 10px; }
-      .video-hint__text { font-size: 1.15rem; }
+      .video-hint__text { font-size: var(--fs-md); }
       .video-hint__arrow { width: 38px; height: 38px; }
       .video-hint__arrow svg { width: 18px; height: 18px; }
 
@@ -3148,7 +3158,7 @@
         bottom: 16px;
         left: 12px;
         right: 12px;
-        font-size: 0.92rem;
+        font-size: var(--fs-sm);
       }
       .video-polaroid__caption em { font-size: 1rem; }
 
@@ -3159,7 +3169,7 @@
       .video-facade__play { width: 60px; height: 60px; bottom: 12%; }
       .video-facade__play svg { width: 22px; height: 22px; }
 
-      .video-meta { font-size: 0.7rem; padding: 5px 10px; left: 10px; top: 10px; }
+      .video-meta { font-size: var(--fs-2xs); padding: 5px 10px; left: 10px; top: 10px; }
 
       .video-decor { display: none; }
 
@@ -3188,7 +3198,7 @@
       .hero__subtitle {
         width: min(100%, 336px);
         max-width: calc(100vw - 32px);
-        font-size: var(--fs-sm);
+        font-size: var(--fs-base);
         text-wrap: pretty;
       }
 
@@ -3226,8 +3236,8 @@
         gap: 16px;
       }
 
-      .hero__stat-number { font-size: 1.2rem; }
-      .hero__stat-label { font-size: 0.68rem; }
+      .hero__stat-number { font-size: var(--fs-lg); }
+      .hero__stat-label { font-size: var(--fs-xs); }
 
       .hero__right::before { display: none; }
       .hero__right::after { height: 120px; }
@@ -3255,7 +3265,7 @@
 
       .hero__marquee-track span {
         font-family: inherit;
-        font-size: 0.7rem;
+        font-size: var(--fs-2xs);
         font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
@@ -3325,7 +3335,7 @@
       }
 
       .speed-card-item__task {
-        font-size: 0.9rem;
+        font-size: var(--fs-sm);
         font-weight: 600;
         margin-bottom: 10px;
       }
@@ -3348,7 +3358,7 @@
       }
 
       .comp-card-item__title {
-        font-size: 0.95rem;
+        font-size: var(--fs-sm);
         font-weight: 700;
         margin-bottom: 10px;
         color: var(--accent);
@@ -3384,7 +3394,7 @@
       .segment-card { padding: 24px 20px; }
       .segment-card--featured { padding: 24px 20px; }
       .expert { margin-bottom: 40px; }
-      .pricing-price__new { font-size: 2.4rem; }
+      .pricing-price__new { font-size: var(--fs-3xl); }
       .faq-question { padding: 16px; }
       .faq-answer__inner { padding: 0 16px 20px; }
       .final-cta { padding: var(--space-14) 0; }
@@ -3442,7 +3452,7 @@
 
     @media (min-width: 769px) and (max-width: 1024px) {
       .hero__left { padding: 60px 32px; }
-      .hero__title { font-size: 2rem; }
+      .hero__title { font-size: var(--fs-2xl); }
       .compare-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr; }
       .feature-flow { display: none; }
@@ -3514,7 +3524,7 @@
     }
     .how-pillars-title p,
     .how-steps-title p {
-      font-size: 16px;
+      font-size: var(--fs-base);
       line-height: 1.5;
       color: var(--text-muted);
       margin: 0;
@@ -3538,7 +3548,7 @@
       border: 1px solid rgba(var(--accent-deep-rgb), 0.18);
       border-radius: var(--radius-md);
       box-shadow: 0 1px 0 rgba(0,0,0,0.04);
-      font-size: 15px;
+      font-size: var(--fs-sm);
       transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
     .speed-strip__row:hover {
@@ -3551,13 +3561,13 @@
     }
     .speed-strip__before {
       color: var(--text-muted);
-      font-size: 14px;
+      font-size: var(--fs-sm);
     }
     .speed-strip__arrow {
       text-align: center;
       color: var(--accent-deep);
       font-weight: 700;
-      font-size: 18px;
+      font-size: var(--fs-md);
     }
     .speed-strip__after {
       color: var(--text);
@@ -3570,12 +3580,12 @@
       text-align: right;
       font-family: var(--font-mono, ui-monospace, monospace);
       font-weight: 700;
-      font-size: 18px;
+      font-size: var(--fs-md);
       color: var(--accent-deep);
     }
     .speed-strip__total {
       text-align: center;
-      font-size: 17px;
+      font-size: var(--fs-body-large);
       line-height: 1.5;
       color: var(--text);
       max-width: 720px;
@@ -3591,7 +3601,7 @@
         gap: 8px;
         padding: 14px;
       }
-      .speed-strip__task { grid-area: task; font-size: 16px; }
+      .speed-strip__task { grid-area: task; font-size: var(--fs-base); }
       .speed-strip__before { grid-area: before; }
       .speed-strip__after { grid-area: after; text-align: right; }
       .speed-strip__arrow { display: none; }
