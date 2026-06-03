@@ -2041,13 +2041,57 @@
     }
 
     .pricing-card--featured {
-      background: linear-gradient(180deg, rgba(232, 130, 42, 0.03) 0%, var(--card-bg) 100%);
+      background:
+        radial-gradient(120% 80% at 100% 0%, rgba(var(--accent-rgb), 0.10) 0%, transparent 55%),
+        linear-gradient(180deg, #FFFAF1 0%, #FAF3E6 100%);
       border: 2px solid var(--accent);
-      box-shadow: 0 12px 32px rgba(var(--accent-rgb), 0.12);
+      box-shadow:
+        0 24px 60px rgba(var(--accent-rgb), 0.18),
+        0 4px 12px rgba(45, 37, 32, 0.06),
+        inset 0 0 0 1px rgba(var(--accent-rgb), 0.18);
+      isolation: isolate;
+    }
+
+    /* Бумажная фактура поверх фона */
+    .pricing-card--featured::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--noise-bg);
+      background-size: 180px 180px;
+      mix-blend-mode: multiply;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: inherit;
+    }
+
+    /* Декоративная печать-штамп «ПОД КЛЮЧ» в углу */
+    .pricing-card--featured::after {
+      content: '★ ПОД КЛЮЧ';
+      position: absolute;
+      top: 72px;
+      right: 18px;
+      transform: rotate(8deg);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--accent-deep);
+      border: 2px solid var(--accent-deep);
+      padding: 4px 10px 3px;
+      border-radius: 4px;
+      background: rgba(255, 252, 246, 0.85);
+      opacity: 0.88;
+      pointer-events: none;
+      z-index: 2;
     }
 
     .pricing-card--featured:hover {
-      box-shadow: 0 16px 48px rgba(var(--accent-rgb), 0.2);
+      box-shadow:
+        0 28px 72px rgba(var(--accent-rgb), 0.28),
+        0 8px 20px rgba(45, 37, 32, 0.08),
+        inset 0 0 0 1px rgba(var(--accent-rgb), 0.24);
       border-color: var(--accent);
     }
 
@@ -2123,11 +2167,11 @@
     }
 
     .pricing-price {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       display: flex;
       align-items: baseline;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px 14px;
     }
 
     .pricing-price__old {
@@ -2135,15 +2179,41 @@
       color: var(--text-muted);
       text-decoration: line-through;
       font-weight: 500;
-      opacity: 0.6;
+      opacity: 0.55;
+      font-variant-numeric: tabular-nums;
     }
 
     .pricing-price__new {
-      font-size: var(--fs-4xl);
-      font-weight: 900;
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 11vw, 4rem);
+      font-weight: 700;
       color: var(--green);
       letter-spacing: -0.03em;
-      line-height: 1;
+      line-height: 0.95;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Зелёный стикер экономии */
+    .pricing-savings {
+      display: inline-flex;
+      align-self: flex-start;
+      width: max-content;
+      max-width: 100%;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 13px 5px;
+      background: var(--green);
+      color: var(--white);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 800;
+      letter-spacing: var(--ls-tight);
+      border-radius: 999px;
+      transform: rotate(-2.5deg);
+      transform-origin: left center;
+      box-shadow: 0 4px 14px rgba(39, 174, 96, 0.28);
+      margin-bottom: 20px;
+      font-variant-numeric: tabular-nums;
     }
 
     .pricing-card--featured .pricing-price__new {
@@ -2218,6 +2288,40 @@
     .pricing-card .btn {
       width: 100%;
       margin-top: auto;
+    }
+
+    .pricing-card--featured .btn {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+      box-shadow:
+        0 14px 36px rgba(var(--accent-rgb), 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .pricing-card--featured .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+      transform: skewX(-18deg);
+      pointer-events: none;
+      transition: left 0.7s ease;
+    }
+
+    .pricing-card--featured .btn:hover::before {
+      left: 130%;
+    }
+
+    .pricing-card--featured .btn:hover {
+      box-shadow:
+        0 20px 48px rgba(var(--accent-rgb), 0.52),
+        inset 0 1px 0 rgba(255, 255, 255, 0.32);
     }
 
     .pricing-anchors {
@@ -4201,6 +4305,7 @@
             <span class="pricing-price__old">49 990 ₽</span>
             <span class="pricing-price__new">24 990 <span class="pricing-price__currency">₽</span></span>
           </div>
+          <div class="pricing-savings">💸 Экономия 25 000 ₽</div>
           <p class="pricing-desc">Полная совместная настройка системы, онбординг и создание готовых материалов на неделю.</p>
           <div class="pricing-includes-label">Что вы получаете:</div>
           <ul class="pricing-includes">
