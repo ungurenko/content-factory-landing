@@ -3183,27 +3183,44 @@
 
       .video-decor { display: none; }
 
-      /* Hero */
+      /* Hero — overlap composition (mobile) */
       .hero {
+        position: relative;
         grid-template-columns: 1fr;
         grid-template-areas:
           "right"
-          "marquee"
-          "left";
+          "left"
+          "marquee";
         min-height: auto;
       }
 
-      .hero__right  { grid-area: right; height: 24vh; }
+      .hero__right  { grid-area: right; height: 55vh; min-height: 380px; }
       .hero__marquee { grid-area: marquee; }
       .hero__left   { grid-area: left; }
 
+      /* Бейдж переезжает на картинку как печать в углу */
+      .hero__badge {
+        position: absolute;
+        top: calc(env(safe-area-inset-top, 0px) + 16px);
+        right: 16px;
+        margin: 0;
+        z-index: 5;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 4px 16px rgba(45, 37, 32, 0.12);
+      }
+
       .hero__left {
+        position: relative;
+        z-index: 2;
         text-align: center;
         align-items: center;
         justify-self: stretch;
         box-sizing: border-box;
         max-width: 100%;
-        padding: 32px 24px 64px;
+        margin-top: -64px;
+        padding: 0 24px 56px;
       }
 
       .hero__title {
@@ -3307,19 +3324,22 @@
       .hero__stat-label { font-size: var(--fs-xs); }
 
       .hero__right::before { display: none; }
-      .hero__right::after { height: 120px; }
+      .hero__right::after {
+        height: 220px;
+        background: linear-gradient(to top, var(--bg) 0%, var(--bg) 28%, transparent 100%);
+      }
 
       .hero__marquee {
         display: block;
         order: 2;
         width: 100%;
         max-width: 100vw;
-        height: 38px;
+        height: 34px;
         background: var(--accent);
         overflow: hidden;
         position: relative;
         z-index: 4;
-        margin-top: -19px;
+        margin-top: 12px;
       }
 
       .hero__marquee-track {
