@@ -3907,6 +3907,233 @@
       .how-steps-title { margin-top: 40px; }
       .proof-card .badge-new { position: static; display: inline-flex; margin-bottom: 8px; }
     }
+
+    /* ═══════════════════════════════════════
+       BLOCK 7a: Carousel Styles — 3D Deck
+       ═══════════════════════════════════════ */
+    .carousel-deck {
+      position: relative;
+      padding: var(--space-16) 0 var(--space-20);
+      overflow: hidden;
+    }
+
+    .carousel-deck__stage {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 440px;
+      margin: 0 auto;
+      perspective: 1200px;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .carousel-deck__stage:active {
+      cursor: grabbing;
+    }
+
+    .carousel-deck__card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 280px;
+      height: 350px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(45, 37, 32, 0.2), 0 8px 20px rgba(45, 37, 32, 0.1);
+      transform-origin: center bottom;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  opacity 0.4s ease,
+                  box-shadow 0.3s ease;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    .carousel-deck__card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-deck__card--0 {
+      z-index: 10;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) translateY(0) scale(1) rotate(0deg);
+    }
+
+    .carousel-deck__card--1 {
+      z-index: 9;
+      transform: translate(-50%, -50%) translateY(12px) scale(0.96) rotate(-1deg);
+      opacity: 0.9;
+    }
+
+    .carousel-deck__card--2 {
+      z-index: 8;
+      transform: translate(-50%, -50%) translateY(24px) scale(0.92) rotate(1.5deg);
+      opacity: 0.75;
+    }
+
+    .carousel-deck__card--3 {
+      z-index: 7;
+      transform: translate(-50%, -50%) translateY(36px) scale(0.88) rotate(-2deg);
+      opacity: 0.6;
+    }
+
+    .carousel-deck__card--hidden {
+      z-index: 6;
+      transform: translate(-50%, -50%) translateY(48px) scale(0.84) rotate(0deg);
+      opacity: 0;
+    }
+
+    /* Swipe animations */
+    .carousel-deck__card--swipe-left {
+      transform: translate(-150%, -50%) rotate(-25deg) !important;
+      opacity: 0 !important;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  opacity 0.3s ease;
+    }
+
+    .carousel-deck__card--swipe-right {
+      transform: translate(50%, -50%) rotate(25deg) !important;
+      opacity: 0 !important;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  opacity 0.3s ease;
+    }
+
+    /* Hover fan effect (desktop) */
+    @media (hover: hover) {
+      .carousel-deck__stage:hover .carousel-deck__card--0 {
+        transform: translate(-50%, -50%) translateY(-8px) scale(1.02) rotate(0deg);
+        box-shadow: 0 30px 80px rgba(45, 37, 32, 0.25), 0 12px 30px rgba(45, 37, 32, 0.15);
+      }
+
+      .carousel-deck__stage:hover .carousel-deck__card--1 {
+        transform: translate(-50%, -50%) translateY(16px) translateX(-20px) scale(0.96) rotate(-4deg);
+      }
+
+      .carousel-deck__stage:hover .carousel-deck__card--2 {
+        transform: translate(-50%, -50%) translateY(32px) translateX(20px) scale(0.92) rotate(3deg);
+      }
+
+      .carousel-deck__stage:hover .carousel-deck__card--3 {
+        transform: translate(-50%, -50%) translateY(48px) translateX(-30px) scale(0.88) rotate(-5deg);
+      }
+    }
+
+    /* Info below deck */
+    .carousel-deck__info {
+      text-align: center;
+      margin-top: var(--space-8);
+    }
+
+    .carousel-deck__name {
+      font-family: var(--font-display);
+      font-size: var(--fs-lg);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: var(--space-2);
+      transition: opacity 0.3s ease;
+    }
+
+    .carousel-deck__name--fading {
+      opacity: 0;
+    }
+
+    .carousel-deck__counter {
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Navigation arrows (desktop) */
+    .carousel-deck__nav {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+
+    .carousel-deck__btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--motion-fast);
+    }
+
+    .carousel-deck__btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .carousel-deck__btn:active {
+      transform: scale(0.95);
+    }
+
+    .carousel-deck__btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Swipe hint */
+    .carousel-deck__hint {
+      text-align: center;
+      margin-top: var(--space-4);
+      font-size: var(--fs-2xs);
+      color: var(--text-muted);
+      opacity: 0.7;
+      animation: hint-pulse 2s ease-in-out infinite;
+    }
+
+    .carousel-deck__hint--hidden {
+      display: none;
+    }
+
+    @keyframes hint-pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      .carousel-deck {
+        padding: var(--space-12) 0 var(--space-16);
+      }
+
+      .carousel-deck__stage {
+        height: 400px;
+      }
+
+      .carousel-deck__card {
+        width: 240px;
+        height: 300px;
+      }
+
+      .carousel-deck__name {
+        font-size: var(--fs-md);
+      }
+
+      .carousel-deck__btn {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .carousel-deck__card {
+        width: 220px;
+        height: 275px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -4310,6 +4537,92 @@
   </section>
 
   <!-- ═══════════════════════════════════════
+       BLOCK 7a: Carousel Styles — 3D Deck
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="carousel-styles">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">🎨 Стили каруселей</div>
+        <h2 class="section__title">16 готовых <em>стилей</em> каруселей</h2>
+        <p class="section__subtitle">Каждый стиль — готовый шаблон. Система адаптирует его под твой бренд: цвета, шрифты, тон.</p>
+      </div>
+
+      <div class="carousel-deck reveal">
+        <div class="carousel-deck__stage" id="carouselStage">
+          <div class="carousel-deck__card carousel-deck__card--0" data-index="0">
+            <img src="assets/styles/01-yellow-pop.jpg" alt="Yellow Pop" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--1" data-index="1">
+            <img src="assets/styles/02-clean-editorial.jpg" alt="Clean Editorial" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--2" data-index="2">
+            <img src="assets/styles/03-purple-gradient.jpg" alt="Purple Gradient" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--3" data-index="3">
+            <img src="assets/styles/04-bold-pop.jpg" alt="Bold Pop" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="4">
+            <img src="assets/styles/05-warm-premium.jpg" alt="Warm Premium" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="5">
+            <img src="assets/styles/06-pastel-wellness.jpg" alt="Pastel Wellness" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="6">
+            <img src="assets/styles/07-magazine-editorial.jpg" alt="Magazine Editorial" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="7">
+            <img src="assets/styles/08-cyberpunk-neon.jpg" alt="Cyberpunk Neon" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="8">
+            <img src="assets/styles/09-organic-earth.jpg" alt="Organic Earth" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="9">
+            <img src="assets/styles/10-sticky-notes-education.jpg" alt="Sticky Notes Education" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="10">
+            <img src="assets/styles/11-sage-journal.jpg" alt="Sage Journal" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="11">
+            <img src="assets/styles/12-dark-money.jpg" alt="Dark Money" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="12">
+            <img src="assets/styles/13-glossy-pink.jpg" alt="Glossy Pink" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="13">
+            <img src="assets/styles/14-hyper-pop.jpg" alt="Hyper Pop" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="14">
+            <img src="assets/styles/15-dark-editorial.jpg" alt="Dark Editorial" loading="lazy">
+          </div>
+          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="15">
+            <img src="assets/styles/16-bento-grid.jpg" alt="Bento Grid" loading="lazy">
+          </div>
+        </div>
+
+        <div class="carousel-deck__info">
+          <div class="carousel-deck__name" id="carouselName">Yellow Pop</div>
+          <div class="carousel-deck__counter"><span id="carouselCurrent">1</span> / 16</div>
+        </div>
+
+        <div class="carousel-deck__nav">
+          <button type="button" class="carousel-deck__btn" id="carouselPrev" aria-label="Предыдущий стиль">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button type="button" class="carousel-deck__btn" id="carouselNext" aria-label="Следующий стиль">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="carousel-deck__hint" id="carouselHint">← свайпай →</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
        BLOCK 9: For Whom
        ═══════════════════════════════════════ -->
   <section class="section section--alt" id="for-whom">
@@ -4599,6 +4912,161 @@
         }
       });
     });
+
+    // Carousel Deck — 3D card stack
+    (function() {
+      const stage = document.getElementById('carouselStage');
+      const nameEl = document.getElementById('carouselName');
+      const counterEl = document.getElementById('carouselCurrent');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+      const hintEl = document.getElementById('carouselHint');
+
+      if (!stage) return;
+
+      const cards = Array.from(stage.querySelectorAll('.carousel-deck__card'));
+      const total = cards.length;
+      let currentIndex = 0;
+      let isAnimating = false;
+
+      const styleNames = [
+        'Yellow Pop', 'Clean Editorial', 'Purple Gradient', 'Bold Pop',
+        'Warm Premium', 'Pastel Wellness', 'Magazine Editorial', 'Cyberpunk Neon',
+        'Organic Earth', 'Sticky Notes Education', 'Sage Journal', 'Dark Money',
+        'Glossy Pink', 'Hyper Pop', 'Dark Editorial', 'Bento Grid'
+      ];
+
+      function updateDeck(direction) {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const currentCard = cards[currentIndex];
+        const swipeClass = direction === 'next' ? 'carousel-deck__card--swipe-left' : 'carousel-deck__card--swipe-right';
+
+        // Animate current card out
+        currentCard.classList.add(swipeClass);
+        currentCard.classList.remove('carousel-deck__card--0');
+
+        // Fade out name
+        nameEl.classList.add('carousel-deck__name--fading');
+
+        // Update index
+        if (direction === 'next') {
+          currentIndex = (currentIndex + 1) % total;
+        } else {
+          currentIndex = (currentIndex - 1 + total) % total;
+        }
+
+        // Update name and counter after fade
+        setTimeout(() => {
+          nameEl.textContent = styleNames[currentIndex];
+          counterEl.textContent = currentIndex + 1;
+          nameEl.classList.remove('carousel-deck__name--fading');
+        }, 200);
+
+        // Reset all cards after animation
+        setTimeout(() => {
+          cards.forEach((card, i) => {
+            card.classList.remove(
+              'carousel-deck__card--0',
+              'carousel-deck__card--1',
+              'carousel-deck__card--2',
+              'carousel-deck__card--3',
+              'carousel-deck__card--hidden',
+              'carousel-deck__card--swipe-left',
+              'carousel-deck__card--swipe-right'
+            );
+
+            const offset = (i - currentIndex + total) % total;
+            if (offset === 0) card.classList.add('carousel-deck__card--0');
+            else if (offset === 1) card.classList.add('carousel-deck__card--1');
+            else if (offset === 2) card.classList.add('carousel-deck__card--2');
+            else if (offset === 3) card.classList.add('carousel-deck__card--3');
+            else card.classList.add('carousel-deck__card--hidden');
+          });
+          isAnimating = false;
+        }, 500);
+      }
+
+      // Button navigation
+      prevBtn.addEventListener('click', () => updateDeck('prev'));
+      nextBtn.addEventListener('click', () => updateDeck('next'));
+
+      // Touch/swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      stage.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      stage.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+
+      function handleSwipe() {
+        const diff = touchStartX - touchEndX;
+        const threshold = 50;
+
+        if (Math.abs(diff) > threshold) {
+          if (diff > 0) {
+            updateDeck('next');
+          } else {
+            updateDeck('prev');
+          }
+          hideHint();
+        }
+      }
+
+      // Mouse drag support (desktop)
+      let mouseDown = false;
+      let mouseStartX = 0;
+
+      stage.addEventListener('mousedown', (e) => {
+        mouseDown = true;
+        mouseStartX = e.clientX;
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!mouseDown) return;
+      });
+
+      document.addEventListener('mouseup', (e) => {
+        if (!mouseDown) return;
+        mouseDown = false;
+        const diff = mouseStartX - e.clientX;
+        const threshold = 80;
+
+        if (Math.abs(diff) > threshold) {
+          if (diff > 0) {
+            updateDeck('next');
+          } else {
+            updateDeck('prev');
+          }
+          hideHint();
+        }
+      });
+
+      // Keyboard navigation
+      stage.setAttribute('tabindex', '0');
+      stage.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          updateDeck('prev');
+          hideHint();
+        } else if (e.key === 'ArrowRight') {
+          updateDeck('next');
+          hideHint();
+        }
+      });
+
+      function hideHint() {
+        if (hintEl && !hintEl.classList.contains('carousel-deck__hint--hidden')) {
+          hintEl.classList.add('carousel-deck__hint--hidden');
+        }
+      }
+    })();
   </script>
 
 </body>
