@@ -3914,7 +3914,7 @@
     .carousel-deck {
       position: relative;
       padding: var(--space-16) 0 var(--space-20);
-      overflow: hidden;
+      overflow: visible;
     }
 
     .carousel-deck__stage {
@@ -3927,6 +3927,7 @@
       cursor: grab;
       user-select: none;
       -webkit-user-select: none;
+      touch-action: pan-y;
     }
 
     .carousel-deck__stage:active {
@@ -3946,8 +3947,14 @@
       transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
                   opacity 0.4s ease,
                   box-shadow 0.3s ease;
-      will-change: transform;
       pointer-events: none;
+    }
+
+    .carousel-deck__card--0,
+    .carousel-deck__card--1,
+    .carousel-deck__card--2,
+    .carousel-deck__card--3 {
+      will-change: transform;
     }
 
     .carousel-deck__card img {
@@ -3989,17 +3996,32 @@
 
     /* Swipe animations */
     .carousel-deck__card--swipe-left {
-      transform: translate(-150%, -50%) rotate(-25deg) !important;
-      opacity: 0 !important;
+      transform: translate(-150%, -50%) rotate(-25deg);
+      opacity: 0;
       transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
                   opacity 0.3s ease;
     }
 
     .carousel-deck__card--swipe-right {
-      transform: translate(50%, -50%) rotate(25deg) !important;
-      opacity: 0 !important;
+      transform: translate(50%, -50%) rotate(25deg);
+      opacity: 0;
       transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
                   opacity 0.3s ease;
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      .carousel-deck__card,
+      .carousel-deck__card--swipe-left,
+      .carousel-deck__card--swipe-right {
+        transition: none !important;
+      }
+      .carousel-deck__name {
+        transition: none !important;
+      }
+      .carousel-deck__hint {
+        animation: none;
+      }
     }
 
     /* Hover fan effect (desktop) */
@@ -4550,16 +4572,16 @@
       <div class="carousel-deck reveal">
         <div class="carousel-deck__stage" id="carouselStage">
           <div class="carousel-deck__card carousel-deck__card--0" data-index="0">
-            <img src="assets/styles/01-yellow-pop.jpg" alt="Yellow Pop" loading="lazy">
+            <img src="assets/styles/01-yellow-pop.jpg" alt="Yellow Pop" loading="eager">
           </div>
           <div class="carousel-deck__card carousel-deck__card--1" data-index="1">
-            <img src="assets/styles/02-clean-editorial.jpg" alt="Clean Editorial" loading="lazy">
+            <img src="assets/styles/02-clean-editorial.jpg" alt="Clean Editorial" loading="eager">
           </div>
           <div class="carousel-deck__card carousel-deck__card--2" data-index="2">
-            <img src="assets/styles/03-purple-gradient.jpg" alt="Purple Gradient" loading="lazy">
+            <img src="assets/styles/03-purple-gradient.jpg" alt="Purple Gradient" loading="eager">
           </div>
           <div class="carousel-deck__card carousel-deck__card--3" data-index="3">
-            <img src="assets/styles/04-bold-pop.jpg" alt="Bold Pop" loading="lazy">
+            <img src="assets/styles/04-bold-pop.jpg" alt="Bold Pop" loading="eager">
           </div>
           <div class="carousel-deck__card carousel-deck__card--hidden" data-index="4">
             <img src="assets/styles/05-warm-premium.jpg" alt="Warm Premium" loading="lazy">
@@ -4599,7 +4621,7 @@
           </div>
         </div>
 
-        <div class="carousel-deck__info">
+        <div class="carousel-deck__info" aria-live="polite" aria-atomic="true">
           <div class="carousel-deck__name" id="carouselName">Yellow Pop</div>
           <div class="carousel-deck__counter"><span id="carouselCurrent">1</span> / 16</div>
         </div>
@@ -4957,12 +4979,12 @@
           currentIndex = (currentIndex - 1 + total) % total;
         }
 
-        // Update name and counter after fade
+        // Update name and counter after animation completes
         setTimeout(() => {
           nameEl.textContent = styleNames[currentIndex];
           counterEl.textContent = currentIndex + 1;
           nameEl.classList.remove('carousel-deck__name--fading');
-        }, 200);
+        }, 500);
 
         // Reset all cards after animation
         setTimeout(() => {
@@ -5027,10 +5049,6 @@
         mouseDown = true;
         mouseStartX = e.clientX;
         e.preventDefault();
-      });
-
-      document.addEventListener('mousemove', (e) => {
-        if (!mouseDown) return;
       });
 
       document.addEventListener('mouseup', (e) => {
