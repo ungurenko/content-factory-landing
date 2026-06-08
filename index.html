@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#F5F0E8">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -140,6 +141,12 @@
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
+    }
+
+    /* Отступ при переходе по якорю, чтобы заголовок секции не упирался в край */
+    section[id],
+    #main-content {
+      scroll-margin-top: 24px;
     }
 
     body {
@@ -376,6 +383,7 @@
       transition: background var(--motion-base), color var(--motion-base), border-color var(--motion-base), box-shadow var(--motion-base), transform var(--motion-base), opacity var(--motion-fast);
       box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.25);
       -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .btn:hover,
@@ -2514,6 +2522,7 @@
       padding: 20px 24px;
       cursor: pointer;
       user-select: none;
+      touch-action: manipulation;
       font-size: var(--fs-sm);
       font-weight: 600;
       color: var(--text);
@@ -3261,6 +3270,7 @@
 
     .video-facade:focus-visible {
       outline: none;
+      box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.45);
     }
 
     .video-facade:hover .video-facade__play,
@@ -4094,7 +4104,8 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all var(--motion-fast);
+      touch-action: manipulation;
+      transition: transform var(--motion-fast), border-color var(--motion-fast), color var(--motion-fast), background var(--motion-fast);
     }
 
     .carousel-deck__btn:hover {
@@ -4251,7 +4262,7 @@
       <div class="section__header section__header--center reveal">
         <div class="section__badge">🎬 Что это и как работает</div>
         <h2 class="section__title">Как работает <em>Контент-агент</em></h2>
-        <p class="section__subtitle">Это автономная система, которая устанавливается на твой компьютер и работает через приложение Claude или ChatGPT (Codex Desktop). Используй ту модель, которая у тебя уже есть. Ты ставишь задачу обычными словами («напиши пост про...», «спланируй неделю», «сделай карусель»), и система сама выбирает нужный инструмент, исследует тему, анализирует твои материалы и создаёт готовый контент.</p>
+        <p class="section__subtitle">Это автономная система, которая устанавливается на твой компьютер и работает через приложение Claude или ChatGPT (Codex Desktop). Используй ту модель, которая у тебя уже есть. Ты ставишь задачу обычными словами («напиши пост про…», «спланируй неделю», «сделай карусель»), и система сама выбирает нужный инструмент, исследует тему, анализирует твои материалы и создаёт готовый контент.</p>
       </div>
 
       <div class="video-stage reveal">
@@ -4657,7 +4668,7 @@
     <div class="container">
       <div class="section__header section__header--center reveal">
         <div class="section__badge">🎯 Аудитория</div>
-        <h2 class="section__title">Контент-агент подойдёт тебе, если...</h2>
+        <h2 class="section__title">Контент-агент подойдёт тебе, если…</h2>
       </div>
       <div class="segments-grid reveal">
         <div class="segment-card segment-card--featured">
@@ -4808,7 +4819,7 @@
             <span>Я не технарь, разберусь?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-answer" id="faq-a-2" role="region" aria-labelledby="faq-q-2"><div class="faq-answer__inner">Работаешь обычными словами: «напиши пост про...», «спланируй неделю», «сделай карусель». Система сама вызывает нужный инструмент. После 2–3 сессий это становится привычным, как переписка в мессенджере.</div></div>
+          <div class="faq-answer" id="faq-a-2" role="region" aria-labelledby="faq-q-2"><div class="faq-answer__inner">Работаешь обычными словами: «напиши пост про…», «спланируй неделю», «сделай карусель». Система сама вызывает нужный инструмент. После 2–3 сессий это становится привычным, как переписка в мессенджере.</div></div>
         </div>
 
         <div class="faq-item">
