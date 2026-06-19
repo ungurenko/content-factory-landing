@@ -3927,261 +3927,131 @@
     }
 
     /* ═══════════════════════════════════════
-       BLOCK 7a: Carousel Styles — 3D Deck
+       BLOCK 7a: Carousel Styles — Marquee
        ═══════════════════════════════════════ */
-    .carousel-deck {
-      position: relative;
-      padding: var(--space-16) 0 var(--space-20);
-      overflow: visible;
-      /* Единый ритм анимации стопки: длительность и плавное замедление без overshoot */
-      --carousel-dur: 0.55s;
-      --carousel-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-    }
-
-    .carousel-deck__stage {
+    .style-marquee {
+      --card-w: 280px;
+      --card-h: 350px;
+      --gap: 24px;
+      --marquee-dur: 55s;       /* медленный, «премиальный» ход */
       position: relative;
       width: 100%;
-      max-width: 400px;
-      height: 440px;
-      margin: 0 auto;
-      perspective: 1200px;
-      cursor: grab;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: pan-y;
+      margin-top: var(--space-12);
+      padding: 36px 0;          /* запас под приподнятую карточку */
+      overflow: hidden;
+      /* края растворяются в фон секции */
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
     }
 
-    .carousel-deck__stage:active {
-      cursor: grabbing;
+    .style-marquee__track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: style-marquee-scroll var(--marquee-dur) linear infinite;
     }
 
-    .carousel-deck__card {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 280px;
-      height: 350px;
+    /* слева направо: стартуем сдвинутыми на один набор и едем к 0 */
+    @keyframes style-marquee-scroll {
+      from { transform: translateX(-50%); }
+      to   { transform: translateX(0); }
+    }
+
+    /* пауза: при наведении/фокусе где угодно в ленте или когда карточка зафиксирована тапом */
+    .style-marquee:hover .style-marquee__track,
+    .style-marquee:focus-within .style-marquee__track,
+    .style-marquee.is-paused .style-marquee__track {
+      animation-play-state: paused;
+    }
+
+    .style-card {
+      position: relative;
+      flex: 0 0 auto;
+      width: var(--card-w);
+      height: var(--card-h);
+      margin-right: var(--gap);            /* зазор через margin → бесшовный цикл */
       border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(45, 37, 32, 0.2), 0 8px 20px rgba(45, 37, 32, 0.1);
-      transform-origin: center bottom;
-      /* transform и opacity синхронны; box-shadow меняется только на hover, поэтому отдельным коротким переходом */
-      transition: transform var(--carousel-dur) var(--carousel-ease),
-                  opacity var(--carousel-dur) var(--carousel-ease),
-                  box-shadow 0.3s ease;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      pointer-events: none;
+      box-shadow: 0 18px 50px rgba(45, 37, 32, 0.18), 0 6px 16px rgba(45, 37, 32, 0.10);
+      background: var(--card-bg);          /* нейтральный фон, пока грузится картинка */
+      cursor: pointer;
+      transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.45s ease;
     }
 
-    .carousel-deck__card--0,
-    .carousel-deck__card--1,
-    .carousel-deck__card--2,
-    .carousel-deck__card--3 {
-      will-change: transform;
-    }
-
-    .carousel-deck__card img {
+    .style-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .carousel-deck__card--0 {
-      z-index: 10;
-      pointer-events: auto;
-      transform: translate(-50%, -50%) translateZ(0) translateY(0) scale(1) rotate(0deg);
-    }
-
-    .carousel-deck__card--1 {
-      z-index: 9;
-      transform: translate(-50%, -50%) translateZ(0) translateY(12px) scale(0.96) rotate(-1deg);
-      opacity: 0.9;
-    }
-
-    .carousel-deck__card--2 {
-      z-index: 8;
-      transform: translate(-50%, -50%) translateZ(0) translateY(24px) scale(0.92) rotate(1.5deg);
-      opacity: 0.75;
-    }
-
-    .carousel-deck__card--3 {
-      z-index: 7;
-      transform: translate(-50%, -50%) translateZ(0) translateY(36px) scale(0.88) rotate(-2deg);
-      opacity: 0.6;
-    }
-
-    .carousel-deck__card--hidden {
-      z-index: 6;
-      transform: translate(-50%, -50%) translateZ(0) translateY(48px) scale(0.84) rotate(0deg);
-      opacity: 0;
-    }
-
-    /* Swipe animations */
-    .carousel-deck__card--swipe-left {
-      transform: translate(-150%, -50%) translateZ(0) rotate(-25deg);
-      opacity: 0;
-      will-change: transform, opacity;
-      transition: transform var(--carousel-dur) var(--carousel-ease),
-                  opacity var(--carousel-dur) var(--carousel-ease);
-    }
-
-    .carousel-deck__card--swipe-right {
-      transform: translate(50%, -50%) translateZ(0) rotate(25deg);
-      opacity: 0;
-      will-change: transform, opacity;
-      transition: transform var(--carousel-dur) var(--carousel-ease),
-                  opacity var(--carousel-dur) var(--carousel-ease);
-    }
-
-    /* Reduced motion support */
-    @media (prefers-reduced-motion: reduce) {
-      .carousel-deck__card,
-      .carousel-deck__card--swipe-left,
-      .carousel-deck__card--swipe-right {
-        transition: none !important;
-      }
-      .carousel-deck__name {
-        transition: none !important;
-      }
-      .carousel-deck__hint {
-        animation: none;
-      }
-    }
-
-    /* Hover fan effect (desktop) */
+    /* приподнимаем карточку: hover (десктоп), фокус с клавиатуры, фиксация тапом */
     @media (hover: hover) {
-      .carousel-deck__stage:hover .carousel-deck__card--0 {
-        transform: translate(-50%, -50%) translateY(-8px) scale(1.02) rotate(0deg);
-        box-shadow: 0 30px 80px rgba(45, 37, 32, 0.25), 0 12px 30px rgba(45, 37, 32, 0.15);
-      }
-
-      .carousel-deck__stage:hover .carousel-deck__card--1 {
-        transform: translate(-50%, -50%) translateY(16px) translateX(-20px) scale(0.96) rotate(-4deg);
-      }
-
-      .carousel-deck__stage:hover .carousel-deck__card--2 {
-        transform: translate(-50%, -50%) translateY(32px) translateX(20px) scale(0.92) rotate(3deg);
-      }
-
-      .carousel-deck__stage:hover .carousel-deck__card--3 {
-        transform: translate(-50%, -50%) translateY(48px) translateX(-30px) scale(0.88) rotate(-5deg);
+      .style-card:hover {
+        transform: translateY(-14px) scale(1.05);
+        box-shadow: 0 36px 90px rgba(45, 37, 32, 0.28), 0 14px 30px rgba(45, 37, 32, 0.16);
+        z-index: 2;
       }
     }
 
-    /* Info below deck */
-    .carousel-deck__info {
-      text-align: center;
-      margin-top: var(--space-8);
+    .style-card:focus-visible,
+    .style-card.is-active {
+      transform: translateY(-14px) scale(1.05);
+      box-shadow: 0 36px 90px rgba(45, 37, 32, 0.28), 0 14px 30px rgba(45, 37, 32, 0.16);
+      z-index: 2;
     }
 
-    .carousel-deck__name {
+    .style-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* плашка с названием стиля — проявляется при наведении/фокусе/фиксации */
+    .style-card__name {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
       font-family: var(--font-display);
-      font-size: var(--fs-lg);
+      font-size: var(--fs-xs);
       font-weight: 600;
       color: var(--text);
-      margin-bottom: var(--space-2);
-      transition: opacity 0.3s ease;
-    }
-
-    .carousel-deck__name--fading {
       opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
     }
 
-    .carousel-deck__counter {
-      font-size: var(--fs-sm);
-      color: var(--text-muted);
-      font-weight: 500;
+    .style-card:hover .style-card__name,
+    .style-card:focus-visible .style-card__name,
+    .style-card.is-active .style-card__name {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* Navigation arrows (desktop) */
-    .carousel-deck__nav {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-4);
-      margin-top: var(--space-6);
-    }
-
-    .carousel-deck__btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      background: var(--card-bg);
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      touch-action: manipulation;
-      transition: transform var(--motion-fast), border-color var(--motion-fast), color var(--motion-fast), background var(--motion-fast);
-    }
-
-    .carousel-deck__btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: scale(1.05);
-    }
-
-    .carousel-deck__btn:active {
-      transform: scale(0.95);
-    }
-
-    .carousel-deck__btn svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    /* Swipe hint */
-    .carousel-deck__hint {
+    .style-marquee__hint {
       text-align: center;
-      margin-top: var(--space-4);
+      margin-top: var(--space-6);
       font-size: var(--fs-2xs);
       color: var(--text-muted);
       opacity: 0.7;
-      animation: hint-pulse 2s ease-in-out infinite;
     }
 
-    .carousel-deck__hint--hidden {
-      display: none;
-    }
-
-    @keyframes hint-pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-
-    /* Mobile adjustments */
     @media (max-width: 600px) {
-      .carousel-deck {
-        padding: var(--space-12) 0 var(--space-16);
-      }
-
-      .carousel-deck__stage {
-        height: 400px;
-      }
-
-      .carousel-deck__card {
-        width: 240px;
-        height: 300px;
-      }
-
-      .carousel-deck__name {
-        font-size: var(--fs-md);
-      }
-
-      .carousel-deck__btn {
-        width: 44px;
-        height: 44px;
-      }
+      .style-marquee { --card-w: 220px; --card-h: 275px; --gap: 16px; --marquee-dur: 42s; padding: 28px 0; }
     }
 
     @media (max-width: 380px) {
-      .carousel-deck__card {
-        width: 220px;
-        height: 275px;
-      }
+      .style-marquee { --card-w: 200px; --card-h: 250px; }
+    }
+
+    /* меньше движения: лента не едет сама, а становится прокручиваемой рукой полосой */
+    @media (prefers-reduced-motion: reduce) {
+      .style-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+      .style-marquee__track { animation: none; }
+      .style-card { transition: none; }
     }
 
     /* ═══════════════════════════════════════
@@ -4863,7 +4733,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       BLOCK 7a: Carousel Styles — 3D Deck
+       BLOCK 7a: Carousel Styles — Marquee
        ═══════════════════════════════════════ -->
   <section class="section section--alt" id="carousel-styles">
     <div class="container">
@@ -4872,79 +4742,80 @@
         <h2 class="section__title">16 готовых <em>стилей</em> каруселей</h2>
         <p class="section__subtitle">Каждый стиль — готовый шаблон. Система адаптирует его под твой бренд: цвета, шрифты, тон.</p>
       </div>
+    </div>
 
-      <div class="carousel-deck reveal">
-        <div class="carousel-deck__stage" id="carouselStage">
-          <div class="carousel-deck__card carousel-deck__card--0" data-index="0">
-            <img src="assets/styles/01-yellow-pop.jpg" alt="Yellow Pop" loading="eager">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--1" data-index="1">
-            <img src="assets/styles/02-clean-editorial.jpg" alt="Clean Editorial" loading="eager">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--2" data-index="2">
-            <img src="assets/styles/03-purple-gradient.jpg" alt="Purple Gradient" loading="eager">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--3" data-index="3">
-            <img src="assets/styles/04-bold-pop.jpg" alt="Bold Pop" loading="eager">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="4">
-            <img src="assets/styles/05-warm-premium.jpg" alt="Warm Premium" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="5">
-            <img src="assets/styles/06-pastel-wellness.jpg" alt="Pastel Wellness" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="6">
-            <img src="assets/styles/07-magazine-editorial.jpg" alt="Magazine Editorial" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="7">
-            <img src="assets/styles/08-cyberpunk-neon.jpg" alt="Cyberpunk Neon" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="8">
-            <img src="assets/styles/09-organic-earth.jpg" alt="Organic Earth" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="9">
-            <img src="assets/styles/10-sticky-notes-education.jpg" alt="Sticky Notes Education" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="10">
-            <img src="assets/styles/11-sage-journal.jpg" alt="Sage Journal" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="11">
-            <img src="assets/styles/12-dark-money.jpg" alt="Dark Money" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="12">
-            <img src="assets/styles/13-glossy-pink.jpg" alt="Glossy Pink" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="13">
-            <img src="assets/styles/14-hyper-pop.jpg" alt="Hyper Pop" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="14">
-            <img src="assets/styles/15-dark-editorial.jpg" alt="Dark Editorial" loading="lazy">
-          </div>
-          <div class="carousel-deck__card carousel-deck__card--hidden" data-index="15">
-            <img src="assets/styles/16-bento-grid.jpg" alt="Bento Grid" loading="lazy">
-          </div>
-        </div>
-
-        <div class="carousel-deck__info" aria-live="polite" aria-atomic="true">
-          <div class="carousel-deck__name" id="carouselName">Yellow Pop</div>
-          <div class="carousel-deck__counter"><span id="carouselCurrent">1</span> / 16</div>
-        </div>
-
-        <div class="carousel-deck__nav">
-          <button type="button" class="carousel-deck__btn" id="carouselPrev" aria-label="Предыдущий стиль">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </button>
-          <button type="button" class="carousel-deck__btn" id="carouselNext" aria-label="Следующий стиль">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 18l6-6-6-6"/>
-            </svg>
-          </button>
-        </div>
-
-        <div class="carousel-deck__hint" id="carouselHint">← свайпай →</div>
+    <!-- Лента-конвейер: на всю ширину секции -->
+    <div class="style-marquee reveal" id="styleMarquee">
+      <div class="style-marquee__track" id="styleMarqueeTrack">
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/01-yellow-pop.jpg" alt="Yellow Pop" loading="eager" decoding="async">
+          <span class="style-card__name">Yellow Pop</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/02-clean-editorial.jpg" alt="Clean Editorial" loading="eager" decoding="async">
+          <span class="style-card__name">Clean Editorial</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/03-purple-gradient.jpg" alt="Purple Gradient" loading="eager" decoding="async">
+          <span class="style-card__name">Purple Gradient</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/04-bold-pop.jpg" alt="Bold Pop" loading="eager" decoding="async">
+          <span class="style-card__name">Bold Pop</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/05-warm-premium.jpg" alt="Warm Premium" loading="eager" decoding="async">
+          <span class="style-card__name">Warm Premium</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/06-pastel-wellness.jpg" alt="Pastel Wellness" loading="lazy" decoding="async">
+          <span class="style-card__name">Pastel Wellness</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/07-magazine-editorial.jpg" alt="Magazine Editorial" loading="lazy" decoding="async">
+          <span class="style-card__name">Magazine Editorial</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/08-cyberpunk-neon.jpg" alt="Cyberpunk Neon" loading="lazy" decoding="async">
+          <span class="style-card__name">Cyberpunk Neon</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/09-organic-earth.jpg" alt="Organic Earth" loading="lazy" decoding="async">
+          <span class="style-card__name">Organic Earth</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/10-sticky-notes-education.jpg" alt="Sticky Notes Education" loading="lazy" decoding="async">
+          <span class="style-card__name">Sticky Notes Education</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/11-sage-journal.jpg" alt="Sage Journal" loading="lazy" decoding="async">
+          <span class="style-card__name">Sage Journal</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/12-dark-money.jpg" alt="Dark Money" loading="lazy" decoding="async">
+          <span class="style-card__name">Dark Money</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/13-glossy-pink.jpg" alt="Glossy Pink" loading="lazy" decoding="async">
+          <span class="style-card__name">Glossy Pink</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/14-hyper-pop.jpg" alt="Hyper Pop" loading="lazy" decoding="async">
+          <span class="style-card__name">Hyper Pop</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/15-dark-editorial.jpg" alt="Dark Editorial" loading="lazy" decoding="async">
+          <span class="style-card__name">Dark Editorial</span>
+        </article>
+        <article class="style-card" tabindex="0">
+          <img src="assets/styles/16-bento-grid.jpg" alt="Bento Grid" loading="lazy" decoding="async">
+          <span class="style-card__name">Bento Grid</span>
+        </article>
       </div>
+    </div>
+
+    <div class="container">
+      <p class="style-marquee__hint" id="styleMarqueeHint">наведи на карточку, чтобы рассмотреть</p>
     </div>
   </section>
 
@@ -5291,202 +5162,46 @@
       });
     });
 
-    // Carousel Deck — 3D card stack
+    // Style Marquee — бесконечная лента-конвейер стилей
     (function() {
-      const stage = document.getElementById('carouselStage');
-      const nameEl = document.getElementById('carouselName');
-      const counterEl = document.getElementById('carouselCurrent');
-      const prevBtn = document.getElementById('carouselPrev');
-      const nextBtn = document.getElementById('carouselNext');
-      const hintEl = document.getElementById('carouselHint');
+      const marquee = document.getElementById('styleMarquee');
+      const track = document.getElementById('styleMarqueeTrack');
+      if (!marquee || !track) return;
 
-      if (!stage) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-      const cards = Array.from(stage.querySelectorAll('.carousel-deck__card'));
-      const total = cards.length;
-      let currentIndex = 0;
-      let isAnimating = false;
-
-      const styleNames = [
-        'Yellow Pop', 'Clean Editorial', 'Purple Gradient', 'Bold Pop',
-        'Warm Premium', 'Pastel Wellness', 'Magazine Editorial', 'Cyberpunk Neon',
-        'Organic Earth', 'Sticky Notes Education', 'Sage Journal', 'Dark Money',
-        'Glossy Pink', 'Hyper Pop', 'Dark Editorial', 'Bento Grid'
-      ];
-
-      const POSITION_CLASSES = [
-        'carousel-deck__card--0',
-        'carousel-deck__card--1',
-        'carousel-deck__card--2',
-        'carousel-deck__card--3',
-        'carousel-deck__card--hidden'
-      ];
-      const SWIPE_CLASSES = ['carousel-deck__card--swipe-left', 'carousel-deck__card--swipe-right'];
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-      function positionClassFor(offset) {
-        if (offset === 0) return 'carousel-deck__card--0';
-        if (offset === 1) return 'carousel-deck__card--1';
-        if (offset === 2) return 'carousel-deck__card--2';
-        if (offset === 3) return 'carousel-deck__card--3';
-        return 'carousel-deck__card--hidden';
+      // Дублируем набор карточек один раз — для бесшовного цикла
+      if (!reduced.matches) {
+        Array.from(track.children).forEach(node => {
+          const clone = node.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          clone.setAttribute('tabindex', '-1');
+          track.appendChild(clone);
+        });
       }
 
-      // Расставить карту на её позицию в стопке относительно текущего индекса
-      function placeCard(card, i) {
-        card.classList.remove(...POSITION_CLASSES, ...SWIPE_CLASSES);
-        const offset = (i - currentIndex + total) % total;
-        card.classList.add(positionClassFor(offset));
-      }
+      // Тач-устройства: тап фиксирует карточку и ставит ленту на паузу
+      if (window.matchMedia('(hover: none)').matches) {
+        const hint = document.getElementById('styleMarqueeHint');
+        if (hint) hint.textContent = 'коснись карточки, чтобы рассмотреть';
 
-      function updateDeck(direction) {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        const oldIndex = currentIndex;
-        if (direction === 'next') {
-          currentIndex = (currentIndex + 1) % total;
-        } else {
-          currentIndex = (currentIndex - 1 + total) % total;
+        let active = null;
+        function clearActive() {
+          if (active) { active.classList.remove('is-active'); active = null; }
+          marquee.classList.remove('is-paused');
         }
-
-        // Имя плавно гаснет, новый текст появится в момент завершения
-        nameEl.classList.add('carousel-deck__name--fading');
-
-        let finished = false;
-        let fallback;
-        let watchedCard = null;
-
-        function finish() {
-          if (finished) return;
-          finished = true;
-          if (watchedCard) watchedCard.removeEventListener('transitionend', onEnd);
-          clearTimeout(fallback);
-
-          // Нормализуем всю стопку под финальное состояние (идемпотентно)
-          cards.forEach(placeCard);
-
-          nameEl.textContent = styleNames[currentIndex];
-          counterEl.textContent = currentIndex + 1;
-          nameEl.classList.remove('carousel-deck__name--fading');
-
-          isAnimating = false;
-        }
-
-        function onEnd(e) {
-          if (e.target !== watchedCard || e.propertyName !== 'transform') return;
-          finish();
-        }
-
-        // Без анимации — переключаемся мгновенно (transitionend не придёт)
-        if (reducedMotion.matches) {
-          finish();
-          return;
-        }
-
-        if (direction === 'next') {
-          // Верхняя карта улетает влево, остальные синхронно поднимаются
-          const leavingCard = cards[oldIndex];
-          watchedCard = leavingCard;
-          cards.forEach((card, i) => {
-            if (card !== leavingCard) placeCard(card, i);
-          });
-          leavingCard.classList.remove(...POSITION_CLASSES, ...SWIPE_CLASSES);
-          leavingCard.classList.add('carousel-deck__card--swipe-left');
-        } else {
-          // Предыдущая карта прилетает справа на фронт, остальные синхронно опускаются
-          const incomingCard = cards[currentIndex];
-          watchedCard = incomingCard;
-          // Мгновенно (без перехода) ставим её за правый край, затем анимируем на фронт
-          incomingCard.classList.remove(...POSITION_CLASSES, ...SWIPE_CLASSES);
-          incomingCard.style.transition = 'none';
-          incomingCard.classList.add('carousel-deck__card--swipe-right');
-          void incomingCard.offsetWidth; // форсируем reflow, чтобы стартовая позиция применилась без анимации
-          incomingCard.style.transition = '';
-          incomingCard.classList.remove('carousel-deck__card--swipe-right');
-          cards.forEach((card, i) => {
-            if (card !== incomingCard) placeCard(card, i);
-          });
-          incomingCard.classList.add('carousel-deck__card--0');
-        }
-
-        watchedCard.addEventListener('transitionend', onEnd);
-        // Подстраховка на случай, если transitionend не придёт (длительность + запас)
-        fallback = setTimeout(finish, 700);
-      }
-
-      // Button navigation
-      prevBtn.addEventListener('click', () => updateDeck('prev'));
-      nextBtn.addEventListener('click', () => updateDeck('next'));
-
-      // Touch/swipe support
-      const SWIPE_THRESHOLD = 60; // единый порог для тача и мыши
-      let touchStartX = 0;
-      let touchEndX = 0;
-
-      stage.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      }, { passive: true });
-
-      stage.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-      }, { passive: true });
-
-      function handleSwipe() {
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > SWIPE_THRESHOLD) {
-          if (diff > 0) {
-            updateDeck('next');
-          } else {
-            updateDeck('prev');
-          }
-          hideHint();
-        }
-      }
-
-      // Mouse drag support (desktop)
-      let mouseDown = false;
-      let mouseStartX = 0;
-
-      stage.addEventListener('mousedown', (e) => {
-        mouseDown = true;
-        mouseStartX = e.clientX;
-        e.preventDefault();
-      });
-
-      document.addEventListener('mouseup', (e) => {
-        if (!mouseDown) return;
-        mouseDown = false;
-        const diff = mouseStartX - e.clientX;
-
-        if (Math.abs(diff) > SWIPE_THRESHOLD) {
-          if (diff > 0) {
-            updateDeck('next');
-          } else {
-            updateDeck('prev');
-          }
-          hideHint();
-        }
-      });
-
-      // Keyboard navigation
-      stage.setAttribute('tabindex', '0');
-      stage.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          updateDeck('prev');
-          hideHint();
-        } else if (e.key === 'ArrowRight') {
-          updateDeck('next');
-          hideHint();
-        }
-      });
-
-      function hideHint() {
-        if (hintEl && !hintEl.classList.contains('carousel-deck__hint--hidden')) {
-          hintEl.classList.add('carousel-deck__hint--hidden');
-        }
+        track.addEventListener('click', (e) => {
+          const card = e.target.closest('.style-card');
+          if (!card) return;
+          if (active === card) { clearActive(); return; }
+          if (active) active.classList.remove('is-active');
+          card.classList.add('is-active');
+          active = card;
+          marquee.classList.add('is-paused');
+        });
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('#styleMarquee')) clearActive();
+        });
       }
     })();
   </script>
