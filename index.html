@@ -4183,6 +4183,283 @@
         height: 275px;
       }
     }
+
+    /* ═══════════════════════════════════════
+       BLOCK: Платформа с уроками + Telegram-канал
+       ═══════════════════════════════════════ */
+    .platform {
+      /* alt→alt стык с #pricing смягчаем чуть большим нижним отступом,
+         чтобы крупный фрейм скриншота "дышал" */
+      padding-bottom: var(--space-25);
+    }
+
+    /* — Браузерный фрейм скриншота — */
+    .platform__shot {
+      max-width: 960px;
+      margin: 0 auto var(--space-12);
+    }
+
+    .browser-frame {
+      margin: 0;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform var(--motion-base), box-shadow var(--motion-base);
+      transform: perspective(1400px) rotateX(0deg) translateY(0);
+      will-change: transform;
+    }
+
+    .browser-frame__bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 16px;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .browser-frame__dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+    .browser-frame__dot:nth-child(1) { background: var(--accent-deep); }
+    .browser-frame__dot:nth-child(2) { background: var(--accent); }
+    .browser-frame__dot:nth-child(3) { background: var(--text-muted); }
+
+    .browser-frame__url {
+      margin-left: 12px;
+      font-size: var(--fs-2xs);
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .browser-frame__viewport {
+      position: relative;
+      aspect-ratio: 3024 / 1712;   /* точно под скриншот платформы, без обрезки */
+      overflow: hidden;            /* нужен для зума картинки на hover */
+      background:
+        radial-gradient(120% 140% at 50% 0%, rgba(var(--accent-rgb), 0.06), transparent 60%),
+        var(--bg);
+    }
+
+    /* реальная картинка (когда плейсхолдер заменят на <img>) */
+    .browser-frame__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.001);     /* старт без видимого зума */
+      transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    /* плейсхолдер — выглядит законченно без файла */
+    .browser-frame__placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--text-muted);
+      background-image:
+        var(--noise-bg),
+        repeating-linear-gradient(135deg,
+          rgba(45, 37, 32, 0.02) 0 22px,
+          rgba(45, 37, 32, 0.045) 22px 44px);
+      background-size: 160px 160px, auto;
+      background-blend-mode: multiply, normal;
+    }
+    .browser-frame__placeholder-icon {
+      font-size: 40px;
+      filter: grayscale(0.1);
+      opacity: 0.9;
+    }
+    .browser-frame__placeholder-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: var(--fs-md);
+      letter-spacing: 0.01em;
+    }
+
+    /* блик (sheen), пробегающий по экрану на hover */
+    .browser-frame__sheen {
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 50%;
+      height: 100%;
+      pointer-events: none;
+      background: linear-gradient(100deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.28) 50%,
+        rgba(255, 255, 255, 0) 100%);
+      transform: skewX(-18deg);
+      transition: left 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 2;
+    }
+
+    /* hover-анимация (desktop): подъём + наклон + усиление тени + зум картинки + пробег блика */
+    @media (hover: hover) and (pointer: fine) {
+      .browser-frame:hover {
+        transform: perspective(1400px) rotateX(2deg) translateY(-6px);
+        box-shadow: var(--shadow-floating);
+      }
+      .browser-frame:hover .browser-frame__img {
+        transform: scale(1.05);
+      }
+      .browser-frame:hover .browser-frame__sheen {
+        left: 110%;
+      }
+    }
+
+    /* — Две карточки: платформа / канал — */
+    .platform__cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+      max-width: 960px;
+      margin: 0 auto var(--space-8);
+    }
+
+    .platform-card {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: var(--space-8) var(--space-6);
+      overflow: hidden;
+      isolation: isolate;
+      transition: border-color var(--motion-fast), box-shadow var(--motion-base), transform var(--motion-base);
+    }
+    .platform-card::before {
+      content: "";
+      position: absolute;
+      top: -25%;
+      right: -20%;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(var(--accent-rgb), 0.16) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      transition: transform 0.8s ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .platform-card:hover {
+        border-color: rgba(var(--accent-rgb), 0.35);
+        box-shadow: 0 18px 44px -22px rgba(45, 37, 32, 0.22);
+        transform: translateY(-3px);
+      }
+      .platform-card:hover::before {
+        transform: scale(1.15) translate(-8px, 8px);
+      }
+    }
+
+    .platform-card__icon {
+      font-size: var(--fs-3xl);
+      line-height: 1;
+      margin-bottom: var(--space-4);
+    }
+    .platform-card__title {
+      font-size: var(--fs-md);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .platform-card__text {
+      font-size: var(--fs-body-large);
+      line-height: var(--lh-text);
+      color: var(--text-muted);
+    }
+
+    /* — Плашка «любой тариф» + CTA — */
+    .platform__access {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-8);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--card-shadow);
+    }
+    .platform__access-text {
+      font-size: var(--fs-body-large);
+      line-height: var(--lh-text);
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .platform__access-mark {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--accent-contrast);
+      margin-right: 8px;
+    }
+
+    /* — Адаптив: планшет — */
+    @media (max-width: 768px) {
+      .platform__shot {
+        margin-bottom: var(--space-8);
+      }
+      .platform__cards {
+        gap: var(--space-4);
+      }
+      .browser-frame__bar {
+        height: 34px;
+        padding: 0 12px;
+      }
+      .platform__access {
+        padding: var(--space-6);
+      }
+    }
+
+    /* — Адаптив: мобайл — */
+    @media (max-width: 600px) {
+      .platform__cards {
+        grid-template-columns: 1fr;   /* карточки в столбик */
+      }
+      .browser-frame__url {
+        display: none;                /* псевдо-URL прячем на узких экранах */
+      }
+      .platform-card {
+        padding: var(--space-6);
+      }
+      /* на тач-устройствах наклон/зум-перспектива не нужны — статичный фрейм */
+      .browser-frame {
+        transform: none;
+      }
+    }
+
+    /* — Доступность: меньше движения — */
+    @media (prefers-reduced-motion: reduce) {
+      .browser-frame,
+      .browser-frame__img,
+      .browser-frame__sheen,
+      .platform-card,
+      .platform-card::before {
+        transition: none;
+      }
+      .browser-frame:hover {
+        transform: none;
+      }
+      .browser-frame:hover .browser-frame__img {
+        transform: scale(1);
+      }
+      .browser-frame:hover .browser-frame__sheen {
+        left: -60%;                   /* блик не запускаем */
+      }
+    }
   </style>
 </head>
 <body>
@@ -4747,6 +5024,58 @@
             Я пользуюсь контент-заводом каждый день, он экономит мне часы, это не фигура речи. Сейчас цена снижена: мне важны твои кейсы и обратная связь.
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK: Платформа с уроками + Telegram-канал
+       Доступ на любом тарифе. Скриншот платформы.
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt platform" id="platform">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">🎓 Платформа и канал</div>
+        <h2 class="section__title">Не просто файлы, а целая <em>платформа</em></h2>
+        <p class="section__subtitle">К контент-заводу идёт обучающая платформа с уроками и Telegram-канал с обновлениями. Доступ открыт на любом тарифе: и на самостоятельном, и под ключ.</p>
+      </div>
+
+      <!-- Скриншот платформы в браузерном фрейме -->
+      <div class="platform__shot reveal">
+        <figure class="browser-frame">
+          <div class="browser-frame__bar">
+            <span class="browser-frame__dot"></span>
+            <span class="browser-frame__dot"></span>
+            <span class="browser-frame__dot"></span>
+            <span class="browser-frame__url">kzacademy.ungurenko.ru</span>
+          </div>
+          <div class="browser-frame__viewport">
+            <img class="browser-frame__img" src="https://my-data.s3.twcstorage.ru/2026-06-19-22.34.24-7a2187.jpg" alt="Обучающая платформа контент-завода: уроки и материалы" loading="lazy" decoding="async" width="3024" height="1712">
+            <span class="browser-frame__sheen" aria-hidden="true"></span>
+          </div>
+        </figure>
+      </div>
+
+      <!-- Два пункта: платформа и канал -->
+      <div class="platform__cards reveal">
+        <div class="platform-card">
+          <div class="platform-card__icon">📚</div>
+          <h3 class="platform-card__title">Уроки на платформе</h3>
+          <p class="platform-card__text">Пошаговые видео и разборы: как установить контент-завод, заполнить базу знаний и выжать максимум из каждого инструмента. Открываешь, смотришь, повторяешь.</p>
+        </div>
+        <div class="platform-card">
+          <div class="platform-card__icon">📡</div>
+          <h3 class="platform-card__title">Telegram-канал</h3>
+          <p class="platform-card__text">Новости, обновления и улучшения контент-завода падают в канал первыми. Новый инструмент, фишка или апдейт: ты узнаёшь сразу и забираешь.</p>
+        </div>
+      </div>
+
+      <!-- Плашка «любой тариф» -->
+      <div class="platform__access reveal">
+        <p class="platform__access-text">
+          <span class="platform__access-mark">✓ На любом тарифе</span>
+          Платформа и канал входят и в самостоятельный доступ, и в вариант под ключ. Доплачивать не нужно.
+        </p>
       </div>
     </div>
   </section>
