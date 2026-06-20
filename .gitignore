@@ -25,3 +25,4 @@ node_modules/
 .playwright-mcp/
 mobile-*.png
 mobile-*.jpeg
+.superpowers/

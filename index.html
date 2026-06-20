@@ -2030,10 +2030,18 @@
        ═══════════════════════════════════════ */
     .pricing-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px;
-      max-width: 520px;
+      max-width: 940px;
       margin: 32px auto 36px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 760px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+      }
     }
 
     .pricing-card {
@@ -2084,7 +2092,7 @@
 
     /* Декоративная печать-штамп «ПОД КЛЮЧ» в углу */
     .pricing-card--featured::after {
-      content: '★ ПОД КЛЮЧ';
+      content: '★ СТАРТ';
       position: absolute;
       top: 72px;
       right: 18px;
@@ -4750,10 +4758,10 @@
         34 инструмента для контента, <em>которые знают твой стиль</em>, тему и аудиторию
       </h1>
       <p class="hero__subtitle">
-        Ставишь один раз на компьютер. Система читает твои посты и собирает из них пост, карусель или статью за 2–5 минут. Платишь за систему один раз, дальше она твоя.
+        Ставишь один раз на компьютер. Система читает твои посты и собирает черновик поста, карусели или статьи за 2–5 минут, дальше правишь под себя. Платишь за систему один раз, дальше она твоя.
       </p>
       <div class="hero__price-note">
-        <span>🔥</span> Под ключ <s>49 990 ₽</s> <strong>24 990 ₽</strong>, настройка вместе с тобой
+        <span>🔥</span> Старт <s>20 000 ₽</s> <strong>от 9 990 ₽</strong>, под ключ 24 990 ₽
       </div>
       <div class="hero__cta">
         <a href="#pricing" class="hero__button" aria-label="Хочу контент-завод">
@@ -4767,7 +4775,7 @@
             <span class="hero__button-stub-perf hero__button-stub-perf--top"></span>
             <span class="hero__button-stub-perf hero__button-stub-perf--bot"></span>
             <span class="hero__button-stub-label">от</span>
-            <span class="hero__button-stub-value">24 990 ₽</span>
+            <span class="hero__button-stub-value">9 990 ₽</span>
           </span>
         </a>
       </div>
@@ -4799,7 +4807,7 @@
     <div class="container">
       <div class="section__header section__header--center reveal">
         <div class="section__badge">📦 Что это</div>
-        <h2 class="section__title">Что ты получаешь за <em>24 990 ₽</em></h2>
+        <h2 class="section__title">Что входит в <em>контент-завод</em></h2>
         <p class="section__subtitle">Контент-завод ставит 34 готовых инструмента прямо на твой компьютер, внутри Claude или ChatGPT. Ставим их вместе за один созвон. Дальше ты пишешь обычными словами, а система делает.</p>
       </div>
       <div class="platform__cards reveal">
@@ -5593,7 +5601,32 @@
           <div class="pricing-glow-bg"></div>
           <div class="pricing-label">Акция -50%</div>
           <div class="pricing-title-wrap">
-            <span class="pricing-icon">🚀</span>
+            <span class="pricing-icon">🟢</span>
+            <h3 class="pricing-title">Сам</h3>
+          </div>
+          <div class="pricing-price">
+            <span class="pricing-price__old">20 000 ₽</span>
+            <span class="pricing-price__new">9 990 <span class="pricing-price__currency">₽</span></span>
+          </div>
+          <div class="pricing-savings">💸 Экономия 10 010 ₽</div>
+          <p class="pricing-desc">Ставишь завод сам по пошаговым урокам. Для тех, кто готов разобраться без созвона.</p>
+          <div class="pricing-includes-label">Что ты получаешь:</div>
+          <ul class="pricing-includes">
+            <li>Доступ к платформе с пошаговыми уроками установки</li>
+            <li>Все 34 инструмента, база знаний, стили каруселей</li>
+            <li>Общий чат поддержки, если что-то не получается</li>
+            <li>Обновления и новые инструменты в Telegram-канале</li>
+          </ul>
+          <a href="https://t.me/m/N0bTmb18OTUy" target="_blank" rel="noopener" class="btn btn--large btn--full btn--accent">
+            Начать самому
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="pricing-card reveal">
+          <div class="pricing-label pricing-label--disabled">Акция -50%</div>
+          <div class="pricing-title-wrap">
+            <span class="pricing-icon">🔵</span>
             <h3 class="pricing-title">Под ключ</h3>
           </div>
           <div class="pricing-price">
@@ -5601,18 +5634,18 @@
             <span class="pricing-price__new">24 990 <span class="pricing-price__currency">₽</span></span>
           </div>
           <div class="pricing-savings">💸 Экономия 25 000 ₽</div>
-          <p class="pricing-desc">Цена снижена вдвое, пока я собираю отзывы и кейсы первых клиентов. Наберу нужное количество, и она вернётся к 49 990 ₽.</p>
-          <p class="pricing-desc">Полная совместная настройка системы, онбординг и создание готовых материалов на неделю.</p>
-          <div class="pricing-includes-label">Что ты получаешь:</div>
+          <p class="pricing-desc">Всё из тарифа «Сам», плюс я ставлю и настраиваю завод за тебя на созвоне.</p>
+          <div class="pricing-includes-label">Дополнительно к тарифу «Сам»:</div>
           <ul class="pricing-includes">
-            <li>Установка системы вместе с тобой</li>
-            <li>Совместный онбординг и калибровка</li>
-            <li>Заполнение базы знаний</li>
-            <li>Обучение использованию всех инструментов</li>
-            <li class="bonus-item">Бонус: Контент на первую неделю</li>
+            <li>Созвон: ставлю завод удалённо на твой компьютер</li>
+            <li>Совместный онбординг и калибровка под твой стиль</li>
+            <li>Заполняю базу знаний вместе с тобой</li>
+            <li>Учу пользоваться всеми инструментами</li>
+            <li>30 дней личной поддержки в чате после установки</li>
+            <li class="bonus-item">Бонус: контент на первую неделю</li>
           </ul>
           <a href="https://t.me/m/N0bTmb18OTUy" target="_blank" rel="noopener" class="btn btn--large btn--full btn--accent">
-            Оставить заявку
+            Поставить под ключ
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -5620,8 +5653,12 @@
 
       <div class="pricing-anchors reveal">
         <div class="pricing-anchor">
-          <div class="pricing-anchor__label">Контент-завод под ключ</div>
-          <div class="pricing-anchor__value text-accent">24 990 ₽</div>
+          <div class="pricing-anchor__label">Сам, по урокам</div>
+          <div class="pricing-anchor__value text-accent">9 990 ₽</div>
+        </div>
+        <div class="pricing-anchor">
+          <div class="pricing-anchor__label">Под ключ, с установкой</div>
+          <div class="pricing-anchor__value">24 990 ₽</div>
         </div>
         <div class="pricing-anchor">
           <div class="pricing-anchor__label">Подписка Claude или ChatGPT</div>
@@ -5629,7 +5666,7 @@
         </div>
       </div>
 
-      <p class="pricing-note reveal">Под ключ: настраиваем вместе на твоём компьютере, заполняем базу знаний, обучаем и даём контент на первую неделю. Помогаю с установкой и настройкой, дальше остаёмся на связи в чате. Кроме разовой оплаты и подписки Claude или ChatGPT, система с тебя ничего не берёт.</p>
+      <p class="pricing-note reveal">«Сам»: ставишь завод по пошаговым урокам, поддержка в общем чате. «Под ключ»: настраиваем вместе на твоём компьютере, заполняем базу знаний, 30 дней личной поддержки и контент на первую неделю. Цена снижена вдвое, пока я собираю отзывы первых клиентов: наберу нужное количество, и тарифы вернутся к полной цене. Кроме разовой оплаты и подписки Claude или ChatGPT, система с тебя ничего не берёт.</p>
     </div>
   </section>
 
@@ -5684,7 +5721,7 @@
             <span>На какой модели ИИ лучше запускать контент-завод?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-answer" id="faq-a-5" role="region" aria-labelledby="faq-q-5"><div class="faq-answer__inner">Контент-завод работает на любой модели: Claude, ChatGPT, Gemini, без разницы. Но я рекомендую именно <strong>Codex (ChatGPT 5.5)</strong>. Он лучше всех понимает и выполняет инструкции, а это ключевое для качества контента. Другие модели тоже работают, но с Codex результат стабильно лучше. Я тестировал лично.</div></div>
+          <div class="faq-answer" id="faq-a-5" role="region" aria-labelledby="faq-q-5"><div class="faq-answer__inner">Контент-завод раскрывается лучше всего на <strong>Claude или ChatGPT</strong>, это моя рабочая пара. Эти модели точнее всех понимают и выполняют инструкции, а это ключевое для качества контента. Запускается и на других, вроде Gemini, но с Claude или ChatGPT результат стабильно лучше. Проверял лично.</div></div>
         </div>
 
         <div class="faq-item">
@@ -5724,7 +5761,7 @@
             <span>Она становится лучше, чем дольше я работаю?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-answer" id="faq-a-10" role="region" aria-labelledby="faq-q-10"><div class="faq-answer__inner">Да. После каждой сессии система сама дописывает свои рабочие файлы и запоминает твои правки, у неё для этого есть память и саморефлексия. Чем чаще говоришь, что понравилось и что поправить, тем точнее она пишет дальше. Правило простое: всегда давай обратную связь, и система подстраивается под тебя сама.</div></div>
+          <div class="faq-answer" id="faq-a-10" role="region" aria-labelledby="faq-q-10"><div class="faq-answer__inner">Да. После каждой сессии система запоминает твои правки в обычные файлы на твоём компьютере, их можно открыть и посмотреть. Чем чаще говоришь, что понравилось и что поправить, тем точнее она пишет дальше. Правило простое: всегда давай обратную связь, и система подстраивается под тебя сама.</div></div>
         </div>
 
       </div>
@@ -5748,10 +5785,10 @@
       <div class="final-cta__buttons">
         <div class="final-cta__btn-wrap">
           <a href="https://t.me/m/N0bTmb18OTUy" target="_blank" rel="noopener" class="btn btn--large btn--accent">
-            Забрать за 24 990 ₽
+            Начать от 9 990 ₽
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <p class="final-cta__btn-desc">Настраиваем вместе у тебя на компьютере. Через неделю ты в системе сам.</p>
+          <p class="final-cta__btn-desc">Сам по урокам или под ключ со мной, формат выбираешь в переписке.</p>
         </div>
       </div>
     </div>
