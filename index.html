@@ -4302,6 +4302,420 @@
         left: -60%;                   /* блик не запускаем */
       }
     }
+
+    /* ═══════════════════════════════════════
+       BLOCK: Что выдаёт завод (примеры постов + карусели)
+       ═══════════════════════════════════════ */
+    .works__sub + .works__sub { margin-top: var(--space-18); }
+    .works__sub-title {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: var(--fs-lg);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: var(--space-2);
+    }
+    .works__sub-note {
+      text-align: center;
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+      margin-bottom: var(--space-8);
+    }
+
+    /* — Карточки постов в стиле Telegram — */
+    .tg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .tgpost {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: var(--space-6);
+      box-shadow: var(--card-shadow);
+      transition: border-color var(--motion-fast), box-shadow var(--motion-base), transform var(--motion-base);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .tgpost:hover {
+        border-color: rgba(var(--accent-rgb), 0.30);
+        box-shadow: 0 18px 44px -22px rgba(45, 37, 32, 0.22);
+        transform: translateY(-3px);
+      }
+    }
+    .tgpost__head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    .tgpost__avatar {
+      flex: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+      box-shadow: 0 4px 12px -4px rgba(var(--accent-rgb), 0.5);
+    }
+    .tgpost__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .tgpost__id { flex: 1 1 auto; min-width: 0; }
+    .tgpost__chan {
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .tgpost__handle {
+      font-size: var(--fs-2xs);
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tgpost__type {
+      margin-left: auto;
+      flex: none;
+      align-self: flex-start;
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      color: var(--accent-hover);
+      background: var(--accent-light);
+      border: 1px solid rgba(var(--accent-rgb), 0.22);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+    .tgpost__body {
+      font-size: var(--fs-sm);
+      line-height: var(--lh-text);
+      color: var(--text);
+      margin: 0 0 var(--space-5);
+    }
+    .tgpost__hook { font-weight: 700; }
+    .tgpost__excerpt { color: var(--text-muted); }
+    .tgpost__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-top: auto;
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .tgpost__react {
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-alt);
+      border-radius: var(--radius-pill);
+      padding: 3px 9px;
+    }
+    .tgpost__views {
+      margin-left: auto;
+      font-size: var(--fs-2xs);
+      color: var(--text-muted);
+    }
+    .tgpost__more {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      align-self: flex-start;
+      margin-top: var(--space-4);
+      padding: 7px 0;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--accent-hover);
+      text-decoration: none;
+      transition: color var(--motion-fast);
+    }
+    .tgpost__more svg { flex: none; }
+    .tgpost__more-arr { transition: transform var(--motion-fast); }
+    .tgpost__more:hover { color: var(--accent); }
+    .tgpost__more:hover .tgpost__more-arr { transform: translateX(3px); }
+    .tgpost__more:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* — Веер обложек каруселей — */
+    .cara-deck {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .cara-cover {
+      position: relative;
+      width: 156px;
+      flex: none;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      transition: transform var(--motion-base);
+    }
+    /* «разложенная колода»: лёгкий наклон, как руками */
+    .cara-deck .cara-cover:nth-child(odd) { transform: rotate(-2.4deg); }
+    .cara-deck .cara-cover:nth-child(even) { transform: rotate(2deg); }
+    .cara-cover__frame {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--bg-dark);
+      box-shadow: 0 10px 30px -14px rgba(45, 37, 32, 0.45);
+      border: 1px solid var(--border);
+    }
+    .cara-cover__frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-md);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+      pointer-events: none;
+    }
+    .cara-cover__img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      transition: transform var(--motion-base);
+    }
+    .cara-cover__count {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      color: #fff;
+      background: rgba(26, 23, 20, 0.72);
+      backdrop-filter: blur(4px);
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+    }
+    .cara-cover__open {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%) translateY(6px);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(254, 254, 254, 0.94);
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 4px 14px -4px rgba(45, 37, 32, 0.4);
+      transition: opacity var(--motion-base), transform var(--motion-base);
+    }
+    .cara-cover__cap {
+      display: block;
+      margin-top: var(--space-3);
+      font-size: var(--fs-2xs);
+      line-height: 1.35;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .cara-deck:hover .cara-cover { transform: rotate(0deg); filter: saturate(0.92) brightness(0.97); }
+      .cara-deck .cara-cover:hover {
+        transform: rotate(0deg) translateY(-8px) scale(1.03);
+        filter: none;
+        z-index: 2;
+      }
+      .cara-cover:hover .cara-cover__img { transform: scale(1.05); }
+      .cara-cover:hover .cara-cover__open { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    .cara-cover:focus-visible { outline: none; }
+    .cara-cover:focus-visible .cara-cover__frame {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    /* — Лайтбокс карусели — */
+    .cbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(12px, 4vw, 48px);
+      background: rgba(20, 17, 14, 0.86);
+      backdrop-filter: blur(6px);
+    }
+    .cbox.is-open { display: flex; }
+    .cbox__stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .cbox__img {
+      display: block;
+      max-width: min(86vw, 540px);
+      max-height: 84vh;
+      border-radius: var(--radius-md);
+      box-shadow: 0 24px 70px -20px rgba(0, 0, 0, 0.7);
+      background: var(--bg-dark);
+    }
+    .cbox__counter {
+      position: absolute;
+      top: -34px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
+      letter-spacing: 0.02em;
+    }
+    .cbox__nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: rgba(254, 254, 254, 0.92);
+      color: var(--text);
+      font-size: 1.5rem;
+      line-height: 1;
+      box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.5);
+      transition: background var(--motion-fast), transform var(--motion-fast);
+    }
+    .cbox__nav:hover { background: #fff; transform: translateY(-50%) scale(1.06); }
+    .cbox__nav:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .cbox__nav--prev { left: -64px; }
+    .cbox__nav--next { right: -64px; }
+    .cbox__close {
+      position: absolute;
+      top: -42px;
+      right: -8px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: rgba(254, 254, 254, 0.16);
+      color: #fff;
+      font-size: 1.3rem;
+      line-height: 1;
+      transition: background var(--motion-fast);
+    }
+    .cbox__close:hover { background: rgba(254, 254, 254, 0.30); }
+    .cbox__close:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    /* — Блок отзывов: лента сообщений Telegram — */
+    .rev-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .rev-msg {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-3);
+    }
+    .rev-msg__avatar {
+      flex: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: var(--fs-md);
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      box-shadow: 0 4px 12px -4px rgba(39, 174, 96, 0.5);
+    }
+    .rev-msg__body { min-width: 0; flex: 1 1 auto; }
+    .rev-msg__name {
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      color: var(--green-dark);
+      margin: 0 0 7px 4px;
+    }
+    .rev-msg__niche {
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .rev-msg__bubble {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px 18px 18px 18px;
+      padding: var(--space-5) var(--space-6) var(--space-4);
+      box-shadow: var(--card-shadow);
+    }
+    .rev-msg__text {
+      font-size: var(--fs-body-large);
+      line-height: var(--lh-text);
+      color: var(--text);
+      margin: 0;
+    }
+    .rev-msg__meta {
+      display: block;
+      text-align: right;
+      margin-top: var(--space-3);
+      font-size: var(--fs-2xs);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .rev-msg__checks {
+      color: #4aa3e0;
+      margin-left: 4px;
+      font-weight: 700;
+      letter-spacing: -3px;
+    }
+
+    /* — Адаптив примеров и отзывов — */
+    @media (max-width: 760px) {
+      .tg-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+      }
+      .works__sub + .works__sub { margin-top: var(--space-14); }
+      .cara-cover { width: 150px; }
+      .cbox__nav--prev { left: 4px; }
+      .cbox__nav--next { right: 4px; }
+      .cbox__nav { background: rgba(254, 254, 254, 0.85); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cara-deck .cara-cover,
+      .cara-deck:hover .cara-cover,
+      .cara-deck .cara-cover:hover { transform: none; }
+    }
   </style>
 </head>
 <body>
@@ -4955,10 +5369,217 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       BLOCK: Доказательства (отзывы + примеры постов)
-       Готовый шаблон и инструкции лежат в файле ПЛАН-следующая-сессия.md
-       Вставить этот блок сюда после получения отзывов и примеров постов.
+       BLOCK: Что выдаёт завод (примеры постов + карусели)
        ═══════════════════════════════════════ -->
+  <section class="section" id="works">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">✍️ Мой блог</div>
+        <h2 class="section__title">Я веду блог <em>через контент-завод</em></h2>
+        <p class="section__subtitle">Регулярно собираю через него посты и карусели в свой канал. Вот несколько реальных примеров.</p>
+      </div>
+
+      <!-- Подблок 1: посты -->
+      <div class="works__sub reveal">
+        <h3 class="works__sub-title">Посты, собранные заводом</h3>
+        <p class="works__sub-note">Один стиль, разные задачи: история, экспертный разбор, продающий, прогрев.</p>
+        <div class="tg-grid">
+
+          <article class="tgpost">
+            <div class="tgpost__head">
+              <div class="tgpost__avatar"><img src="assets/img/channel-avatar.jpg" alt="" width="40" height="40" loading="lazy" decoding="async"></div>
+              <div class="tgpost__id">
+                <div class="tgpost__chan">УНГУРЕНКО | про нейросети и продажи</div>
+                <div class="tgpost__handle">@ungurenko_adout_digital</div>
+              </div>
+              <span class="tgpost__type">Сторителлинг</span>
+            </div>
+            <p class="tgpost__body"><span class="tgpost__hook">Недавно на три дня уехал в Красную Поляну в мини-отпуск.</span> <span class="tgpost__excerpt">Ездил один, ноутбук с собой не взял вообще, хотелось просто вытащить себя из обычного режима. Самое ценное было в ощущении, что я наконец переключился из головы в тело.</span></p>
+            <div class="tgpost__meta">
+              <span class="tgpost__react">🔥 9</span>
+              <span class="tgpost__react">❤️ 7</span>
+              <span class="tgpost__views">👁 443</span>
+            </div>
+            <a class="tgpost__more" href="https://t.me/ungurenko_adout_digital/1852" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M21.94 4.3 18.9 19.12c-.22 1-.82 1.25-1.66.78l-4.6-3.4-2.22 2.14c-.25.24-.45.45-.92.45l.33-4.67 8.5-7.68c.37-.33-.08-.51-.58-.18L6.8 13.06l-4.53-1.42c-.98-.3-1-.98.2-1.45L20.5 2.9c.82-.3 1.53.2 1.44 1.4z"/></svg>
+              Читать пост целиком
+              <span class="tgpost__more-arr">→</span>
+            </a>
+          </article>
+
+          <article class="tgpost">
+            <div class="tgpost__head">
+              <div class="tgpost__avatar"><img src="assets/img/channel-avatar.jpg" alt="" width="40" height="40" loading="lazy" decoding="async"></div>
+              <div class="tgpost__id">
+                <div class="tgpost__chan">УНГУРЕНКО | про нейросети и продажи</div>
+                <div class="tgpost__handle">@ungurenko_adout_digital</div>
+              </div>
+              <span class="tgpost__type">Экспертный разбор</span>
+            </div>
+            <p class="tgpost__body"><span class="tgpost__hook">Сегодня в 5 утра я уже тестировал Claude Fable 5.</span> <span class="tgpost__excerpt">Вчера Anthropic выпустили новую модель. Почти сразу понял: для обычной генерации контента это перебор, модель нового Mythos-класса, выше Opus по возможностям.</span></p>
+            <div class="tgpost__meta">
+              <span class="tgpost__react">❤️ 6</span>
+              <span class="tgpost__react">🔥 3</span>
+              <span class="tgpost__views">👁 544</span>
+            </div>
+            <a class="tgpost__more" href="https://t.me/ungurenko_adout_digital/1861" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M21.94 4.3 18.9 19.12c-.22 1-.82 1.25-1.66.78l-4.6-3.4-2.22 2.14c-.25.24-.45.45-.92.45l.33-4.67 8.5-7.68c.37-.33-.08-.51-.58-.18L6.8 13.06l-4.53-1.42c-.98-.3-1-.98.2-1.45L20.5 2.9c.82-.3 1.53.2 1.44 1.4z"/></svg>
+              Читать пост целиком
+              <span class="tgpost__more-arr">→</span>
+            </a>
+          </article>
+
+          <article class="tgpost">
+            <div class="tgpost__head">
+              <div class="tgpost__avatar"><img src="assets/img/channel-avatar.jpg" alt="" width="40" height="40" loading="lazy" decoding="async"></div>
+              <div class="tgpost__id">
+                <div class="tgpost__chan">УНГУРЕНКО | про нейросети и продажи</div>
+                <div class="tgpost__handle">@ungurenko_adout_digital</div>
+              </div>
+              <span class="tgpost__type">Продающий</span>
+            </div>
+            <p class="tgpost__body"><span class="tgpost__hook">Я кайфую от ИИ-агента, которого разрабатываю, это реально магия.</span> <span class="tgpost__excerpt">Он сам пишет посты, сам публикует, сам форматирует. Скажешь «зарелизь обновление», он соберёт, протестирует, выложит и напишет пост в канал. И всё это с телефона, прямо в Telegram.</span></p>
+            <div class="tgpost__meta">
+              <span class="tgpost__react">🔥 28</span>
+              <span class="tgpost__react">❤️ 6</span>
+              <span class="tgpost__views">👁 538</span>
+            </div>
+            <a class="tgpost__more" href="https://t.me/ungurenko_adout_digital/1849" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M21.94 4.3 18.9 19.12c-.22 1-.82 1.25-1.66.78l-4.6-3.4-2.22 2.14c-.25.24-.45.45-.92.45l.33-4.67 8.5-7.68c.37-.33-.08-.51-.58-.18L6.8 13.06l-4.53-1.42c-.98-.3-1-.98.2-1.45L20.5 2.9c.82-.3 1.53.2 1.44 1.4z"/></svg>
+              Читать пост целиком
+              <span class="tgpost__more-arr">→</span>
+            </a>
+          </article>
+
+          <article class="tgpost">
+            <div class="tgpost__head">
+              <div class="tgpost__avatar"><img src="assets/img/channel-avatar.jpg" alt="" width="40" height="40" loading="lazy" decoding="async"></div>
+              <div class="tgpost__id">
+                <div class="tgpost__chan">УНГУРЕНКО | про нейросети и продажи</div>
+                <div class="tgpost__handle">@ungurenko_adout_digital</div>
+              </div>
+              <span class="tgpost__type">Прогревающий</span>
+            </div>
+            <p class="tgpost__body"><span class="tgpost__hook">Сколько контента ты НЕ сделал в этом месяце просто потому, что не было сил сесть и написать?</span> <span class="tgpost__excerpt">Знаю это чувство. Я собрал систему, которая помнит про меня вообще всё. Кидаю ей тему обычными словами, а она возвращает пост в моём стиле, с моими словами и интонацией.</span></p>
+            <div class="tgpost__meta">
+              <span class="tgpost__react">❤️ 7</span>
+              <span class="tgpost__react">🔥 5</span>
+              <span class="tgpost__views">👁 262</span>
+            </div>
+            <a class="tgpost__more" href="https://t.me/ungurenko_adout_digital/1865" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M21.94 4.3 18.9 19.12c-.22 1-.82 1.25-1.66.78l-4.6-3.4-2.22 2.14c-.25.24-.45.45-.92.45l.33-4.67 8.5-7.68c.37-.33-.08-.51-.58-.18L6.8 13.06l-4.53-1.42c-.98-.3-1-.98.2-1.45L20.5 2.9c.82-.3 1.53.2 1.44 1.4z"/></svg>
+              Читать пост целиком
+              <span class="tgpost__more-arr">→</span>
+            </a>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Подблок 2: карусели -->
+      <div class="works__sub reveal">
+        <h3 class="works__sub-title">Карусели для Instagram</h3>
+        <p class="works__sub-note">Наведи и нажми на обложку, чтобы пролистать все слайды.</p>
+        <div class="cara-deck">
+
+          <button type="button" class="cara-cover" data-slug="claude-context" data-count="10" data-title="Главная настройка Claude для блога">
+            <span class="cara-cover__frame">
+              <img class="cara-cover__img" src="assets/carousels/claude-context/slide-01.jpg" alt="Карусель: главная настройка Claude для блога" loading="lazy" decoding="async">
+              <span class="cara-cover__count">10 слайдов</span>
+              <span class="cara-cover__open" aria-hidden="true">🔍 листать</span>
+            </span>
+            <span class="cara-cover__cap">Главная настройка Claude для блога</span>
+          </button>
+
+          <button type="button" class="cara-cover" data-slug="content-plan" data-count="8" data-title="Контент-план на неделю через ИИ">
+            <span class="cara-cover__frame">
+              <img class="cara-cover__img" src="assets/carousels/content-plan/slide-01.jpg" alt="Карусель: контент-план на неделю через ИИ" loading="lazy" decoding="async">
+              <span class="cara-cover__count">8 слайдов</span>
+              <span class="cara-cover__open" aria-hidden="true">🔍 листать</span>
+            </span>
+            <span class="cara-cover__cap">Контент-план на неделю через ИИ</span>
+          </button>
+
+          <button type="button" class="cara-cover" data-slug="stories" data-count="8" data-title="5 сторис, которые ведут к заявке">
+            <span class="cara-cover__frame">
+              <img class="cara-cover__img" src="assets/carousels/stories/slide-01.jpg" alt="Карусель: 5 сторис, которые ведут к заявке" loading="lazy" decoding="async">
+              <span class="cara-cover__count">8 слайдов</span>
+              <span class="cara-cover__open" aria-hidden="true">🔍 листать</span>
+            </span>
+            <span class="cara-cover__cap">5 сторис, которые ведут к заявке</span>
+          </button>
+
+          <button type="button" class="cara-cover" data-slug="profile-audit" data-count="8" data-title="ИИ-аудит профиля">
+            <span class="cara-cover__frame">
+              <img class="cara-cover__img" src="assets/carousels/profile-audit/slide-01.jpg" alt="Карусель: ИИ-аудит профиля" loading="lazy" decoding="async">
+              <span class="cara-cover__count">8 слайдов</span>
+              <span class="cara-cover__open" aria-hidden="true">🔍 листать</span>
+            </span>
+            <span class="cara-cover__cap">ИИ-аудит профиля</span>
+          </button>
+
+          <button type="button" class="cara-cover" data-slug="webinar-landing" data-count="8" data-title="Лендинг под вебинар за 15 минут">
+            <span class="cara-cover__frame">
+              <img class="cara-cover__img" src="assets/carousels/webinar-landing/slide-01.jpg" alt="Карусель: лендинг под вебинар за 15 минут" loading="lazy" decoding="async">
+              <span class="cara-cover__count">8 слайдов</span>
+              <span class="cara-cover__open" aria-hidden="true">🔍 листать</span>
+            </span>
+            <span class="cara-cover__cap">Лендинг под вебинар за 15 минут</span>
+          </button>
+
+          <button type="button" class="cara-cover" data-slug="5-phrases" data-count="8" data-title="5 фраз, чтобы нейросеть писала точнее">
+            <span class="cara-cover__frame">
+              <img class="cara-cover__img" src="assets/carousels/5-phrases/slide-01.jpg" alt="Карусель: 5 фраз, чтобы нейросеть писала точнее" loading="lazy" decoding="async">
+              <span class="cara-cover__count">8 слайдов</span>
+              <span class="cara-cover__open" aria-hidden="true">🔍 листать</span>
+            </span>
+            <span class="cara-cover__cap">5 фраз, чтобы нейросеть писала точнее</span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Лайтбокс для слайдов карусели -->
+    <div class="cbox" id="caraLightbox" role="dialog" aria-modal="true" aria-label="Слайды карусели" hidden>
+      <div class="cbox__stage">
+        <span class="cbox__counter" id="caraCounter">1 / 8</span>
+        <button type="button" class="cbox__close" id="caraClose" aria-label="Закрыть">✕</button>
+        <button type="button" class="cbox__nav cbox__nav--prev" id="caraPrev" aria-label="Предыдущий слайд">‹</button>
+        <img class="cbox__img" id="caraImg" src="" alt="Слайд карусели">
+        <button type="button" class="cbox__nav cbox__nav--next" id="caraNext" aria-label="Следующий слайд">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK: Отзывы
+       Новые отзывы добавлять как ещё одну .rev-card внутрь .rev-grid
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="reviews">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">💬 Отзывы</div>
+        <h2 class="section__title">Что говорят <em>те, кто уже внутри</em></h2>
+        <p class="section__subtitle">Сообщения от клиентов, которые поставили завод себе и работают в нём каждый день.</p>
+      </div>
+
+      <div class="rev-grid reveal">
+        <article class="rev-msg">
+          <div class="rev-msg__avatar" aria-hidden="true">И</div>
+          <div class="rev-msg__body">
+            <div class="rev-msg__name">Ирина <span class="rev-msg__niche">· английский язык</span></div>
+            <div class="rev-msg__bubble">
+              <p class="rev-msg__text">Пишу сказать тебе очень большое, прямо огромное спасибо за твой контент-завод. Первые 10 дней я как первоклашка писала в нём статьи, карусели и так далее. Сегодня решила испытать, что он может. Попросила сделать анализ моей инсты и просто офигела, когда он развернул передо мной экран, будто кто-то Zoom расшарил, и начал показывать мою ленту, листая все слайды. А рядом полный анализ, только успевай читать. Но дальше было ещё интереснее. Я дала ему аналитику Яндекс и Google Search по моему сайту и спросила, может ли он помочь устранить ошибки. Он исправил все ошибки на WordPress внутри, переписал статьи, сделал перелинковки, сделал бэкапы везде, и на хостинге, и на sitemap. Я реально в шоке от такого приобретения. У меня бы на всё это ушёл месяц работы. Буду дальше исследовать его возможности.</p>
+              <span class="rev-msg__meta">10:42 <span class="rev-msg__checks" aria-hidden="true">✓✓</span></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- сюда добавлять новые отзывы: ещё один <article class="rev-msg"> с аватаром-инициалом, именем, нишей и пузырём -->
+      </div>
+    </div>
+  </section>
 
   <section class="section section--alt" id="pricing">
     <div class="container">
@@ -5254,6 +5875,78 @@
           if (!e.target.closest('#styleMarquee')) clearActive();
         });
       }
+    })();
+
+    // Лайтбокс каруселей — листание слайдов
+    (function() {
+      const box = document.getElementById('caraLightbox');
+      const img = document.getElementById('caraImg');
+      const counter = document.getElementById('caraCounter');
+      const btnPrev = document.getElementById('caraPrev');
+      const btnNext = document.getElementById('caraNext');
+      const btnClose = document.getElementById('caraClose');
+      const covers = Array.from(document.querySelectorAll('.cara-cover'));
+      if (!box || !img || !covers.length) return;
+
+      let slug = '', count = 0, index = 0, trigger = null;
+
+      const src = (s, i) => `assets/carousels/${s}/slide-${String(i + 1).padStart(2, '0')}.jpg`;
+
+      function preload(i) {
+        if (i < 0 || i >= count) return;
+        const p = new Image();
+        p.src = src(slug, i);
+      }
+
+      function show(i) {
+        index = (i + count) % count;
+        img.src = src(slug, index);
+        img.alt = `Слайд ${index + 1} из ${count}`;
+        counter.textContent = `${index + 1} / ${count}`;
+        preload(index + 1);
+        preload(index - 1);
+      }
+
+      function open(cover) {
+        slug = cover.dataset.slug;
+        count = parseInt(cover.dataset.count, 10) || 1;
+        trigger = cover;
+        box.hidden = false;
+        box.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        show(0);
+        btnClose.focus();
+      }
+
+      function close() {
+        box.classList.remove('is-open');
+        box.hidden = true;
+        document.body.style.overflow = '';
+        if (trigger) trigger.focus();
+      }
+
+      covers.forEach(c => c.addEventListener('click', () => open(c)));
+      btnPrev.addEventListener('click', () => show(index - 1));
+      btnNext.addEventListener('click', () => show(index + 1));
+      btnClose.addEventListener('click', close);
+      box.addEventListener('click', (e) => { if (e.target === box) close(); });
+
+      document.addEventListener('keydown', (e) => {
+        if (box.hidden) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') show(index - 1);
+        else if (e.key === 'ArrowRight') show(index + 1);
+      });
+
+      // Свайп на тач-устройствах
+      let startX = null;
+      box.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+      box.addEventListener('touchend', (e) => {
+        if (startX === null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+        startX = null;
+      }, { passive: true });
     })();
   </script>
 
