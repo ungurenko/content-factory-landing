@@ -482,7 +482,7 @@
     .hero__badge {
       letter-spacing: var(--ls-tight);
       width: fit-content;
-      margin-bottom: 24px;
+      margin-bottom: clamp(24px, 2.6vh, 34px);
       animation: fadeSlideUp 0.7s ease 0.2s both;
     }
 
@@ -492,7 +492,7 @@
       line-height: 1.15;
       letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 20px;
+      margin-bottom: clamp(20px, 3vh, 38px);
       animation: fadeSlideUp 0.8s ease 0.35s both;
     }
 
@@ -506,7 +506,7 @@
       line-height: 1.5;
       color: var(--text);
       max-width: 520px;
-      margin-bottom: 24px;
+      margin-bottom: clamp(24px, 3.2vh, 42px);
       overflow-wrap: anywhere;
       animation: fadeSlideUp 0.8s ease 0.5s both;
     }
@@ -523,7 +523,7 @@
       line-height: 1.45;
       padding: 12px 16px;
       border-radius: 10px;
-      margin-bottom: 28px;
+      margin-bottom: clamp(28px, 3.6vh, 46px);
       max-width: 100%;
       overflow-wrap: anywhere;
       animation: fadeSlideUp 0.8s ease 0.55s both;
@@ -544,7 +544,7 @@
       align-items: center;
       gap: 20px;
       flex-wrap: wrap;
-      margin-bottom: 48px;
+      margin-bottom: clamp(48px, 5vh, 70px);
       animation: fadeSlideUp 0.8s ease 0.65s both;
     }
 
@@ -3489,14 +3489,6 @@
         .hero__button-main { border-radius: var(--radius-lg); }
       }
 
-      .hero__model-note {
-        align-self: center;
-        font-size: 0.75rem;
-        text-align: center;
-        justify-content: center;
-        margin-bottom: 32px;
-      }
-
     .hero__stats {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3517,26 +3509,6 @@
 
     .hero__stat-label {
       white-space: nowrap;
-    }
-
-    .hero__model-note {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      background: rgba(255, 255, 255, 0.65);
-      border: 1px solid var(--border-soft);
-      border-radius: 999px;
-      font-size: 0.8125rem;
-      color: var(--text-muted);
-      backdrop-filter: blur(6px);
-      align-self: flex-start;
-      max-width: 100%;
-    }
-
-    .hero__model-note strong {
-      color: var(--text);
-      font-weight: 600;
     }
 
       .hero__stat-number { font-size: var(--fs-xl); }
@@ -4384,14 +4356,6 @@
             <span class="hero__button-stub-value">24 990 ₽</span>
           </span>
         </a>
-      </div>
-      <div class="hero__model-note">
-        <span aria-hidden="true">🤖</span>
-        <span>Работает на <strong>Claude</strong> или <strong>ChatGPT</strong>, выбирай свою экосистему</span>
-      </div>
-      <div class="hero__model-note">
-        <span aria-hidden="true">💳</span>
-        <span>Платишь за систему один раз. Подписка Claude или ChatGPT (около $20 в месяц) у тебя, скорее всего, уже есть</span>
       </div>
       <div class="hero__stats">
         <div class="hero__stat">
