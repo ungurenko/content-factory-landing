@@ -1310,6 +1310,132 @@
     }
 
     /* ═══════════════════════════════════════
+       BLOCK: Как проходит покупка — timeline
+       ═══════════════════════════════════════ */
+    .buy-flow {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .buy-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 24px;
+      align-items: start;
+      position: relative;
+    }
+
+    .buy-step:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 27px;
+      top: 56px;
+      bottom: -28px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), rgba(var(--accent-rgb), 0.25));
+    }
+
+    .buy-step__body {
+      padding-top: 8px;
+    }
+
+    .buy-variants {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .buy-variant {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 22px 24px 24px;
+      overflow: hidden;
+      isolation: isolate;
+      transition: border-color var(--motion-fast), box-shadow var(--motion-base), transform var(--motion-base);
+    }
+
+    .buy-variant::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -25%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(232, 130, 42, 0.14) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      transition: transform 0.8s ease;
+    }
+
+    .buy-variant:hover {
+      border-color: rgba(232, 130, 42, 0.35);
+      box-shadow: 0 18px 44px -22px rgba(45, 37, 32, 0.22);
+      transform: translateY(-3px);
+    }
+    .buy-variant:hover::before {
+      transform: scale(1.15) translate(-8px, 8px);
+    }
+
+    .buy-variant__head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .buy-variant__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex: none;
+    }
+    .buy-variant--self .buy-variant__dot { background: #4E9D5B; }
+    .buy-variant--full .buy-variant__dot { background: #3F73B5; }
+
+    .buy-variant__name {
+      font-size: var(--fs-md);
+      font-weight: 700;
+    }
+
+    .buy-variant__price {
+      margin-left: auto;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      color: var(--accent-deep);
+      background: rgba(232, 130, 42, 0.10);
+      padding: 4px 11px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+
+    .buy-variant__text {
+      font-size: var(--fs-sm);
+      line-height: var(--lh-text);
+      color: var(--text-muted);
+    }
+
+    .buy-outro {
+      text-align: center;
+      font-size: var(--fs-md);
+      font-weight: 600;
+      max-width: 600px;
+      margin: 40px auto 0;
+    }
+
+    @media (max-width: 640px) {
+      .buy-variants { grid-template-columns: 1fr; }
+      .buy-flow { gap: 24px; }
+      .buy-step { gap: 18px; }
+    }
+
+    /* ═══════════════════════════════════════
        BLOCK 6: Features Showcase
        ═══════════════════════════════════════ */
     .showcase-grid {
@@ -5585,6 +5711,80 @@
         </article>
 
         <!-- сюда добавлять новые отзывы: ещё один <article class="rev-msg"> с аватаром-инициалом, именем, нишей и пузырём -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOCK: Как проходит покупка
+       ═══════════════════════════════════════ -->
+  <section class="section" id="how-to-buy">
+    <div class="container">
+      <div class="section__header section__header--center reveal">
+        <div class="section__badge">🤝 Как купить</div>
+        <h2 class="section__title">Как проходит <em>покупка</em></h2>
+        <p class="section__subtitle">Без впаривания. Сначала вместе решаем, нужен ли тебе завод. Деньги потом.</p>
+      </div>
+
+      <div class="buy-flow">
+        <div class="buy-step reveal">
+          <div class="step__num">1</div>
+          <div class="buy-step__body">
+            <h3 class="step__title">Пишешь в Telegram</h3>
+            <p class="step__text">Пишешь мне в личку. Рассказываешь, чем занимаешься и какой контент нужен.</p>
+          </div>
+        </div>
+
+        <div class="buy-step reveal">
+          <div class="step__num">2</div>
+          <div class="buy-step__body">
+            <h3 class="step__title">Разбираемся, подходит ли</h3>
+            <p class="step__text">Смотрим вместе, решит ли завод твою задачу. Если не подходит, скажу прямо. Бесплатно, до оплаты.</p>
+          </div>
+        </div>
+
+        <div class="buy-step reveal">
+          <div class="step__num">3</div>
+          <div class="buy-step__body">
+            <h3 class="step__title">Оплата</h3>
+            <p class="step__text">Если всё подходит, оплачиваешь удобным способом.</p>
+          </div>
+        </div>
+
+        <div class="buy-step reveal">
+          <div class="step__num">4</div>
+          <div class="buy-step__body">
+            <h3 class="step__title">Установка и доступы</h3>
+            <p class="step__text">Дальше зависит от тарифа.</p>
+            <div class="buy-variants">
+              <div class="buy-variant buy-variant--self">
+                <div class="buy-variant__head">
+                  <span class="buy-variant__dot" aria-hidden="true"></span>
+                  <span class="buy-variant__name">Сам</span>
+                  <span class="buy-variant__price">9&nbsp;990&nbsp;₽</span>
+                </div>
+                <p class="buy-variant__text">Высылаю файл с твоим персональным ключом. Ставишь завод по урокам из Академии. Плюс Telegram-канал с обновлениями.</p>
+              </div>
+              <div class="buy-variant buy-variant--full">
+                <div class="buy-variant__head">
+                  <span class="buy-variant__dot" aria-hidden="true"></span>
+                  <span class="buy-variant__name">Под ключ</span>
+                  <span class="buy-variant__price">24&nbsp;990&nbsp;₽</span>
+                </div>
+                <p class="buy-variant__text">Созваниваемся или я подключаюсь к твоему компьютеру и настраиваю всё сам. Показываю, как пользоваться. Плюс PDF, Академия и канал.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="buy-outro reveal">Дальше работаешь сам. Завод уже у тебя.</p>
+
+      <div class="cta-center reveal">
+        <a href="https://t.me/m/N0bTmb18OTUy" target="_blank" rel="noopener" class="btn">
+          Написать в Telegram
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </div>
   </section>
