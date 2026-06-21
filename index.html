@@ -11,10 +11,6 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="favicon.svg">
   <meta name="description" content="Контент-завод: 34 инструмента для контента. Устанавливаешь один раз, и система изучает твои посты, создавая посты, карусели и статьи за минуты. Платишь один раз, пользуешься навсегда.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&amp;display=swap" rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════
        CSS Custom Properties
@@ -169,6 +165,11 @@
       font-style: italic;
       background: var(--bg-alt);
     }
+
+    img[data-src] {
+      visibility: hidden;
+    }
+
     a { color: inherit; }
     button, input, textarea, select {
       font: inherit;
@@ -242,6 +243,8 @@
 
     .section {
       padding: var(--space-25) 0;
+      content-visibility: auto;
+      contain-intrinsic-size: 900px;
     }
 
     .section--alt {
@@ -4862,10 +4865,10 @@
   <section class="hero">
     <div class="hero__right">
       <img class="hero__image"
-        src="https://my-data.s3.twcstorage.ru/ChatGPT-Image-9-2026-.-210645-5ed166.jpg"
+        data-src="https://my-data.s3.twcstorage.ru/ChatGPT-Image-9-2026-.-210645-5ed166.jpg"
         alt="Контент-завод, который знает твой стиль, тему и аудиторию"
-        loading="eager"
-        fetchpriority="high"
+        loading="lazy"
+        decoding="async"
       >
     </div>
 
@@ -5299,67 +5302,67 @@
     <div class="style-marquee reveal" id="styleMarquee">
       <div class="style-marquee__track" id="styleMarqueeTrack">
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/01-yellow-pop.jpg" alt="Yellow Pop" loading="eager" decoding="async">
+          <img data-src="assets/styles/01-yellow-pop.jpg" alt="Yellow Pop" loading="lazy" decoding="async">
           <span class="style-card__name">Yellow Pop</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/02-clean-editorial.jpg" alt="Clean Editorial" loading="eager" decoding="async">
+          <img data-src="assets/styles/02-clean-editorial.jpg" alt="Clean Editorial" loading="lazy" decoding="async">
           <span class="style-card__name">Clean Editorial</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/03-purple-gradient.jpg" alt="Purple Gradient" loading="eager" decoding="async">
+          <img data-src="assets/styles/03-purple-gradient.jpg" alt="Purple Gradient" loading="lazy" decoding="async">
           <span class="style-card__name">Purple Gradient</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/04-bold-pop.jpg" alt="Bold Pop" loading="eager" decoding="async">
+          <img data-src="assets/styles/04-bold-pop.jpg" alt="Bold Pop" loading="lazy" decoding="async">
           <span class="style-card__name">Bold Pop</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/05-warm-premium.jpg" alt="Warm Premium" loading="eager" decoding="async">
+          <img data-src="assets/styles/05-warm-premium.jpg" alt="Warm Premium" loading="lazy" decoding="async">
           <span class="style-card__name">Warm Premium</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/06-pastel-wellness.jpg" alt="Pastel Wellness" loading="lazy" decoding="async">
+          <img data-src="assets/styles/06-pastel-wellness.jpg" alt="Pastel Wellness" loading="lazy" decoding="async">
           <span class="style-card__name">Pastel Wellness</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/07-magazine-editorial.jpg" alt="Magazine Editorial" loading="lazy" decoding="async">
+          <img data-src="assets/styles/07-magazine-editorial.jpg" alt="Magazine Editorial" loading="lazy" decoding="async">
           <span class="style-card__name">Magazine Editorial</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/08-cyberpunk-neon.jpg" alt="Cyberpunk Neon" loading="lazy" decoding="async">
+          <img data-src="assets/styles/08-cyberpunk-neon.jpg" alt="Cyberpunk Neon" loading="lazy" decoding="async">
           <span class="style-card__name">Cyberpunk Neon</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/09-organic-earth.jpg" alt="Organic Earth" loading="lazy" decoding="async">
+          <img data-src="assets/styles/09-organic-earth.jpg" alt="Organic Earth" loading="lazy" decoding="async">
           <span class="style-card__name">Organic Earth</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/10-sticky-notes-education.jpg" alt="Sticky Notes Education" loading="lazy" decoding="async">
+          <img data-src="assets/styles/10-sticky-notes-education.jpg" alt="Sticky Notes Education" loading="lazy" decoding="async">
           <span class="style-card__name">Sticky Notes Education</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/11-sage-journal.jpg" alt="Sage Journal" loading="lazy" decoding="async">
+          <img data-src="assets/styles/11-sage-journal.jpg" alt="Sage Journal" loading="lazy" decoding="async">
           <span class="style-card__name">Sage Journal</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/12-dark-money.jpg" alt="Dark Money" loading="lazy" decoding="async">
+          <img data-src="assets/styles/12-dark-money.jpg" alt="Dark Money" loading="lazy" decoding="async">
           <span class="style-card__name">Dark Money</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/13-glossy-pink.jpg" alt="Glossy Pink" loading="lazy" decoding="async">
+          <img data-src="assets/styles/13-glossy-pink.jpg" alt="Glossy Pink" loading="lazy" decoding="async">
           <span class="style-card__name">Glossy Pink</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/14-hyper-pop.jpg" alt="Hyper Pop" loading="lazy" decoding="async">
+          <img data-src="assets/styles/14-hyper-pop.jpg" alt="Hyper Pop" loading="lazy" decoding="async">
           <span class="style-card__name">Hyper Pop</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/15-dark-editorial.jpg" alt="Dark Editorial" loading="lazy" decoding="async">
+          <img data-src="assets/styles/15-dark-editorial.jpg" alt="Dark Editorial" loading="lazy" decoding="async">
           <span class="style-card__name">Dark Editorial</span>
         </article>
         <article class="style-card" tabindex="0">
-          <img src="assets/styles/16-bento-grid.jpg" alt="Bento Grid" loading="lazy" decoding="async">
+          <img data-src="assets/styles/16-bento-grid.jpg" alt="Bento Grid" loading="lazy" decoding="async">
           <span class="style-card__name">Bento Grid</span>
         </article>
       </div>
@@ -5425,7 +5428,7 @@
 
       <div class="expert reveal">
         <div class="expert__photo-wrap">
-          <img class="expert__photo" src="https://my-data.s3.twcstorage.ru/IMG0033-da6955.jpg" alt="Александр Унгуренко, эксперт по маркетингу и автор Контент-завода">
+          <img class="expert__photo" src="https://my-data.s3.twcstorage.ru/IMG0033-da6955.jpg" alt="Александр Унгуренко, эксперт по маркетингу и автор Контент-завода" loading="lazy" decoding="async">
         </div>
         <div>
           <h3 class="expert__name">Александр Унгуренко</h3>
@@ -6020,6 +6023,38 @@
        Scroll Reveal Script
        ═══════════════════════════════════════ -->
   <script>
+    const afterInitialLoad = callback => {
+      const run = () => setTimeout(callback, 0);
+      if (document.readyState === 'complete') {
+        run();
+      } else {
+        window.addEventListener('load', run, { once: true });
+      }
+    };
+
+    const loadBrandFonts = () => {
+      [
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap',
+        'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&display=swap'
+      ].forEach(href => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+      });
+    };
+
+    const scheduleBrandFonts = () => {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadBrandFonts, { timeout: 1500 });
+      } else {
+        setTimeout(loadBrandFonts, 1);
+      }
+    };
+
+    afterInitialLoad(scheduleBrandFonts);
+
+    afterInitialLoad(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
@@ -6114,6 +6149,30 @@
       }
     })();
 
+    (function() {
+      const loadImage = img => {
+        if (!img.dataset.src) return;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      };
+
+      const lazyImages = () => Array.from(document.querySelectorAll('img[data-src]'));
+      if (!('IntersectionObserver' in window)) {
+        window.addEventListener('load', () => lazyImages().forEach(loadImage), { once: true });
+        return;
+      }
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          loadImage(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: '280px 0px' });
+
+      lazyImages().forEach(img => observer.observe(img));
+    })();
+
     // Лайтбокс каруселей — листание слайдов
     (function() {
       const box = document.getElementById('caraLightbox');
@@ -6185,6 +6244,7 @@
         startX = null;
       }, { passive: true });
     })();
+    });
   </script>
 
 </body>
