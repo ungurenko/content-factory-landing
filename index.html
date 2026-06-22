@@ -3096,16 +3096,28 @@
     /* Мини-напоминание над тарифами */
     .pricing-promo {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      max-width: 560px;
+      margin: 0 auto 28px;
+      padding: 20px 24px 22px;
+      background:
+        radial-gradient(120% 100% at 50% 0%, rgba(var(--accent-rgb), 0.10) 0%, transparent 70%),
+        rgba(var(--accent-rgb), 0.05);
+      border: 1px solid rgba(var(--accent-rgb), 0.20);
+      border-radius: var(--radius-card);
+    }
+
+    .pricing-promo__lead {
+      display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 8px 14px;
-      max-width: 640px;
-      margin: 0 auto 28px;
-      padding: 12px 20px;
-      background: rgba(var(--accent-rgb), 0.08);
-      border: 1px solid rgba(var(--accent-rgb), 0.22);
-      border-radius: var(--radius-pill);
+      gap: 8px;
+      width: 100%;
+      margin: 0;
+      text-align: center;
     }
 
     .pricing-promo__gift { font-size: var(--fs-md); }
@@ -3116,20 +3128,45 @@
       color: var(--text);
     }
 
+    .pricing-promo__text em {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--accent-deep);
+    }
+
     .pricing-promo__timer {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 2px;
-      font-weight: 800;
+      display: flex;
+      gap: 10px;
+    }
+
+    .promo-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      min-width: 58px;
+      padding: 10px 8px 8px;
+      background: #FFFCF6;
+      border: 1px solid rgba(var(--accent-rgb), 0.18);
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.10);
+    }
+
+    .promo-chip__num {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1;
       color: var(--accent-deep);
       font-variant-numeric: tabular-nums;
     }
 
-    .pricing-promo__unit {
-      font-size: var(--fs-2xs);
-      font-weight: 600;
+    .promo-chip__unit {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--text-muted);
-      margin-right: 6px;
     }
 
     .pricing-promo__ended {
@@ -3183,6 +3220,19 @@
       .gift-stage { grid-template-columns: 1fr; gap: 28px; max-width: 360px; }
       .gift-hero { max-width: 240px; margin: 0 auto; }
       .gift-steps { max-width: 360px; margin: 0 auto; }
+    }
+
+    @media (max-width: 480px) {
+      .pricing-promo { padding: 18px 14px 20px; }
+      .pricing-promo__timer {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 7px;
+        width: 100%;
+      }
+      .promo-chip { min-width: 0; padding: 9px 4px 7px; border-radius: 12px; }
+      .promo-chip__num { font-size: 1.45rem; }
+      .promo-chip__unit { font-size: 9px; letter-spacing: 0.04em; }
     }
 
     /* ═══════════════════════════════════════
@@ -6583,14 +6633,16 @@
       </div>
 
       <div class="pricing-promo reveal">
-        <span class="pricing-promo__gift" aria-hidden="true">🎁</span>
-        <span class="pricing-promo__text promo-strike-target">VibeClaw в подарок к любому тарифу</span>
-        <span class="pricing-promo__timer" data-countdown-clock>
-          <span data-countdown="days">--</span><span class="pricing-promo__unit">д</span>
-          <span data-countdown="hours">--</span><span class="pricing-promo__unit">ч</span>
-          <span data-countdown="minutes">--</span><span class="pricing-promo__unit">м</span>
-          <span data-countdown="seconds">--</span><span class="pricing-promo__unit">с</span>
-        </span>
+        <p class="pricing-promo__lead">
+          <span class="pricing-promo__gift" aria-hidden="true">🎁</span>
+          <span class="pricing-promo__text promo-strike-target">VibeClaw <em>в&nbsp;подарок</em> к&nbsp;любому тарифу</span>
+        </p>
+        <div class="pricing-promo__timer" data-countdown-clock>
+          <span class="promo-chip"><span class="promo-chip__num" data-countdown="days">--</span><span class="promo-chip__unit">дни</span></span>
+          <span class="promo-chip"><span class="promo-chip__num" data-countdown="hours">--</span><span class="promo-chip__unit">часы</span></span>
+          <span class="promo-chip"><span class="promo-chip__num" data-countdown="minutes">--</span><span class="promo-chip__unit">мин</span></span>
+          <span class="promo-chip"><span class="promo-chip__num" data-countdown="seconds">--</span><span class="promo-chip__unit">сек</span></span>
+        </div>
         <span class="pricing-promo__ended" data-countdown-ended>Акция завершена</span>
       </div>
 
