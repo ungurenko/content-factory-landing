@@ -1,0 +1,970 @@
+    /* ─────────── NEW бейджи (красные, как «горячее») ─────────── */
+    .badge-new {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      margin-left: 8px;
+      font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(135deg, #ff4757 0%, #d63031 100%);
+      border: 1px solid #b71c1c;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(214, 48, 49, 0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+      text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+      vertical-align: middle;
+      white-space: nowrap;
+      animation: badge-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes badge-pulse {
+      0%, 100% { box-shadow: 0 1px 2px rgba(214, 48, 49, 0.35), inset 0 1px 0 rgba(255,255,255,0.25); }
+      50%      { box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.18), 0 1px 2px rgba(214, 48, 49, 0.5), inset 0 1px 0 rgba(255,255,255,0.25); }
+    }
+    .badge-new--soft {
+      background: linear-gradient(135deg, #ff6b7a 0%, #ff4757 100%);
+      color: #fff;
+      border-color: #d63031;
+      font-size: 9px;
+      padding: 2px 6px;
+      animation: none;
+    }
+    .proof-card { position: relative; }
+    .proof-card .badge-new {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      margin-left: 0;
+    }
+
+    /* ─────────── How: pillars + steps headers ─────────── */
+    .how-pillars-title,
+    .how-steps-title {
+      text-align: center;
+      margin: var(--space-14) auto var(--space-6);
+      max-width: 640px;
+    }
+    .how-pillars-title h3,
+    .how-steps-title h3 {
+      font-family: var(--font-display, Georgia, serif);
+      font-size: clamp(22px, 2.6vw, 30px);
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+    .how-pillars-title p,
+    .how-steps-title p {
+      font-size: var(--fs-base);
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* ─────────── Speed-strip в comparison ─────────── */
+    .speed-strip {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 0 auto 28px;
+      max-width: 920px;
+    }
+    .speed-strip__row {
+      display: grid;
+      grid-template-columns: 1.6fr 0.9fr 28px 1.1fr 0.5fr;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--white);
+      border: 1px solid rgba(var(--accent-deep-rgb), 0.18);
+      border-radius: var(--radius-md);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+      font-size: var(--fs-sm);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .speed-strip__row:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(var(--accent-deep-rgb), 0.12);
+    }
+    .speed-strip__task {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .speed-strip__before {
+      color: var(--text-muted);
+      font-size: var(--fs-sm);
+    }
+    .speed-strip__arrow {
+      text-align: center;
+      color: var(--accent-deep);
+      font-weight: 700;
+      font-size: var(--fs-md);
+    }
+    .speed-strip__after {
+      color: var(--text);
+    }
+    .speed-strip__after strong {
+      color: var(--accent-deep);
+      font-weight: 700;
+    }
+    .speed-strip__mult {
+      text-align: right;
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-weight: 700;
+      font-size: var(--fs-md);
+      color: var(--accent-deep);
+    }
+    .speed-strip__total {
+      text-align: center;
+      font-size: var(--fs-body-large);
+      line-height: 1.5;
+      color: var(--text);
+      max-width: 720px;
+      margin: 0 auto 36px;
+    }
+    .speed-strip__total strong {
+      color: var(--accent-deep);
+    }
+    @media (max-width: 720px) {
+      .speed-strip__row {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "task task" "before after" "mult mult";
+        gap: 8px;
+        padding: 14px;
+      }
+      .speed-strip__task { grid-area: task; font-size: var(--fs-base); }
+      .speed-strip__before { grid-area: before; }
+      .speed-strip__after { grid-area: after; text-align: right; }
+      .speed-strip__arrow { display: none; }
+      .speed-strip__mult { grid-area: mult; text-align: center; padding-top: 4px; border-top: 1px dashed rgba(197,101,25,0.2); }
+      .how-pillars-title,
+      .how-steps-title { margin-top: 40px; }
+      .proof-card .badge-new { position: static; display: inline-flex; margin-bottom: 8px; }
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK 7a: Carousel Styles — Marquee
+       ═══════════════════════════════════════ */
+    .style-marquee {
+      --card-w: 280px;
+      --card-h: 350px;
+      --gap: 24px;
+      --marquee-dur: 55s;       /* медленный, «премиальный» ход */
+      position: relative;
+      width: 100%;
+      margin-top: var(--space-12);
+      padding: 36px 0;          /* запас под приподнятую карточку */
+      overflow: hidden;
+      /* края растворяются в фон секции */
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+    }
+
+    .style-marquee__track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: style-marquee-scroll var(--marquee-dur) linear infinite;
+    }
+
+    /* слева направо: стартуем сдвинутыми на один набор и едем к 0 */
+    @keyframes style-marquee-scroll {
+      from { transform: translateX(-50%); }
+      to   { transform: translateX(0); }
+    }
+
+    /* пауза: при наведении/фокусе где угодно в ленте или когда карточка зафиксирована тапом */
+    .style-marquee:hover .style-marquee__track,
+    .style-marquee:focus-within .style-marquee__track,
+    .style-marquee.is-paused .style-marquee__track {
+      animation-play-state: paused;
+    }
+
+    .style-card {
+      position: relative;
+      flex: 0 0 auto;
+      width: var(--card-w);
+      height: var(--card-h);
+      margin-right: var(--gap);            /* зазор через margin → бесшовный цикл */
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(45, 37, 32, 0.18), 0 6px 16px rgba(45, 37, 32, 0.10);
+      background: var(--card-bg);          /* нейтральный фон, пока грузится картинка */
+      cursor: pointer;
+      transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.45s ease;
+    }
+
+    .style-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* приподнимаем карточку: hover (десктоп), фокус с клавиатуры, фиксация тапом */
+    @media (hover: hover) {
+      .style-card:hover {
+        transform: translateY(-14px) scale(1.05);
+        box-shadow: 0 36px 90px rgba(45, 37, 32, 0.28), 0 14px 30px rgba(45, 37, 32, 0.16);
+        z-index: 2;
+      }
+    }
+
+    .style-card:focus-visible,
+    .style-card.is-active {
+      transform: translateY(-14px) scale(1.05);
+      box-shadow: 0 36px 90px rgba(45, 37, 32, 0.28), 0 14px 30px rgba(45, 37, 32, 0.16);
+      z-index: 2;
+    }
+
+    .style-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* плашка с названием стиля — проявляется при наведении/фокусе/фиксации */
+    .style-card__name {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      font-family: var(--font-display);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+
+    .style-card:hover .style-card__name,
+    .style-card:focus-visible .style-card__name,
+    .style-card.is-active .style-card__name {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .style-marquee__hint {
+      text-align: center;
+      margin-top: var(--space-6);
+      font-size: var(--fs-2xs);
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .style-marquee { --card-w: 220px; --card-h: 275px; --gap: 16px; --marquee-dur: 42s; padding: 28px 0; }
+    }
+
+    @media (max-width: 380px) {
+      .style-marquee { --card-w: 200px; --card-h: 250px; }
+    }
+
+    /* меньше движения: лента не едет сама, а становится прокручиваемой рукой полосой */
+    @media (prefers-reduced-motion: reduce) {
+      .style-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+      .style-marquee__track { animation: none; }
+      .style-card { transition: none; }
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK: Платформа с уроками + Telegram-канал
+       ═══════════════════════════════════════ */
+    .platform {
+      /* alt→alt стык с #pricing смягчаем чуть большим нижним отступом,
+         чтобы крупный фрейм скриншота "дышал" */
+      padding-bottom: var(--space-25);
+    }
+
+    /* — Браузерный фрейм скриншота — */
+    .platform__shot {
+      max-width: 960px;
+      margin: 0 auto var(--space-12);
+    }
+
+    .browser-frame {
+      margin: 0;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform var(--motion-base), box-shadow var(--motion-base);
+      transform: perspective(1400px) rotateX(0deg) translateY(0);
+      will-change: transform;
+    }
+
+    .browser-frame__bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 16px;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .browser-frame__dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+    .browser-frame__dot:nth-child(1) { background: var(--accent-deep); }
+    .browser-frame__dot:nth-child(2) { background: var(--accent); }
+    .browser-frame__dot:nth-child(3) { background: var(--text-muted); }
+
+    .browser-frame__url {
+      margin-left: 12px;
+      font-size: var(--fs-2xs);
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .browser-frame__viewport {
+      position: relative;
+      aspect-ratio: 3024 / 1712;   /* точно под скриншот платформы, без обрезки */
+      overflow: hidden;            /* нужен для зума картинки на hover */
+      background:
+        radial-gradient(120% 140% at 50% 0%, rgba(var(--accent-rgb), 0.06), transparent 60%),
+        var(--bg);
+    }
+
+    /* реальная картинка (когда плейсхолдер заменят на <img>) */
+    .browser-frame__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.001);     /* старт без видимого зума */
+      transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    /* плейсхолдер — выглядит законченно без файла */
+    .browser-frame__placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--text-muted);
+      background-image:
+        var(--noise-bg),
+        repeating-linear-gradient(135deg,
+          rgba(45, 37, 32, 0.02) 0 22px,
+          rgba(45, 37, 32, 0.045) 22px 44px);
+      background-size: 160px 160px, auto;
+      background-blend-mode: multiply, normal;
+    }
+    .browser-frame__placeholder-icon {
+      font-size: 40px;
+      filter: grayscale(0.1);
+      opacity: 0.9;
+    }
+    .browser-frame__placeholder-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: var(--fs-md);
+      letter-spacing: 0.01em;
+    }
+
+    /* блик (sheen), пробегающий по экрану на hover */
+    .browser-frame__sheen {
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 50%;
+      height: 100%;
+      pointer-events: none;
+      background: linear-gradient(100deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.28) 50%,
+        rgba(255, 255, 255, 0) 100%);
+      transform: skewX(-18deg);
+      transition: left 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 2;
+    }
+
+    /* hover-анимация (desktop): подъём + наклон + усиление тени + зум картинки + пробег блика */
+    @media (hover: hover) and (pointer: fine) {
+      .browser-frame:hover {
+        transform: perspective(1400px) rotateX(2deg) translateY(-6px);
+        box-shadow: var(--shadow-floating);
+      }
+      .browser-frame:hover .browser-frame__img {
+        transform: scale(1.05);
+      }
+      .browser-frame:hover .browser-frame__sheen {
+        left: 110%;
+      }
+    }
+
+    /* — Две карточки: платформа / канал — */
+    .platform__cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+      max-width: 960px;
+      margin: 0 auto var(--space-8);
+    }
+
+    .platform-card {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: var(--space-8) var(--space-6);
+      overflow: hidden;
+      isolation: isolate;
+      transition: border-color var(--motion-fast), box-shadow var(--motion-base), transform var(--motion-base);
+    }
+    .platform-card::before {
+      content: "";
+      position: absolute;
+      top: -25%;
+      right: -20%;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(var(--accent-rgb), 0.16) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      transition: transform 0.8s ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .platform-card:hover {
+        border-color: rgba(var(--accent-rgb), 0.35);
+        box-shadow: 0 18px 44px -22px rgba(45, 37, 32, 0.22);
+        transform: translateY(-3px);
+      }
+      .platform-card:hover::before {
+        transform: scale(1.15) translate(-8px, 8px);
+      }
+    }
+
+    .platform-card__icon {
+      font-size: var(--fs-3xl);
+      line-height: 1;
+      margin-bottom: var(--space-4);
+    }
+    .platform-card__title {
+      font-size: var(--fs-md);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .platform-card__text {
+      font-size: var(--fs-body-large);
+      line-height: var(--lh-text);
+      color: var(--text-muted);
+    }
+
+    /* — Плашка «любой тариф» + CTA — */
+    .platform__access {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-8);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--card-shadow);
+    }
+    .platform__access-text {
+      font-size: var(--fs-body-large);
+      line-height: var(--lh-text);
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .platform__access-mark {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--accent-contrast);
+      margin-right: 8px;
+    }
+
+    /* — Адаптив: планшет — */
+    @media (max-width: 768px) {
+      .platform__shot {
+        margin-bottom: var(--space-8);
+      }
+      .platform__cards {
+        gap: var(--space-4);
+      }
+      .browser-frame__bar {
+        height: 34px;
+        padding: 0 12px;
+      }
+      .platform__access {
+        padding: var(--space-6);
+      }
+    }
+
+    /* — Адаптив: мобайл — */
+    @media (max-width: 600px) {
+      .platform__cards {
+        grid-template-columns: 1fr;   /* карточки в столбик */
+      }
+      .browser-frame__url {
+        display: none;                /* псевдо-URL прячем на узких экранах */
+      }
+      .platform-card {
+        padding: var(--space-6);
+      }
+      /* на тач-устройствах наклон/зум-перспектива не нужны — статичный фрейм */
+      .browser-frame {
+        transform: none;
+      }
+    }
+
+    /* — Доступность: меньше движения — */
+    @media (prefers-reduced-motion: reduce) {
+      .browser-frame,
+      .browser-frame__img,
+      .browser-frame__sheen,
+      .platform-card,
+      .platform-card::before {
+        transition: none;
+      }
+      .browser-frame:hover {
+        transform: none;
+      }
+      .browser-frame:hover .browser-frame__img {
+        transform: scale(1);
+      }
+      .browser-frame:hover .browser-frame__sheen {
+        left: -60%;                   /* блик не запускаем */
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       BLOCK: Что выдаёт завод (примеры постов + карусели)
+       ═══════════════════════════════════════ */
+    .works__sub + .works__sub { margin-top: var(--space-18); }
+    .works__sub-title {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: var(--fs-lg);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: var(--space-2);
+    }
+    .works__sub-note {
+      text-align: center;
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+      margin-bottom: var(--space-8);
+    }
+
+    /* — Карточки постов в стиле Telegram — */
+    .tg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .tgpost {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: var(--space-6);
+      box-shadow: var(--card-shadow);
+      transition: border-color var(--motion-fast), box-shadow var(--motion-base), transform var(--motion-base);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .tgpost:hover {
+        border-color: rgba(var(--accent-rgb), 0.30);
+        box-shadow: 0 18px 44px -22px rgba(45, 37, 32, 0.22);
+        transform: translateY(-3px);
+      }
+    }
+    .tgpost__head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    .tgpost__avatar {
+      flex: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+      box-shadow: 0 4px 12px -4px rgba(var(--accent-rgb), 0.5);
+    }
+    .tgpost__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .tgpost__id { flex: 1 1 auto; min-width: 0; }
+    .tgpost__chan {
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .tgpost__handle {
+      font-size: var(--fs-2xs);
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tgpost__type {
+      margin-left: auto;
+      flex: none;
+      align-self: flex-start;
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      color: var(--accent-hover);
+      background: var(--accent-light);
+      border: 1px solid rgba(var(--accent-rgb), 0.22);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+    .tgpost__body {
+      font-size: var(--fs-sm);
+      line-height: var(--lh-text);
+      color: var(--text);
+      margin: 0 0 var(--space-5);
+    }
+    .tgpost__hook { font-weight: 700; }
+    .tgpost__excerpt { color: var(--text-muted); }
+    .tgpost__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-top: auto;
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .tgpost__react {
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-alt);
+      border-radius: var(--radius-pill);
+      padding: 3px 9px;
+    }
+    .tgpost__views {
+      margin-left: auto;
+      font-size: var(--fs-2xs);
+      color: var(--text-muted);
+    }
+    .tgpost__more {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      align-self: flex-start;
+      margin-top: var(--space-4);
+      padding: 7px 0;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--accent-hover);
+      text-decoration: none;
+      transition: color var(--motion-fast);
+    }
+    .tgpost__more svg { flex: none; }
+    .tgpost__more-arr { transition: transform var(--motion-fast); }
+    .tgpost__more:hover { color: var(--accent); }
+    .tgpost__more:hover .tgpost__more-arr { transform: translateX(3px); }
+    .tgpost__more:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* — Веер обложек каруселей — */
+    .cara-deck {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .cara-cover {
+      position: relative;
+      width: 156px;
+      flex: none;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      transition: transform var(--motion-base);
+    }
+    /* «разложенная колода»: лёгкий наклон, как руками */
+    .cara-deck .cara-cover:nth-child(odd) { transform: rotate(-2.4deg); }
+    .cara-deck .cara-cover:nth-child(even) { transform: rotate(2deg); }
+    .cara-cover__frame {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--bg-dark);
+      box-shadow: 0 10px 30px -14px rgba(45, 37, 32, 0.45);
+      border: 1px solid var(--border);
+    }
+    .cara-cover__frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-md);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+      pointer-events: none;
+    }
+    .cara-cover__img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      transition: transform var(--motion-base);
+    }
+    .cara-cover__count {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      color: #fff;
+      background: rgba(26, 23, 20, 0.72);
+      backdrop-filter: blur(4px);
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+    }
+    .cara-cover__open {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%) translateY(6px);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(254, 254, 254, 0.94);
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 4px 14px -4px rgba(45, 37, 32, 0.4);
+      transition: opacity var(--motion-base), transform var(--motion-base);
+    }
+    .cara-cover__cap {
+      display: block;
+      margin-top: var(--space-3);
+      font-size: var(--fs-2xs);
+      line-height: 1.35;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .cara-deck:hover .cara-cover { transform: rotate(0deg); filter: saturate(0.92) brightness(0.97); }
+      .cara-deck .cara-cover:hover {
+        transform: rotate(0deg) translateY(-8px) scale(1.03);
+        filter: none;
+        z-index: 2;
+      }
+      .cara-cover:hover .cara-cover__img { transform: scale(1.05); }
+      .cara-cover:hover .cara-cover__open { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    .cara-cover:focus-visible { outline: none; }
+    .cara-cover:focus-visible .cara-cover__frame {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    /* — Лайтбокс карусели — */
+    .cbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(12px, 4vw, 48px);
+      background: rgba(20, 17, 14, 0.86);
+      backdrop-filter: blur(6px);
+    }
+    .cbox.is-open { display: flex; }
+    .cbox__stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .cbox__img {
+      display: block;
+      max-width: min(86vw, 540px);
+      max-height: 84vh;
+      border-radius: var(--radius-md);
+      box-shadow: 0 24px 70px -20px rgba(0, 0, 0, 0.7);
+      background: var(--bg-dark);
+    }
+    .cbox__counter {
+      position: absolute;
+      top: -34px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
+      letter-spacing: 0.02em;
+    }
+    .cbox__nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: rgba(254, 254, 254, 0.92);
+      color: var(--text);
+      font-size: 1.5rem;
+      line-height: 1;
+      box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.5);
+      transition: background var(--motion-fast), transform var(--motion-fast);
+    }
+    .cbox__nav:hover { background: #fff; transform: translateY(-50%) scale(1.06); }
+    .cbox__nav:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .cbox__nav--prev { left: -64px; }
+    .cbox__nav--next { right: -64px; }
+    .cbox__close {
+      position: absolute;
+      top: -42px;
+      right: -8px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: rgba(254, 254, 254, 0.16);
+      color: #fff;
+      font-size: 1.3rem;
+      line-height: 1;
+      transition: background var(--motion-fast);
+    }
+    .cbox__close:hover { background: rgba(254, 254, 254, 0.30); }
+    .cbox__close:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    /* — Блок отзывов: лента сообщений Telegram — */
+    .rev-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .rev-msg {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-3);
+    }
+    .rev-msg__avatar {
+      flex: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: var(--fs-md);
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      box-shadow: 0 4px 12px -4px rgba(39, 174, 96, 0.5);
+    }
+    .rev-msg__body { min-width: 0; flex: 1 1 auto; }
+    .rev-msg__name {
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      color: var(--green-dark);
+      margin: 0 0 7px 4px;
+    }
+    .rev-msg__niche {
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .rev-msg__bubble {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px 18px 18px 18px;
+      padding: var(--space-5) var(--space-6) var(--space-4);
+      box-shadow: var(--card-shadow);
+    }
+    .rev-msg__text {
+      font-size: var(--fs-sm);
+      line-height: 1.55;
+      color: var(--text);
+      margin: 0;
+    }
+    .rev-msg__meta {
+      display: block;
+      text-align: right;
+      margin-top: var(--space-3);
+      font-size: var(--fs-2xs);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .rev-msg__checks {
+      color: #4aa3e0;
+      margin-left: 4px;
+      font-weight: 700;
+      letter-spacing: -3px;
+    }
+
+    /* — Адаптив примеров и отзывов — */
+    @media (max-width: 760px) {
+      .tg-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+      }
+      .works__sub + .works__sub { margin-top: var(--space-14); }
+      .cara-cover { width: 150px; }
+      .cbox__nav--prev { left: 4px; }
+      .cbox__nav--next { right: 4px; }
+      .cbox__nav { background: rgba(254, 254, 254, 0.85); }
+      .rev-grid { gap: var(--space-4); }
+      .rev-msg { gap: var(--space-2); }
+      .rev-msg__avatar { width: 34px; height: 34px; font-size: var(--fs-sm); }
+      .rev-msg__bubble { padding: var(--space-4) var(--space-4) var(--space-3); border-radius: 5px 15px 15px 15px; }
+      .rev-msg__text { font-size: var(--fs-xs); line-height: 1.5; }
+      .rev-msg__name { font-size: var(--fs-xs); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cara-deck .cara-cover,
+      .cara-deck:hover .cara-cover,
+      .cara-deck .cara-cover:hover { transform: none; }
+    }
