@@ -152,8 +152,7 @@
       .compare-grid,
       .features-grid,
       .workflow-grid,
-      .proof-grid,
-      .segments-grid {
+      .proof-grid {
         grid-template-columns: 1fr;
       }
 
@@ -271,8 +270,6 @@
       .section__header { margin-bottom: 56px; }
       .features-grid { gap: 32px; }
       .showcase-card { padding: 32px 28px; }
-      .segment-card { padding: 32px 28px; }
-      .segment-card--featured { padding: 32px 28px; }
       .expert { margin-bottom: 56px; }
       .pricing-price__new { font-size: var(--fs-3xl); }
       .faq-question { padding: 18px 20px; }

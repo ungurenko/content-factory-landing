@@ -276,12 +276,9 @@
       z-index: 1;
     }
 
-    /* Tighten spacing between carousel and audience sections */
+    /* Tighten spacing below the styles carousel */
     #carousel-styles {
       padding-bottom: var(--space-6);
-    }
-    #for-whom {
-      padding-top: var(--space-6);
     }
 
     .section__badge,
