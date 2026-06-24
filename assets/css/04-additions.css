@@ -968,3 +968,21 @@
       .cara-deck:hover .cara-cover,
       .cara-deck .cara-cover:hover { transform: none; }
     }
+
+    /* Второстепенная цена в евро */
+    .price-eur {
+      font-size: 0.82em;
+      font-weight: 500;
+      color: inherit;     /* подхватывает цвет контекста: зелёный в hero, акцент в пилюле */
+      opacity: 0.7;       /* делает второстепенной в любом блоке */
+      white-space: nowrap;
+    }
+
+    .pricing-price__eur {
+      margin-top: -6px;   /* подтянуть под крупную цену */
+      margin-bottom: 14px;
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }

@@ -82,20 +82,14 @@
         font-size: var(--fs-body-large);
         line-height: 1.5;
         text-wrap: pretty;
-        margin-bottom: 32px;
-      }
-
-      .hero__price-note {
-        justify-content: center;
-        padding: 14px 18px;
-        margin-bottom: 32px;
+        margin-bottom: 36px;
       }
 
       .hero__cta {
         flex-direction: column;
         gap: 16px;
         width: 100%;
-        margin-bottom: 48px;
+        margin-bottom: 0;
       }
 
       .hero__button {
@@ -116,31 +110,6 @@
         .hero__button-stub { display: none; }
         .hero__button-main { border-radius: var(--radius-lg); }
       }
-
-    .hero__stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 28px 24px;
-      width: 100%;
-      max-width: 360px;
-      margin: 8px auto 0;
-    }
-
-    .hero__stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      min-width: 0;
-      gap: 6px;
-    }
-
-    .hero__stat-label {
-      white-space: nowrap;
-    }
-
-      .hero__stat-number { font-size: var(--fs-xl); }
-      .hero__stat-label { font-size: var(--fs-xs); }
 
       .hero__right::before { display: none; }
       .hero__right::after {
